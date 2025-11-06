@@ -8,27 +8,24 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="448.0" prefWidth="1002.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elektroniczny_dziennik.MainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="448.0" prefWidth="1002.0" stylesheets="@styles/app-styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elektroniczny_dziennik.MainController">
    <left>
-      <VBox fx:id="leftContainer" fillWidth="false" prefHeight="382.0" prefWidth="189.0" spacing="20.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="gradesBtn" mnemonicParsing="false" onAction="#showGrades" prefHeight="25.0" prefWidth="527.0" text="Oceny" />
-            <Button fx:id="attendanceBtn" mnemonicParsing="false" onAction="#showAttendance" prefHeight="25.0" prefWidth="480.0" text="Frekwencja" />
-            <Button fx:id="settingsBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="425.0" text="Ustawienia" />
-            <Button fx:id="adminSettingsBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="471.0" text="Ustawienia administratora" />
-         </children>
+      <VBox id="sidebarContainer" fx:id="sidebarContainer" fillWidth="false" prefHeight="314.0" prefWidth="189.0" spacing="20.0" styleClass="sidebar-pane" BorderPane.alignment="CENTER">
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
+         <opaqueInsets>
+            <Insets top="10.0" />
+         </opaqueInsets>
       </VBox>
    </left>
    <center>
-      <Pane fx:id="mainContainer" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <Pane id="mainContainer" fx:id="mainContainer" prefHeight="200.0" prefWidth="200.0" styleClass="content-pane" BorderPane.alignment="CENTER" />
    </center>
    <top>
-      <HBox fx:id="header" alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="600.0" spacing="15.0" BorderPane.alignment="CENTER">
+      <HBox id="headerPane" fx:id="header" alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="600.0" spacing="15.0" styleClass="header-pane" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="loggedLabel" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="17.0" text="Zalogowano jako: " />
+            <Label id="loggedLabel" fx:id="loggedLabel" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="17.0" styleClass="header-label" text="Zalogowano jako: " />
             <Button fx:id="logoutBtn" mnemonicParsing="false" onAction="#logout" text="Wyloguj" />
          </children>
          <opaqueInsets>

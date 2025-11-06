@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="440.0" prefWidth="192.0" stylesheets="@styles/sidebar.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="440.0" prefWidth="192.0" spacing="8.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Button id="gradesButton" mnemonicParsing="false" styleClass="sidebar-button" text="Oceny" />
+            <Button id="attendanceButton" mnemonicParsing="false" styleClass="sidebar-button" text="Frekwencja" />
+            <Button id="dashboardButton" mnemonicParsing="false" styleClass="sidebar-button" text="Button" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets top="60.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>

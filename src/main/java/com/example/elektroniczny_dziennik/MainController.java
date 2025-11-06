@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -14,53 +13,115 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainController {
-    // header FXML elements
+
     @FXML private Label loggedLabel;
+    @FXML private Pane sidebarContainer;
+    @FXML private Pane mainContainer;
 
-    // left container FXML elements
-    @FXML private Button adminSettingsBtn;
+    @FXML private Button dashboardButton;
+    @FXML private Button gradesButton;
+    @FXML private Button attendanceButton;
 
-    // Containers
-    @FXML Pane mainContainer;
-
-
-    private Parent view;
     private Stage stage;
-
     public User user;
+    private Map<String, Button> navigationButtons;
+    private Button currentActiveButton = null;
 
-    public void displayUser(User user) throws IOException{
+    public void displayUser(User user) throws IOException {
         this.user = user;
         loggedLabel.setText("Zalogowano jako: " + this.user.getUsername() + " (" + this.user.getRole() + ")");
-        loadView("grades.fxml");
 
-        adminSettingsBtn.setVisible(this.user.getRole().equals("admin"));
+        loadSidebar();
+        loadInitialView();
     }
 
-    public void showGrades() throws IOException{
-        loadView("grades.fxml");
+    private void loadSidebar() throws IOException {
+        String sidebarFxml;
+        if (this.user.getRole().equals("admin")) {
+            sidebarFxml = "adminSidebar.fxml";
+        } else {
+            sidebarFxml = "studentSidebar.fxml";
+        }
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(sidebarFxml));
+        loader.setController(this);
+        Parent sidebarView = loader.load();
+
+        sidebarContainer.getChildren().clear();
+        sidebarContainer.getChildren().add(sidebarView);
+
+        initializeButtonMap();
     }
 
-    public void showAttendance() throws IOException{
-        loadView("attendance.fxml");
+    private void initializeButtonMap() {
+        navigationButtons = new HashMap<>();
+
+        if (dashboardButton != null) {
+            navigationButtons.put("adminDashboard.fxml", dashboardButton);
+            navigationButtons.put("studentDashboard.fxml", dashboardButton);
+        }
+        if (gradesButton != null) {
+            navigationButtons.put("grades.fxml", gradesButton);
+        }
+        if (attendanceButton != null) {
+            navigationButtons.put("attendance.fxml", attendanceButton);
+        }
     }
 
-    public void logout(ActionEvent e){
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setHeaderText("Wylogowywanie");
-        alert.setContentText("Czy na pewno chcesz sie wylogowac?");
-
-        if(alert.showAndWait().get() == ButtonType.OK){
-            stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-            stage.close();
+    private void loadInitialView() throws IOException {
+        if (this.user.getRole().equals("admin")) {
+            loadView("adminDashboard.fxml");
+        } else {
+            loadView("studentDashboard.fxml");
         }
     }
 
     public void loadView(String fxml) throws IOException {
-        view = FXMLLoader.load(getClass().getResource(fxml));
+        Parent loadedView = FXMLLoader.load(getClass().getResource(fxml));
         mainContainer.getChildren().clear();
-        mainContainer.getChildren().add(view);
+        mainContainer.getChildren().add(loadedView);
+
+        setActiveButton(fxml);
+    }
+
+    private void setActiveButton(String viewName) {
+        if (currentActiveButton != null) {
+            currentActiveButton.getStyleClass().remove("active");
+        }
+
+        Button activeButton = navigationButtons.get(viewName);
+        if (activeButton != null) {
+            activeButton.getStyleClass().add("active");
+            currentActiveButton = activeButton;
+        } else {
+            currentActiveButton = null;
+        }
+    }
+
+    public void showDashboard() throws IOException {
+        loadInitialView();
+    }
+
+    public void showGrades() throws IOException {
+        loadView("grades.fxml");
+    }
+
+    public void showAttendance() throws IOException {
+        loadView("attendance.fxml");
+    }
+
+    public void logout(ActionEvent e) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Wylogowywanie");
+        alert.setContentText("Czy na pewno chcesz sie wylogowac?");
+
+        if (alert.showAndWait().get() == ButtonType.OK) {
+            stage = (Stage)((Node) e.getSource()).getScene().getWindow();
+            stage.close();
+        }
     }
 }

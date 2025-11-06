@@ -1,0 +1,23 @@
+.sidebar-button {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-max-width: infinity;
+}
+
+.sidebar-button:hover {
+    -fx-background-color: #45a049;
+}
+
+.sidebar-button.active {
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.sidebar-button.active:hover {
+    -fx-background-color: #E9F2FE;
+    -fx-text-fill: #2C6ADB;
+    -fx-font-weight: bold;
+}
