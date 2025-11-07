@@ -1,105 +1,18 @@
-.root {
-    -fx-primary-color: #E9F2FE;
-    -fx-secondary-color: #C5CAE9;
-    -fx-accent-color: #FFC107;
-    -fx-background-light: #ECEFF1;
-    -fx-background-dark: #CFD8DC;
-    -fx-text-color-primary: #212121;
-    -fx-text-color-secondary: #757575;
-    -fx-border-color-subtle: #B0BEC5;
-}
-
-.label {
-    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
-    -fx-text-fill: -fx-text-color-primary;
-}
-
-.button {
-    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
-    -fx-font-size: 14px;
-    -fx-background-color: transparent;
-    -fx-text-fill: -fx-text-color-primary;
-    -fx-padding: 8px 15px;
-    -fx-background-radius: 5px;
-    -fx-cursor: hand;
-}
-
-.button:hover {
-    -fx-background-color: derive(-fx-primary-color, 15%);
-}
-
-.text-field {
-    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
-    -fx-font-size: 14px;
-    -fx-prompt-text-fill: -fx-text-color-secondary;
-    -fx-background-color: white;
-    -fx-border-color: -fx-border-color-subtle;
-    -fx-border-radius: 5px;
-    -fx-padding: 5px 10px;
-}
-
-.root-container {
-    -fx-background-color: -fx-background-light;
-}
-
 .header-pane {
-    -fx-background-color: white;
+    -fx-background-color: #FFFFFF;
     -fx-padding: 15px;
     -fx-border-width: 0 0 1px 0;
     -fx-border-color: -fx-border-color-subtle;
 }
 
-.header-label {
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
-    -fx-text-fill: -fx-text-color-primary;
-}
-
 .sidebar-pane {
-    -fx-background-color: -fx-background-dark;
+    -fx-background-color: #F5F6FA;
     -fx-padding: 15px 10px;
     -fx-border-width: 0 1px 0 0;
     -fx-border-color: -fx-border-color-subtle;
 }
 
 .content-pane {
-    -fx-background-color: -fx-background-light;
+    -fx-background-color: #FCFCFC;
     -fx-padding: 20px;
-}
-
-.sidebar-button {
-    -fx-font-size: 14px;
-    -fx-font-weight: normal;
-    -fx-background-color: transparent;
-    -fx-text-fill: -fx-text-color-primary;
-    -fx-padding: 10px 15px;
-    -fx-max-width: infinity;
-    -fx-alignment: CENTER_LEFT;
-    -fx-background-radius: 0;
-}
-
-.sidebar-button:hover {
-    -fx-background-color: derive(-fx-background-dark, 10%);
-    -fx-text-fill: -fx-primary-color;
-}
-
-.sidebar-button:pressed {
-    -fx-background-color: derive(-fx-background-dark, 20%);
-}
-
-.form-vbox {
-    -fx-spacing: 15px;
-    -fx-padding: 20px;
-    -fx-background-color: white;
-    -fx-background-radius: 8px;
-    -fx-border-color: -fx-border-color-subtle;
-    -fx-border-width: 1px;
-    -fx-border-radius: 8px;
-}
-
-.view-title {
-    -fx-font-size: 24px;
-    -fx-font-weight: bold;
-    -fx-text-fill: -fx-text-color-primary;
-    -fx-padding: 0 0 15px 0;
 }
