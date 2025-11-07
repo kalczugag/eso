@@ -16,9 +16,6 @@
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
-         <padding>
-            <Insets top="60.0" />
-         </padding>
       </VBox>
    </children>
 </AnchorPane>

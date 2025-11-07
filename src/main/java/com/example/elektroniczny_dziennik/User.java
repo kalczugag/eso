@@ -3,7 +3,7 @@ package com.example.elektroniczny_dziennik;
 public class User {
     private String username;
     private String password;
-    private String role;
+    private String role; // admin, student
 
     public User(String username, String password, String role){
         this.username = username;
@@ -11,7 +11,6 @@ public class User {
         this.role = role;
     }
 
-    // Getters
     public String getUsername(){
         return this.username;
     }

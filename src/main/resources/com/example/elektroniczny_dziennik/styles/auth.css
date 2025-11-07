@@ -1,0 +1,24 @@
+.bg-pane {
+    -fx-background-color: #f8fbff;
+}
+
+.login-button {
+    -fx-background-color: #2a3240;
+    -fx-text-fill: #fffff8;
+    -fx-font-weight: bold;
+    -fx-max-width: infinity;
+    -fx-padding: 10px;
+}
+
+.login-button:hover {
+    -fx-background-color: #333b4d;
+    -fx-cursor: hand;
+}
+
+.login-button:armed {
+    -fx-background-color: #333b4d;
+}
+
+.login-text-field {
+    -fx-padding: 6px;
+}

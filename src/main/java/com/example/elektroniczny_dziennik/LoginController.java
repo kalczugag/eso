@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 import javax.swing.*;
@@ -23,6 +24,31 @@ public class LoginController {
     private Scene scene;
     private Stage stage;
 
+    // Obsługuje autoryzację użytkownika po wciśnięciu klawisza Enter w polach wprowadzania.
+    @FXML
+    public void initialize() {
+        loginInput.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                try {
+                    login(new ActionEvent(loginInput, null));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                event.consume();
+            }
+        });
+
+        passwordInput.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                try {
+                    login(new ActionEvent(passwordInput, null));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                event.consume();
+            }
+        });
+    }
 
     public void login(ActionEvent e) throws IOException {
         String login = loginInput.getText();
@@ -52,6 +78,7 @@ public class LoginController {
 
                 stage = (Stage)((Node)e.getSource()).getScene().getWindow();
                 stage.setScene(scene);
+                stage.centerOnScreen();
                 stage.show();
             }
             else {

@@ -15,6 +15,8 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(root);
 
         stage.setScene(scene);
+        stage.centerOnScreen();
+
         stage.show();
     }
 }

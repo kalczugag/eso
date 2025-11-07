@@ -1,15 +1,31 @@
+@font-face {
+    font-family: "Roboto";
+    src: url("../fonts/Roboto-Regular.ttf");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Bold.ttf');
+    font-weight: bold;
+}
+
+.root {
+    -fx-font-family: "Roboto", "Segoe UI", sans-serif;
+}
+
 .header-pane {
     -fx-background-color: #FFFFFF;
     -fx-padding: 15px;
     -fx-border-width: 0 0 1px 0;
-    -fx-border-color: -fx-border-color-subtle;
+    -fx-border-color: #E1E4EC;
 }
 
 .sidebar-pane {
     -fx-background-color: #F5F6FA;
     -fx-padding: 15px 10px;
     -fx-border-width: 0 1px 0 0;
-    -fx-border-color: -fx-border-color-subtle;
+    -fx-border-color: #E1E4EC;
 }
 
 .content-pane {
