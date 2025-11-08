@@ -32,6 +32,11 @@
                         <PasswordField fx:id="passwordInput" styleClass="login-text-field" />
                      </children>
                   </VBox>
+                  <Label fx:id="errorLabel" alignment="CENTER" lineSpacing="1.0" maxWidth="1.7976931348623157E308" textAlignment="CENTER" textFill="RED">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
                </children>
             </VBox>
             <Button fx:id="loginButton" mnemonicParsing="false" onAction="#login" styleClass="login-button" text="Zaloguj się" />

@@ -5,11 +5,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -26,7 +28,10 @@ public class MainController {
     @FXML private Button gradesButton;
     @FXML private Button attendanceButton;
 
+    private Parent root;
+    private Scene scene;
     private Stage stage;
+
     public User user;
     private Map<String, Button> navigationButtons;
     private Button currentActiveButton = null;
@@ -81,9 +86,12 @@ public class MainController {
     }
 
     public void loadView(String fxml) throws IOException {
-        Parent loadedView = FXMLLoader.load(getClass().getResource(fxml));
+        StackPane loadedView = FXMLLoader.load(getClass().getResource(fxml));
         mainContainer.getChildren().clear();
         mainContainer.getChildren().add(loadedView);
+
+        loadedView.prefWidthProperty().bind(mainContainer.widthProperty());
+        loadedView.prefHeightProperty().bind(mainContainer.heightProperty());
 
         setActiveButton(fxml);
     }
@@ -114,14 +122,19 @@ public class MainController {
         loadView("attendance.fxml");
     }
 
-    public void logout(ActionEvent e) {
+    public void logout(ActionEvent e) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText("Wylogowywanie");
         alert.setContentText("Czy na pewno chcesz sie wylogowac?");
 
         if (alert.showAndWait().get() == ButtonType.OK) {
+            root = FXMLLoader.load(getClass().getResource("loginView.fxml"));
+            scene = new Scene(root);
+
             stage = (Stage)((Node) e.getSource()).getScene().getWindow();
-            stage.close();
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
         }
     }
 }

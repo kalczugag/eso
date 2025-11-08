@@ -5,11 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Database {
-    private static String URL = "jdbc:postgresql://localhost:5432/postgres"; // tu zmień na swoją nazwę
-    private static String USER = "postgres";
-    private static String PASSWORD = "admin";
+    private static String URL = "jdbc:sqlite:database/database.db";
 
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL, USER, PASSWORD);
+        return DriverManager.getConnection(URL);
     }
 }

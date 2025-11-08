@@ -7,10 +7,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
+import org.mindrot.jbcrypt.BCrypt;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -18,6 +20,9 @@ import java.io.IOException;
 public class LoginController {
     @FXML private TextField loginInput;
     @FXML private PasswordField passwordInput;
+
+    // Labels
+    @FXML private Label errorLabel;
 
 
     private Parent root;
@@ -55,63 +60,44 @@ public class LoginController {
         String password = passwordInput.getText();
 
         try(var conn = Database.getConnection()){
-            var statement = conn.prepareStatement("SELECT * FROM Users WHERE username = ? AND password = ?");
+            var statement = conn.prepareStatement("SELECT * FROM user WHERE login = ?");
             statement.setString(1, login);
-            statement.setString(2, password);
 
             var result = statement.executeQuery();
 
             if(result.next()){
-                User user = new User(
-                        result.getString("username"),
-                        result.getString("password"),
-                        result.getString("role")
-                );
+                String storedHash = result.getString("password");
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
-                root = loader.load();
+                if(BCrypt.checkpw(password, storedHash)) {
+                    User user = new User(
+                            result.getString("login"),
+                            result.getString("password"),
+                            result.getString("role")
+                    );
 
-                MainController controller = loader.getController();
-                controller.displayUser(user);
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
+                    root = loader.load();
 
-                scene = new Scene(root);
+                    MainController controller = loader.getController();
+                    controller.displayUser(user);
 
-                stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.centerOnScreen();
-                stage.show();
+                    scene = new Scene(root);
+
+                    stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.centerOnScreen();
+                    stage.show();
+                }
+                else{
+                    errorLabel.setText("Niepoprawne hasło, spróbuj ponownie");
+                }
             }
             else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText("Niepoprawne dane logowanie");
-                alert.setContentText("Niepoprawne hasło lub login, spróbuj ponownie");
-                alert.show();
+                errorLabel.setText("Niepoprawny login, spróbuj ponownie");
             }
         }
         catch (Exception ex){
-            ex.printStackTrace();
+            System.out.println(ex);
         }
-
-        /*
-        if(login.equals("") || password.equals("")){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Niepoprawne dane logowanie");
-            alert.setContentText("Niepoprawne hasło lub login, spróbuj ponownie");
-            alert.show();
-        } else {
-            User user = new User(login, password, "admin");
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
-            root = loader.load();
-            scene = new Scene(root);
-
-            MainController controller = loader.getController();
-            controller.displayUser(user);
-
-            stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        }
-        */
     }
 }
