@@ -38,7 +38,7 @@ public class MainController {
 
     public void displayUser(User user) throws IOException {
         this.user = user;
-        loggedLabel.setText("Zalogowano jako: " + this.user.getUsername() + " (" + this.user.getRole() + ")");
+        loggedLabel.setText("Zalogowano jako: " + this.user.getFirstName() + " " + this.user.getLastName() + " (" + this.user.getRole() + ")");
 
         loadSidebar();
         loadInitialView();

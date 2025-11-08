@@ -39,7 +39,12 @@
                   </Label>
                </children>
             </VBox>
-            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#login" styleClass="login-button" text="Zaloguj się" />
+            <VBox fx:id="buttonsContainer" alignment="TOP_CENTER" prefHeight="100.0" prefWidth="100.0" spacing="25.0">
+               <children>
+                  <Button fx:id="loginButton" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#login" styleClass="login-button" text="Zaloguj się" VBox.vgrow="ALWAYS" />
+                  <Button fx:id="registerButton" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#register" styleClass="login-button" text="Zarejestruj się" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
          </children>
       </VBox>
    </children>

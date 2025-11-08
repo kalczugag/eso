@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane cacheShape="false" prefHeight="600.0" prefWidth="400.0" styleClass="bg-pane" stylesheets="@styles/auth.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elektroniczny_dziennik.RegisterController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="600.0" prefWidth="400.0" spacing="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="registerLabel" alignment="CENTER" text="Zarejestruj się">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Label>
+            <VBox fx:id="userInputContainer" alignment="CENTER" prefHeight="256.0" prefWidth="340.0" spacing="25.0">
+               <children>
+                  <TextField fx:id="firstNameInput" maxHeight="1.7976931348623157E308" prefWidth="340.0" promptText="Imię" VBox.vgrow="ALWAYS" />
+                  <TextField fx:id="lastNameInput" maxHeight="1.7976931348623157E308" promptText="Nazwisko" VBox.vgrow="ALWAYS" />
+                  <PasswordField fx:id="passwordInput" maxHeight="1.7976931348623157E308" promptText="Hasło" VBox.vgrow="ALWAYS" />
+                  <PasswordField fx:id="confirmPasswordInput" maxHeight="1.7976931348623157E308" promptText="Potwierdź hasło" VBox.vgrow="ALWAYS" />
+                  <Label fx:id="infoLabel" styleClass="positive" textAlignment="CENTER" textFill="RED" wrapText="true" VBox.vgrow="NEVER">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox fx:id="buttonsContainer" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" spacing="20.0">
+               <children>
+                  <Button fx:id="registerButton" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#register" styleClass="login-button" text="Utwórz konto" VBox.vgrow="ALWAYS" />
+                  <Button fx:id="loginButton" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#login" styleClass="login-button" text="Zaloguj się" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+   <padding>
+      <Insets left="30.0" right="30.0" />
+   </padding>
+</AnchorPane>

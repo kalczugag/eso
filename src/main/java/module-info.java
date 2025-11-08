@@ -4,6 +4,7 @@ module com.example.elektroniczny_dziennik {
     requires java.desktop;
     requires java.sql;
     requires jbcrypt;
+    requires javafx.graphics;
 
 
     opens com.example.elektroniczny_dziennik to javafx.fxml;

@@ -1,21 +1,18 @@
 package com.example.elektroniczny_dziennik;
 
 public class User {
-    private String username;
-    private String password;
+    private String firstName;
+    private String lastName;
     private String role; // admin, student
 
-    public User(String username, String password, String role){
-        this.username = username;
-        this.password = password;
+    public User(String firstName, String lastName, String role){
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.role = role;
     }
 
-    public String getUsername(){
-        return this.username;
-    }
-
-    public String getRole(){
-        return this.role;
-    }
+    // Getters
+    public String getFirstName() {return this.firstName;};
+    public String getLastName() {return this.lastName;};
+    public String getRole() {return this.role;};
 }

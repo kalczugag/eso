@@ -6,10 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import org.mindrot.jbcrypt.BCrypt;
@@ -70,8 +67,8 @@ public class LoginController {
 
                 if(BCrypt.checkpw(password, storedHash)) {
                     User user = new User(
-                            result.getString("login"),
-                            result.getString("password"),
+                            result.getString("first_name"),
+                            result.getString("last_name"),
                             result.getString("role")
                     );
 
@@ -99,5 +96,15 @@ public class LoginController {
         catch (Exception ex){
             System.out.println(ex);
         }
+    }
+
+    public void register(ActionEvent e) throws IOException{
+        root = FXMLLoader.load(getClass().getResource("registerView.fxml"));
+        scene = new Scene(root);
+
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
     }
 }

@@ -22,3 +22,11 @@
 .login-text-field {
     -fx-padding: 6px;
 }
+
+.label:positive {
+    -fx-text-fill: #28a745;
+}
+
+.label:negative{
+    -fx-text-fill: #e74c3c;
+}
