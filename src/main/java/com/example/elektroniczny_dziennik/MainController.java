@@ -27,6 +27,8 @@ public class MainController {
     @FXML private Button dashboardButton;
     @FXML private Button gradesButton;
     @FXML private Button attendanceButton;
+    @FXML private Button gradeEntryButton;
+    @FXML private Button userManagementButton;
 
     private Parent root;
     private Scene scene;
@@ -75,6 +77,12 @@ public class MainController {
         if (attendanceButton != null) {
             navigationButtons.put("attendance.fxml", attendanceButton);
         }
+        if (gradeEntryButton != null) {
+            navigationButtons.put("gradeEntry.fxml", gradeEntryButton);
+        }
+        if (userManagementButton != null) {
+            navigationButtons.put("userManagement.fxml", userManagementButton);
+        }
     }
 
     private void loadInitialView() throws IOException {
@@ -86,13 +94,15 @@ public class MainController {
     }
 
     public void loadView(String fxml) throws IOException {
-        StackPane loadedView = FXMLLoader.load(getClass().getResource(fxml));
+        Parent loadedView = FXMLLoader.load(getClass().getResource(fxml));
         mainContainer.getChildren().clear();
         mainContainer.getChildren().add(loadedView);
 
-        loadedView.prefWidthProperty().bind(mainContainer.widthProperty());
-        loadedView.prefHeightProperty().bind(mainContainer.heightProperty());
-
+        if (loadedView instanceof Pane) {
+            Pane viewPane = (Pane) loadedView;
+            viewPane.prefWidthProperty().bind(mainContainer.widthProperty());
+            viewPane.prefHeightProperty().bind(mainContainer.heightProperty());
+        }
         setActiveButton(fxml);
     }
 
@@ -120,6 +130,14 @@ public class MainController {
 
     public void showAttendance() throws IOException {
         loadView("attendance.fxml");
+    }
+
+    public void showGradeEntry() throws IOException {
+        loadView("gradeEntry.fxml");
+    }
+
+    public void showUserManagement() throws IOException {
+        loadView("userManagement.fxml");
     }
 
     public void logout(ActionEvent e) throws IOException {

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane stylesheets="@styles/app-styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elektroniczny_dziennik.GradeEntryController">
+
+    <top>
+        <HBox spacing="20" styleClass="header-pane">
+            <Label styleClass="view-title" text="Wprowadzanie i Edycja Ocen" />
+
+            <JFXComboBox fx:id="studentSearchField" editable="true" promptText="Wpisz nazwisko studenta..." />
+
+            <JFXComboBox fx:id="subjectComboBox" promptText="Wybierz Przedmiot" />
+        </HBox>
+    </top>
+
+    <center>
+        <TableView fx:id="gradesTable" stylesheets="@styles/app-styles.css">
+        <columns>
+            <TableColumn fx:id="gradeCol" prefWidth="100.0" text="Ocena" />
+            <TableColumn fx:id="descriptionCol" prefWidth="400.0" text="Opis" />
+            <TableColumn fx:id="dateCol" prefWidth="150.0" text="Data" />
+        </columns>
+    </TableView>
+    </center>
+
+    <right>
+        <VBox spacing="10" styleClass="form-vbox">
+        <Label styleClass="header-label" text="Nowa Ocena" />
+
+        <JFXTextField fx:id="newGradeInput" promptText="Ocena (np. 4.5)" />
+        <JFXTextField fx:id="descriptionInput" promptText="Opis oceny" />
+
+        <JFXButton onAction="#saveGrade" styleClass="button" text="Zapisz Ocenę" />
+    </VBox>
+    </right>
+</BorderPane>

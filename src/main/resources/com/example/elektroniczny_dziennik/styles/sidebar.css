@@ -1,20 +1,20 @@
 .sidebar-button {
     -fx-font-size: 14px;
     -fx-background-color: transparent;
-    -fx-text-fill: #7b8496;
+    -fx-text-fill: #090B0B;
     -fx-max-width: infinity;
 }
 
 .sidebar-button:hover {
-    -fx-background-color: #eceff4;
+    -fx-background-color: #f6f7f8;
     -fx-cursor: hand;
 }
 
 .sidebar-button.active {
-    -fx-background-color: #eceff4;
-    -fx-text-fill: #0f1218;
+    -fx-background-color: #ebf5ff;
+    -fx-text-fill: #3399ff;
 }
 
 .sidebar-button.active:hover {
-    -fx-background-color: #e7e9f0;
+    -fx-background-color: #D6EBFF;
 }

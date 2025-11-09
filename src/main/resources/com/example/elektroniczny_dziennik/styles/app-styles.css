@@ -5,7 +5,7 @@
 }
 
 @font-face {
-    font-family: 'Roboto';
+    font-family: "Roboto";
     src: url('../fonts/Roboto-Bold.ttf');
     font-weight: bold;
 }
@@ -22,13 +22,35 @@
 }
 
 .sidebar-pane {
-    -fx-background-color: #F5F6FA;
+    -fx-background-color: #FFFFFF;
     -fx-padding: 15px 10px;
     -fx-border-width: 0 1px 0 0;
     -fx-border-color: #E1E4EC;
 }
 
 .content-pane {
-    -fx-background-color: #FCFCFC;
     -fx-padding: 20px;
+}
+
+.text-field, .combo-box {
+    -fx-font-size: 14px;
+    -fx-background-color: white;
+    -fx-border-color: -fx-primary-border;
+    -fx-border-radius: 4px;
+    -fx-padding: 8px;
+}
+
+.view-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.form-vbox {
+    -fx-spacing: 15px;
+    -fx-padding: 20px;
+    -fx-background-color: -fx-primary-bg;
+    -fx-border-color: -fx-primary-border;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
 }
