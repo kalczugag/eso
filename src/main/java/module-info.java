@@ -7,7 +7,6 @@ module com.example.elektroniczny_dziennik {
     requires javafx.graphics;
     requires com.jfoenix;
 
-
     opens com.example.elektroniczny_dziennik to javafx.fxml;
     exports com.example.elektroniczny_dziennik;
 }

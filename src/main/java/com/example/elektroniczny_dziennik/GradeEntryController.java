@@ -9,6 +9,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.converter.DoubleStringConverter;
+import javafx.util.converter.DefaultStringConverter;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -49,6 +52,22 @@ public class GradeEntryController {
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
 
+        gradeCol.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+
+        descriptionCol.setCellFactory(TextFieldTableCell.forTableColumn(new DefaultStringConverter()));
+
+        gradeCol.setOnEditCommit(event -> {
+            Grade gradeToUpdate = event.getRowValue();
+            gradeToUpdate.setValue(event.getNewValue());
+            updateGradeInDatabase(gradeToUpdate);
+        });
+
+        descriptionCol.setOnEditCommit(event -> {
+            Grade gradeToUpdate = event.getRowValue();
+            gradeToUpdate.setDescription(event.getNewValue());
+            updateGradeInDatabase(gradeToUpdate);
+        });
+
         loadAllStudentsForAutocomplete();
         loadAllSubjects();
 
@@ -60,6 +79,26 @@ public class GradeEntryController {
 
         subjectComboBox.setOnAction(e -> loadGrades());
     }
+
+    private void updateGradeInDatabase(Grade grade) {
+        String sql = "UPDATE grades SET grade = ?, description = ? WHERE id = ?";
+
+        try (Connection conn = Database.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setDouble(1, grade.getValue());
+            stmt.setString(2, grade.getDescription());
+            stmt.setInt(3, grade.getId());
+
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Błąd Aktualizacji", "Nie udało się zaktualizować oceny w bazie danych.");
+            loadGrades();
+        }
+    }
+
 
     private void loadAllStudentsForAutocomplete() {
         String sql = "SELECT id, first_name, last_name FROM user WHERE role = 'student'";
@@ -138,7 +177,7 @@ public class GradeEntryController {
                         rs.getInt("id"),
                         rs.getDouble("grade"),
                         rs.getString("description"),
-                        rs.getDate("date")
+                        Date.valueOf(rs.getString("date"))
                 ));
             }
             gradesTable.setItems(grades);
@@ -155,7 +194,7 @@ public class GradeEntryController {
         String description = descriptionInput.getText();
 
         if (selectedStudentId == -1 || selectedSubjectId == null || gradeText.isEmpty()) {
-            showAlert(Alert.AlertType.WARNING, "BBrak Danych", "Musisz wybrać studenta, przedmiot oraz wpisać ocenę.");
+            showAlert(Alert.AlertType.WARNING, "Brak Danych", "Musisz wybrać studenta, przedmiot oraz wpisać ocenę.");
             return;
         }
 
@@ -167,7 +206,7 @@ public class GradeEntryController {
             return;
         }
 
-        String sql = "INSERT INTO Grades (student_id, subject_id, grade, description, date) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO grades (student_id, subject_id, grade, description, date) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = Database.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -176,7 +215,7 @@ public class GradeEntryController {
             stmt.setInt(2, selectedSubjectId);
             stmt.setDouble(3, gradeValue);
             stmt.setString(4, description);
-            stmt.setDate(5, Date.valueOf(LocalDate.now()));
+            stmt.setString(5, LocalDate.now().toString());
 
             stmt.executeUpdate();
 
