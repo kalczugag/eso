@@ -3,7 +3,9 @@ package com.example.elektroniczny_dziennik;
 public class User {
     private String firstName;
     private String lastName;
-    private String role; // admin, student
+    private String role; // admin, student, nauczyciel
+
+    static String id;
 
     public User(String firstName, String lastName, String role){
         this.firstName = firstName;

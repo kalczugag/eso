@@ -72,15 +72,38 @@ public class RegisterController {
 
                 var result = statement.executeUpdate();
 
-                if(result > 0){
-                    infoLabel.setText("Poprawnie utworzono nowe konto.\nTwój login to: " + login);
-                    infoLabel.pseudoClassStateChanged(positive, true);
-                    infoLabel.pseudoClassStateChanged(negative, false);
-                }
-                else{
+                if(result == 0){
                     infoLabel.setText("Bład podczas dodawania użytkownika");
                     infoLabel.pseudoClassStateChanged(positive, false);
                     infoLabel.pseudoClassStateChanged(negative, true);
+                }
+                else{
+                    int userId = -1;
+                    try(var generatedId = statement.getGeneratedKeys()){
+                        if(generatedId.next()){
+                            userId = generatedId.getInt(1);
+                        } else {
+                            infoLabel.setText("Bład podczas dodawania użytkownika");
+                            infoLabel.pseudoClassStateChanged(positive, false);
+                            infoLabel.pseudoClassStateChanged(negative, true);
+                            return;
+                        }
+                    }
+
+                    var statement2 = conn.prepareStatement(
+                            "INSERT INTO student (class, user_id)" +
+                            "VALUES (?, ?)");
+
+                    statement2.setString(1, "3A");
+                    statement2.setInt(2, userId);
+
+                    var result2 = statement2.executeUpdate();
+
+                    if(result2 > 0){
+                        infoLabel.setText("Poprawnie utworzono konto\nTwój login to: " + login);
+                        infoLabel.pseudoClassStateChanged(positive, true);
+                        infoLabel.pseudoClassStateChanged(negative, false);
+                    }
                 }
             }
             catch(Exception e){

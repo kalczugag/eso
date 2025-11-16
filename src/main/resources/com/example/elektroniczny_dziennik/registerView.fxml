@@ -21,18 +21,21 @@
                   <Font name="System Bold" size="28.0" />
                </font>
             </Label>
-            <VBox fx:id="userInputContainer" alignment="CENTER" prefHeight="235.0" prefWidth="340.0" spacing="25.0">
+            <VBox fx:id="userInputContainer" alignment="CENTER" maxHeight="1.7976931348623157E308" prefHeight="235.0" prefWidth="340.0" spacing="25.0" VBox.vgrow="ALWAYS">
                <children>
-                  <TextField fx:id="firstNameInput" maxHeight="1.7976931348623157E308" prefWidth="340.0" promptText="Imię" styleClass="login-text-field" VBox.vgrow="ALWAYS" />
-                  <TextField fx:id="lastNameInput" maxHeight="1.7976931348623157E308" promptText="Nazwisko" styleClass="login-text-field" VBox.vgrow="ALWAYS" />
-                  <PasswordField fx:id="passwordInput" maxHeight="1.7976931348623157E308" promptText="Hasło" styleClass="login-text-field" VBox.vgrow="ALWAYS" />
-                  <PasswordField fx:id="confirmPasswordInput" maxHeight="1.7976931348623157E308" promptText="Potwierdź hasło" styleClass="login-text-field" VBox.vgrow="ALWAYS" />
-                  <Label fx:id="infoLabel" styleClass="positive" textAlignment="CENTER" textFill="RED" wrapText="true" VBox.vgrow="NEVER">
+                  <TextField fx:id="firstNameInput" maxHeight="1.7976931348623157E308" prefWidth="340.0" promptText="Imię" styleClass="login-text-field" />
+                  <TextField fx:id="lastNameInput" maxHeight="1.7976931348623157E308" promptText="Nazwisko" styleClass="login-text-field" />
+                  <PasswordField fx:id="passwordInput" maxHeight="1.7976931348623157E308" promptText="Hasło" styleClass="login-text-field" />
+                  <PasswordField fx:id="confirmPasswordInput" maxHeight="1.7976931348623157E308" promptText="Potwierdź hasło" styleClass="login-text-field" />
+                  <Label fx:id="infoLabel" maxHeight="1.7976931348623157E308" styleClass="positive" textAlignment="CENTER" textFill="RED" textOverrun="CLIP" wrapText="true">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
                </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </VBox>
             <VBox fx:id="buttonsContainer" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" spacing="20.0">
                <children>
@@ -51,6 +54,9 @@
                </children>
             </VBox>
          </children>
+         <padding>
+            <Insets bottom="40.0" top="40.0" />
+         </padding>
       </VBox>
    </children>
    <padding>

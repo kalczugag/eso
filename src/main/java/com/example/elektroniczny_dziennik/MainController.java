@@ -50,6 +50,8 @@ public class MainController {
         String sidebarFxml;
         if (this.user.getRole().equals("admin")) {
             sidebarFxml = "adminSidebar.fxml";
+        } else if (this.user.getRole().equals("nauczyciel")) {
+            sidebarFxml = "teacherSidebar.fxml";
         } else {
             sidebarFxml = "studentSidebar.fxml";
         }
@@ -94,9 +96,16 @@ public class MainController {
     }
 
     public void loadView(String fxml) throws IOException {
-        Parent loadedView = FXMLLoader.load(getClass().getResource(fxml));
+        //Parent loadedView = FXMLLoader.load(getClass().getResource(fxml));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        Parent loadedView = loader.load();
         mainContainer.getChildren().clear();
         mainContainer.getChildren().add(loadedView);
+
+        if(fxml.equals("gradeEntry.fxml")){
+            GradeEntryController controller = loader.getController();
+            controller.setUser(user);
+        }
 
         if (loadedView instanceof Pane) {
             Pane viewPane = (Pane) loadedView;

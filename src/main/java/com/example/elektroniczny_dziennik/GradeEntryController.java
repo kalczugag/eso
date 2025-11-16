@@ -2,12 +2,14 @@ package com.example.elektroniczny_dziennik;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.DoubleStringConverter;
@@ -25,6 +27,13 @@ import java.util.Map;
 
 public class GradeEntryController {
 
+    private User user;
+
+    public void setUser(User user){
+        this.user = user;
+        loadAllSubjects();
+    }
+
     @FXML
     private JFXComboBox<String> studentSearchField;
     @FXML
@@ -38,9 +47,9 @@ public class GradeEntryController {
     @FXML
     private TableColumn<Grade, Date> dateCol;
     @FXML
-    private JFXTextField newGradeInput;
+    private TextField newGradeInput;
     @FXML
-    private JFXTextField descriptionInput;
+    private TextField descriptionInput;
 
     private Map<String, Integer> studentNameIdMap = new HashMap<>();
     private Map<String, Integer> subjectNameIdMap = new HashMap<>();
@@ -69,7 +78,6 @@ public class GradeEntryController {
         });
 
         loadAllStudentsForAutocomplete();
-        loadAllSubjects();
 
         studentSearchField.valueProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
@@ -124,14 +132,24 @@ public class GradeEntryController {
     }
 
     private void loadAllSubjects() {
-        String sql = "SELECT id, name FROM subjects";
-        try (Connection conn = Database.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+        String sql;
+
+        try (Connection conn = Database.getConnection()){
+            sql = "SELECT s.id, s.name FROM subjects AS s, teacher_subject AS ts WHERE s.id = ts.subject_id AND ts.teacher_id = ?";
+            var stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, getTeacherId());
+
+            if(this.user.getRole().equals("admin")){
+                sql = "SELECT id, name FROM subjects";
+                stmt = conn.prepareStatement(sql);
+            }
+
+            ResultSet rs = stmt.executeQuery();
 
             subjectNameIdMap.clear();
             ObservableList<String> subjects = FXCollections.observableArrayList();
             while (rs.next()) {
+                System.out.println("test");
                 String subjectName = rs.getString("name");
                 subjectNameIdMap.put(subjectName, rs.getInt("id"));
                 subjects.add(subjectName);
@@ -199,6 +217,7 @@ public class GradeEntryController {
         }
 
         double gradeValue;
+        // DODAC TUTAJ ZEBY OCENA BYŁA Z ZAKRESU 2-6 I ZWIEKSZALA SIE TYLKO CO 0.5
         try {
             gradeValue = Double.parseDouble(gradeText);
         } catch (NumberFormatException e) {
@@ -227,6 +246,24 @@ public class GradeEntryController {
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Błąd Zapisu", "Nie udało się zapisać oceny.");
         }
+    }
+
+    public int getTeacherId(){
+        int teacherId = -1;
+
+        try(Connection conn = Database.getConnection()){
+            var stmt = conn.prepareStatement("SELECT id FROM teacher WHERE user_id = ?");
+            stmt.setInt(1, Integer.parseInt(User.id));
+
+            var result = stmt.executeQuery();
+
+            if(result.next()) teacherId = result.getInt("id");
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return teacherId;
     }
 
     private void showAlert(Alert.AlertType type, String title, String content) {

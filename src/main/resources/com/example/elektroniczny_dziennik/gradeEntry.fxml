@@ -30,8 +30,8 @@
         <VBox spacing="10" styleClass="form-vbox">
         <Label styleClass="header-label" text="Nowa Ocena" />
 
-        <JFXTextField fx:id="newGradeInput" promptText="Ocena (np. 4.5)" />
-        <JFXTextField fx:id="descriptionInput" promptText="Opis oceny" />
+        <TextField fx:id="newGradeInput" promptText="Ocena (np. 4.5)" />
+        <TextField fx:id="descriptionInput" promptText="Opis oceny" />
 
         <JFXButton onAction="#saveGrade" styleClass="button" text="Zapisz Ocenę" />
     </VBox>

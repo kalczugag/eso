@@ -72,6 +72,8 @@ public class LoginController {
                             result.getString("role")
                     );
 
+                    User.id = result.getString("id");
+
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
                     root = loader.load();
 
