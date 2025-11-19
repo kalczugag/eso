@@ -11,7 +11,6 @@
          <children>
             <Button fx:id="dashboardButton" mnemonicParsing="false" onAction="#showDashboard" styleClass="sidebar-button" text="Pulpit" />
             <Button fx:id="gradeEntryButton" mnemonicParsing="false" onAction="#showGradeEntry" styleClass="sidebar-button" text="Wprowadzanie Ocen" />
-            <Button fx:id="userManagementButton" mnemonicParsing="false" onAction="#showUserManagement" styleClass="sidebar-button" text="Zarządzanie Użytkownikami" />
          </children>
          <opaqueInsets>
             <Insets />

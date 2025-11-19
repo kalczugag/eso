@@ -12,6 +12,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("loginView.fxml"));
+        System.out.println(root);
         Scene scene = new Scene(root);
 
         stage.setScene(scene);
@@ -19,4 +20,6 @@ public class HelloApplication extends Application {
 
         stage.show();
     }
+
+    // sjankow asd
 }

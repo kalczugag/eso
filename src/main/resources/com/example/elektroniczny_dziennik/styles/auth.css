@@ -5,6 +5,7 @@
 .login-button {
     -fx-background-color: #2a3240;
     -fx-text-fill: #fffff8;
+    -fx-border-radius: 4px;
     -fx-font-weight: bold;
     -fx-max-width: infinity;
     -fx-padding: 10px;
@@ -21,4 +22,27 @@
 
 .login-text-field {
     -fx-padding: 6px;
+}
+
+.label:positive {
+    -fx-text-fill: #28a745;
+}
+
+.label:negative{
+    -fx-text-fill: #e74c3c;
+}
+
+.register-button {
+    -fx-border-width: 1px;
+    -fx-border-color: #2a3240;
+    -fx-border-radius: 4px;
+    -fx-text-fill: #2a3240;
+    -fx-font-weight: bold;
+    -fx-max-width: infinity;
+    -fx-padding: 10px;
+}
+
+.register-button:hover {
+    -fx-background-color: #e8e6e6;
+    -fx-cursor: hand;
 }
