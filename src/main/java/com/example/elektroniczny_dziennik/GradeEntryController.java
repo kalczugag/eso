@@ -81,7 +81,11 @@ public class GradeEntryController {
 
         studentSearchField.valueProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
-                handleStudentSelection(newVal);
+                try{
+                    handleStudentSelection(newVal);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -161,10 +165,30 @@ public class GradeEntryController {
         }
     }
 
-    private void handleStudentSelection(String selectedName) {
-        Integer studentId = studentNameIdMap.get(selectedName);
-        if (studentId != null) {
-            selectedStudentId = studentId;
+    private void handleStudentSelection(String selectedName) throws SQLException {
+        Integer userId = studentNameIdMap.get(selectedName);
+        if (userId != null) {
+            try(var conn = Database.getConnection()){
+                var statement = conn.prepareStatement("SELECT s.id FROM student AS s" +
+                                " JOIN user AS u ON u.id = s.user_id" +
+                                " WHERE u.id = ?"
+                );
+
+                statement.setInt(1, userId);
+
+                var result = statement.executeQuery();
+
+                if(!result.next()){
+                    System.out.println("To nie jest student");
+                } else {
+                    selectedStudentId = result.getInt("id");
+                }
+            }
+            catch (SQLException e){
+                System.out.println(e);
+            }
+
+
             loadGrades();
         } else {
             selectedStudentId = -1;
