@@ -1,12 +1,15 @@
 package com.example.elektroniczny_dziennik;
 
+import javafx.scene.control.*;
+import javafx.stage.Stage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
+import javafx.application.Platform;
+import java.util.ArrayList;
 
 import java.sql.Date;
 import java.sql.SQLException;
@@ -36,6 +39,59 @@ public class gradesController {
             e.printStackTrace();
             System.out.println("Błąd pobierania danych: " + e.getMessage());
         }
+    }
+    @FXML
+    void generateReport() {
+        var items = gradesTable.getItems();
+
+        if (items.isEmpty()) {
+            showAlert("Brak danych", "Brak ocen do wygenerowania raportu.");
+            return;
+        }
+
+        String reportText = ReportService.analyzeGrades(items);
+
+        showReportDialog(reportText);
+    }
+
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+    private void showReportDialog(String reportText) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Raport Statystyczny");
+        alert.setHeaderText("Podsumowanie Twoich wyników");
+
+        TextArea textArea = new TextArea(reportText);
+        textArea.setEditable(false);
+        textArea.setWrapText(true);
+        textArea.setMaxWidth(Double.MAX_VALUE);
+        textArea.setMaxHeight(Double.MAX_VALUE);
+
+        GridPane.setVgrow(textArea, Priority.ALWAYS);
+        GridPane.setHgrow(textArea, Priority.ALWAYS);
+        GridPane content = new GridPane();
+        content.setMaxWidth(Double.MAX_VALUE);
+        content.add(textArea, 0, 0);
+
+        alert.getDialogPane().setContent(content);
+
+        ButtonType saveButtonType = new ButtonType("Zapisz do pliku .txt");
+        ButtonType closeButtonType = new ButtonType("Zamknij", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        alert.getButtonTypes().setAll(saveButtonType, closeButtonType);
+
+        alert.showAndWait().ifPresent(type -> {
+            if (type == saveButtonType) {
+                Stage stage = (Stage) gradesTable.getScene().getWindow();
+                ReportService.saveReport(reportText, stage);
+            }
+        });
     }
 
     private void getStudentId() throws SQLException {
