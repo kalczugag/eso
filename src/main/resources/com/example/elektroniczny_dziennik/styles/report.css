@@ -1,0 +1,83 @@
+.root {
+    -fx-background-color: #FFFFFF;
+    -fx-font-family: "Roboto", "Segoe UI", sans-serif;
+}
+
+.header-pane {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 15px 20px;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: #E5E7EB;
+}
+
+.card {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #E5E7EB;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+    -fx-padding: 15px;
+}
+
+.card:hover {
+    -fx-border-color: #d1d5db;
+}
+
+.stat-label {
+    -fx-text-fill: #6B7280;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 5 0;
+}
+
+.stat-value {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1F2937;
+}
+
+/* Lista */
+.list-view {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.list-cell {
+    -fx-background-color: transparent;
+    -fx-padding: 8px 5px;
+    -fx-border-color: #E5E7EB;
+    -fx-border-width: 0 0 1px 0;
+    -fx-text-fill: #1F2937;
+}
+
+.list-cell:empty {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+.action-button {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-color: #3B82F6;
+    -fx-text-fill: #FFFFFF;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-effect: null;
+}
+
+.action-button:hover {
+    -fx-background-color: derive(#3B82F6, 15%);
+}
+
+.chart {
+    -fx-padding: 0;
+}
+.chart-content {
+    -fx-padding: 10px;
+}
+.chart-bar {
+    -fx-bar-fill: #3B82F6;
+}
+.axis {
+    -fx-tick-label-fill: #6B7280;
+}

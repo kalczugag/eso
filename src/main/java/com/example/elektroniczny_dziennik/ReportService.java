@@ -12,6 +12,41 @@ import java.util.List;
 import java.util.Map;
 
 public class ReportService {
+    public static ReportData generateReportData(List<StudentGradeView> grades) {
+        if (grades == null || grades.isEmpty()) return null;
+
+        Map<String, Double> sumPerSubject = new HashMap<>();
+        Map<String, Integer> countPerSubject = new HashMap<>();
+        int failingGrades = 0;
+        double totalSum = 0;
+
+        for (StudentGradeView grade : grades) {
+            String subject = grade.getSubjectName();
+            double value = grade.getValue();
+            sumPerSubject.put(subject, sumPerSubject.getOrDefault(subject, 0.0) + value);
+            countPerSubject.put(subject, countPerSubject.getOrDefault(subject, 0) + 1);
+            totalSum += value;
+            if (value < 2.0) failingGrades++;
+        }
+
+        double globalAverage = totalSum / grades.size();
+        String bestSubject = "-";
+        double bestAvg = -1.0;
+        String worstSubject = "-";
+        double worstAvg = 7.0;
+
+        Map<String, Double> averages = new HashMap<>();
+
+        for (String subject : sumPerSubject.keySet()) {
+            double avg = sumPerSubject.get(subject) / countPerSubject.get(subject);
+            averages.put(subject, avg);
+
+            if (avg > bestAvg) { bestAvg = avg; bestSubject = subject; }
+            if (avg < worstAvg) { worstAvg = avg; worstSubject = subject; }
+        }
+
+        return new ReportData(globalAverage, bestSubject, bestAvg, worstSubject, worstAvg, failingGrades, grades.size(), averages);
+    }
 
     public static String analyzeGrades(List<StudentGradeView> grades) {
         if (grades == null || grades.isEmpty()) {
@@ -90,6 +125,33 @@ public class ReportService {
         if (file != null) {
             try (FileWriter writer = new FileWriter(file)) {
                 writer.write(content);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void saveReportToFile(ReportData data, Stage stage) {
+        if (data == null) return;
+
+        StringBuilder report = new StringBuilder();
+        report.append("=== RAPORT POSTĘPÓW ===\n");
+        report.append("Data: ").append(LocalDate.now()).append("\n\n");
+        report.append(String.format("Średnia ogólna: %.2f\n", data.globalAverage));
+        report.append("Liczba ocen: ").append(data.totalGrades).append("\n");
+        report.append("Zagrożenia: ").append(data.failingGrades).append("\n\n");
+        report.append("--- Szczegóły ---\n");
+        data.averagePerSubject.forEach((k, v) -> report.append(String.format("%-20s: %.2f\n", k, v)));
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Zapisz Raport");
+        fileChooser.setInitialFileName("raport_" + LocalDate.now() + ".txt");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Pliki tekstowe", "*.txt"));
+        File file = fileChooser.showSaveDialog(stage);
+
+        if (file != null) {
+            try (FileWriter writer = new FileWriter(file)) {
+                writer.write(report.toString());
             } catch (IOException e) {
                 e.printStackTrace();
             }

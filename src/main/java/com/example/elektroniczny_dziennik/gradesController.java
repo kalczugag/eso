@@ -8,8 +8,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
-import javafx.application.Platform;
-import java.util.ArrayList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import java.io.IOException;
 
 import java.sql.Date;
 import java.sql.SQLException;
@@ -43,15 +46,29 @@ public class gradesController {
     @FXML
     void generateReport() {
         var items = gradesTable.getItems();
+        if (items.isEmpty()) return;
 
-        if (items.isEmpty()) {
-            showAlert("Brak danych", "Brak ocen do wygenerowania raportu.");
-            return;
+        ReportData data = ReportService.generateReportData(items);
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("reportView.fxml"));
+            Parent root = loader.load();
+
+            ReportDialogController controller = loader.getController();
+            controller.setData(data);
+
+            Stage stage = new Stage();
+            stage.setTitle("Raport Ucznia");
+            stage.setScene(new Scene(root));
+
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(gradesTable.getScene().getWindow());
+
+            stage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-        String reportText = ReportService.analyzeGrades(items);
-
-        showReportDialog(reportText);
     }
 
     private void showAlert(String title, String content) {
