@@ -22,20 +22,35 @@
 }
 
 .header-label{
-    -fx-font-size: 15px;
-    -fx-font-weight: bold;
 }
 
-.logoutBtn{
-    -fx-background-color: transparent;
-    -fx-background-image: url("../icons/logout.png");
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: center;
-    -fx-padding: 0;
+.logout-button {
+    -fx-background-color: white;
+    -fx-border-color: #D1D5DB;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+    -fx-text-fill: #4B5563;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-padding: 6px 16px;
     -fx-cursor: hand;
-    -fx-border-color: transparent;
-    -fx-pref-width: 32px;
-    -fx-pref-height: 32px;
+    -fx-transition: all 0.2s;
+}
+
+.logout-button:hover {
+    -fx-background-color: #FEF2F2;
+    -fx-border-color: #EF4444;
+    -fx-text-fill: #EF4444;
+}
+
+.logout-button:pressed {
+    -fx-background-color: #FEE2E2;
+}
+
+.header-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #374151;
+    -fx-font-weight: normal;
 }
 
 .sidebar-pane {

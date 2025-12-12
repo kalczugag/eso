@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" stylesheets="@styles/report.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elektroniczny_dziennik.ReportDialogController">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="600.0" styleClass="header-pane" BorderPane.alignment="CENTER">
+            <children>
+                <VBox alignment="CENTER_LEFT">
+                    <children>
+                        <Label text="RAPORT EDUKACYJNY" textFill="#1F2937">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="dateLabel" text="Generowano: 2025-01-01" textFill="#6B7280">
+                            <font>
+                                <Font size="13.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+            </children>
+            <padding>
+                <Insets left="20.0" right="20.0" />
+            </padding>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="20.0" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+            <children>
+
+                <HBox spacing="15.0">
+                    <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="card" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="stat-label" text="ŚREDNIA OCEN" />
+                                <Label fx:id="avgLabel" styleClass="stat-value" text="4.75" textFill="#2980b9" />
+                                <ProgressBar fx:id="avgProgressBar" prefWidth="200.0" progress="0.75" style="-fx-accent: #2980b9;" />
+                            </children>
+                        </VBox>
+
+                        <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="card" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="stat-label" text="NAJLEPSZY WYNIK" />
+                                <Label fx:id="bestSubjectNameLabel" text="Matematyka" textFill="#27ae60">
+                                    <font>
+                                        <Font name="System Bold" size="16.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="bestSubjectScoreLabel" text="5.00" textFill="#27ae60">
+                                    <font>
+                                        <Font size="22.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </VBox>
+
+                        <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="card" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="stat-label" text="ZAGROŻENIA" />
+                                <Label fx:id="failingLabel" styleClass="stat-value" text="0" textFill="#c0392b" />
+                                <Label text="przedmiotów poniżej 2.0" textFill="#7f8c8d">
+                                    <font>
+                                        <Font size="10.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </VBox>
+
+                        <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="card" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="stat-label" text="LICZBA OCEN" />
+                                <Label fx:id="totalGradesLabel" styleClass="stat-value" text="12" textFill="#8e44ad" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <HBox spacing="20.0" VBox.vgrow="ALWAYS">
+                    <children>
+                        <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label text="Wykres wyników" textFill="#34495e">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <BarChart fx:id="gradesChart" legendVisible="false" titleSide="BOTTOM">
+                                    <xAxis>
+                                        <CategoryAxis label="Przedmiot" side="BOTTOM" />
+                                    </xAxis>
+                                    <yAxis>
+                                        <NumberAxis autoRanging="false" label="Średnia" lowerBound="0" side="LEFT" tickUnit="1" upperBound="6" />
+                                    </yAxis>
+                                </BarChart>
+                            </children>
+                        </VBox>
+
+                        <VBox prefWidth="300.0" styleClass="card">
+                            <children>
+                                <Label text="Szczegóły" textFill="#34495e">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <ListView fx:id="detailsList" VBox.vgrow="ALWAYS" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-color: #ecf0f1; -fx-border-width: 1 0 0 0;" BorderPane.alignment="CENTER">
+            <children>
+                <Button mnemonicParsing="false" onAction="#exportToFile" prefHeight="40.0" prefWidth="220.0" styleClass="action-button" text="Eksportuj do pliku .txt" />
+            </children>
+            <padding>
+                <Insets right="20.0" />
+            </padding>
+        </HBox>
+    </bottom>
+</BorderPane>

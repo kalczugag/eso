@@ -6,16 +6,16 @@
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="440.0" prefWidth="192.0" stylesheets="@styles/sidebar.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <VBox alignment="TOP_CENTER" prefHeight="440.0" prefWidth="192.0" spacing="8.0" AnchorPane.rightAnchor="0.0">
-         <children>
-            <Button fx:id="dashboardButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showDashboard" styleClass="sidebar-button" text="Pulpit" VBox.vgrow="NEVER" />
-            <Button fx:id="gradeEntryButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showGradeEntry" styleClass="sidebar-button" text="Oceny" />
-            <Button fx:id="userManagementButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showUserManagement" styleClass="sidebar-button" text="Zarządzanie Użytkownikami" />
-         </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </VBox>
-   </children>
+    <children>
+        <VBox alignment="TOP_CENTER" prefHeight="440.0" prefWidth="192.0" spacing="8.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <Button fx:id="dashboardButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showDashboard" styleClass="sidebar-button" text="Pulpit" VBox.vgrow="NEVER" />
+                <Button fx:id="gradeEntryButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showGradeEntry" styleClass="sidebar-button" text="Oceny" />
+                <Button fx:id="userManagementButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showUserManagement" styleClass="sidebar-button" text="Zarządzanie Użytkownikami" />
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </VBox>
+    </children>
 </AnchorPane>
