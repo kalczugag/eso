@@ -4,6 +4,10 @@
     -fx-font-weight: bold;
 }
 
+.h2{
+    -fx-font-size: 30px;
+}
+
 .h3{
     -fx-font-size: 16px;
 }
@@ -16,4 +20,50 @@
 
 .dataContainer:hover{
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 10, 0.3, 0, 3);
+}
+
+
+// rank styles
+
+.rankContainer{
+    -fx-background-color: #f9f9f9;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-border-color: #ddd;
+    -fx-border-width: 1;
+    -fx-padding: 15;
+    -fx-spacing: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 5, 0.3, 0, 2);
+}
+
+.rankItem{
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: #eee;
+    -fx-border-width: 1;
+    -fx-padding: 10;
+    -fx-spacing: 10;
+    -fx-alignment: CENTER_LEFT;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 3, 0.2, 0, 1);
+}
+
+.rankNumber{
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #555;
+    -fx-min-width: 30;
+    -fx-alignment: CENTER;
+}
+
+.rankName{
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #222;
+}
+
+.rankScore{
+    -fx-font-size: 14px;
+    -fx-text-fill: #666;
+    -fx-alignment: CENTER_RIGHT;
 }

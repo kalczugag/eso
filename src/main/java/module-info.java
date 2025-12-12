@@ -6,6 +6,7 @@ module com.example.elektroniczny_dziennik {
     requires jbcrypt;
     requires javafx.graphics;
     requires com.jfoenix;
+    requires javafx.base;
 
     opens com.example.elektroniczny_dziennik to javafx.fxml;
     exports com.example.elektroniczny_dziennik;

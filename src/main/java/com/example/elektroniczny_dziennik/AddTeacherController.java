@@ -7,23 +7,24 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.mindrot.jbcrypt.BCrypt;
 
-import java.sql.Connection;
-
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 
-public class RegisterController {
+public class AddTeacherController {
     // Inputs
     @FXML TextField firstNameInput;
     @FXML TextField lastNameInput;
     @FXML PasswordField passwordInput;
     @FXML PasswordField confirmPasswordInput;
+    @FXML ComboBox<String> subjectComboBox;
 
     // Labels
     @FXML Label infoLabel;
@@ -37,13 +38,23 @@ public class RegisterController {
     PseudoClass positive = PseudoClass.getPseudoClass("positive");
     PseudoClass negative = PseudoClass.getPseudoClass("negative");
 
+    @FXML void initialize(){
+        try{
+            loadSubjects();
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
     public void register(){
         String firstName = firstNameInput.getText();
         String lastName = lastNameInput.getText();
         String password = passwordInput.getText();
         String confirmPassword = confirmPasswordInput.getText();
+        String subjectName = subjectComboBox.getValue();
 
-        if(firstName.equals("") || lastName.equals("") || password.equals("") || confirmPassword.equals("")){
+        if(firstName.isEmpty() || lastName.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || subjectName == null){
             infoLabel.setText("Żadne pole nie może być puste");
             infoLabel.pseudoClassStateChanged(positive, false);
             infoLabel.pseudoClassStateChanged(negative, true);
@@ -57,11 +68,11 @@ public class RegisterController {
             try(var conn = Database.getConnection()){
                 String login = getLogin(firstName, lastName, conn); // get unique login
                 String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
-                String role = "student";
+                String role = "nauczyciel";
 
                 var statement = conn.prepareStatement(
                         "INSERT INTO user (first_name, last_name, login, password, role)" +
-                        " VALUES (?, ?, ?, ?, ?)"
+                                " VALUES (?, ?, ?, ?, ?)"
                 );
 
                 statement.setString(1, firstName);
@@ -91,18 +102,41 @@ public class RegisterController {
                     }
 
                     var statement2 = conn.prepareStatement(
-                            "INSERT INTO student (class, user_id)" +
-                            "VALUES (?, ?)");
+                            "INSERT INTO teacher (user_id)" +
+                                    "VALUES (?)");
 
-                    statement2.setString(1, "3A");
-                    statement2.setInt(2, userId);
+                    statement2.setInt(1, userId);
 
                     var result2 = statement2.executeUpdate();
 
                     if(result2 > 0){
-                        infoLabel.setText("Poprawnie utworzono konto\nTwój login to: " + login);
-                        infoLabel.pseudoClassStateChanged(positive, true);
-                        infoLabel.pseudoClassStateChanged(negative, false);
+                        // Zdobycie ID nowo utworzonego nauczyciela
+                        int teacherId = -1;
+                        try(var generatedId = statement2.getGeneratedKeys()){
+                            if(generatedId.next()) teacherId = generatedId.getInt(1);
+                        }
+
+                        // Zdobycie ID przedmiotu, którego będzie nauczał
+                        int subjectId = -1;
+                        var getSubjectIdQuery = conn.prepareStatement("SELECT id FROM subjects WHERE name = ?");
+                        getSubjectIdQuery.setString(1, subjectName);
+                        var getSubjectIdResult = getSubjectIdQuery.executeQuery();
+
+                        if(getSubjectIdResult.next()) subjectId = getSubjectIdResult.getInt("id");
+
+                        // Dodanie nauczyciela do tabeli teacher_subject
+                        var insertTeacherSubjectQuery = conn.prepareStatement("INSERT INTO teacher_subject (teacher_id, subject_id)" +
+                                " VALUES (?, ?)");
+                        insertTeacherSubjectQuery.setInt(1, teacherId);
+                        insertTeacherSubjectQuery.setInt(2, subjectId);
+
+                        var insertResult = insertTeacherSubjectQuery.executeUpdate();
+
+                        if(insertResult > 0){
+                            infoLabel.setText("Poprawnie utworzono konto\nTwój login to: " + login);
+                            infoLabel.pseudoClassStateChanged(positive, true);
+                            infoLabel.pseudoClassStateChanged(negative, false);
+                        }
                     }
                 }
             }
@@ -118,8 +152,8 @@ public class RegisterController {
     }
 
     // Method to create unique login
-    public String getLogin(String firstName, String lastName, Connection conn) throws SQLException{
-        String login = "s"
+    public String getLogin(String firstName, String lastName, Connection conn) throws SQLException {
+        String login = "n"
                 + firstName.substring(0, Math.min(3, firstName.length())).toLowerCase()
                 + lastName.substring(0, Math.min(3, lastName.length())).toLowerCase();
 
@@ -147,13 +181,21 @@ public class RegisterController {
         return login;
     }
 
-    public void login(ActionEvent e) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("loginView.fxml"));
-        scene = new Scene(root);
+    void loadSubjects(){
+        try(var conn = Database.getConnection()){
+            var statement = conn.prepareStatement("SELECT name FROM subjects;");
+            var result = statement.executeQuery();
 
-        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.centerOnScreen();
-        stage.show();
+            while(result.next()){
+                subjectComboBox.getItems().add(result.getString("name"));
+            }
+        }
+        catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void test(){
+        System.out.println(subjectComboBox.getValue());
     }
 }

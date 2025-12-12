@@ -1,0 +1,47 @@
+.searchField{
+    -fx-background-color: #FFF;
+    -fx-border-color: #DDD;
+}
+
+Button{
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: #AAA;
+    -fx-border-width: 1;
+
+    -fx-padding: 4 8;
+    -fx-cursor: hand;
+}
+
+.addBtn{
+    -fx-background-color: #E8F5E9;
+    -fx-text-fill: #2E7D32;
+}
+
+.addBtn:hover{
+    -fx-background-color: #DFF1E3;
+    -fx-border-color: #66BB6A;
+}
+
+.addBtn:pressed{
+    -fx-background-color: #C8E6C9;
+}
+
+// Delete button
+
+.deleteBtn{
+    -fx-background-color: #FDECEA;
+    -fx-text-fill: #C62828;
+}
+
+.deleteBtn:hover{
+    -fx-background-color: #FADBD8;
+    -fx-border-color: #E57373;
+}
+
+.deleteBtn:pressed{
+    -fx-background-color: #F5B7B1;
+}
