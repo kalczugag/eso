@@ -6,12 +6,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,6 +24,8 @@ public class MainController {
     @FXML private Label loggedLabel;
     @FXML private Pane sidebarContainer;
     @FXML private Pane mainContainer;
+
+    @FXML private AnchorPane sidebarRoot;
 
     @FXML private Button dashboardButton;
     @FXML private Button gradesButton;
@@ -72,18 +75,26 @@ public class MainController {
         if (dashboardButton != null) {
             navigationButtons.put("adminDashboard.fxml", dashboardButton);
             navigationButtons.put("studentDashboard.fxml", dashboardButton);
+
+            dashboardButton.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("icons/dashboard.png"))));
         }
         if (gradesButton != null) {
             navigationButtons.put("grades.fxml", gradesButton);
+
+            gradesButton.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("icons/grades.png"))));
         }
         if (attendanceButton != null) {
             navigationButtons.put("attendance.fxml", attendanceButton);
         }
         if (gradeEntryButton != null) {
             navigationButtons.put("gradeEntry.fxml", gradeEntryButton);
+
+            gradeEntryButton.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("icons/grades.png"))));
         }
         if (userManagementButton != null) {
             navigationButtons.put("userManagement.fxml", userManagementButton);
+
+            userManagementButton.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("icons/management.png"))));
         }
     }
 

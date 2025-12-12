@@ -9,9 +9,9 @@
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="440.0" prefWidth="192.0" spacing="8.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button fx:id="dashboardButton" mnemonicParsing="false" onAction="#showDashboard" styleClass="sidebar-button" text="Pulpit" />
-            <Button fx:id="gradeEntryButton" mnemonicParsing="false" onAction="#showGradeEntry" styleClass="sidebar-button" text="Wprowadzanie Ocen" />
-            <Button fx:id="userManagementButton" mnemonicParsing="false" onAction="#showUserManagement" styleClass="sidebar-button" text="Zarządzanie Użytkownikami" />
+            <Button fx:id="dashboardButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showDashboard" styleClass="sidebar-button" text="Pulpit" VBox.vgrow="NEVER" />
+            <Button fx:id="gradeEntryButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showGradeEntry" styleClass="sidebar-button" text="Oceny" />
+            <Button fx:id="userManagementButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showUserManagement" styleClass="sidebar-button" text="Zarządzanie Użytkownikami" />
          </children>
          <opaqueInsets>
             <Insets />

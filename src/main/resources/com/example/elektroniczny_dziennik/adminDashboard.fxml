@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" />
+<AnchorPane fx:id="dashboardContainer" prefHeight="584.0" prefWidth="1000.0" stylesheets="@styles/dashboard.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elektroniczny_dziennik.AdminDashboardController">
+   <children>
+      <HBox fx:id="dataContainer" alignment="CENTER" layoutX="7.0" layoutY="14.0" maxWidth="-Infinity" prefWidth="1000.0" spacing="75.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="182.0" prefWidth="376.0" spacing="10.0" styleClass="dataContainer">
+               <children>
+                  <ImageView fitHeight="92.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/student.png" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="150.0" prefWidth="100.0">
+                     <children>
+                        <Label fx:id="studentCounter" styleClass="h1" />
+                        <Label text="Studentów" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="182.0" prefWidth="376.0" spacing="10.0" styleClass="dataContainer">
+               <children>
+                  <ImageView fitHeight="92.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/teacher.png" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="150.0" prefWidth="100.0">
+                     <children>
+                        <Label fx:id="teacherCounter" styleClass="h1" />
+                        <Label text="Nauczycieli" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

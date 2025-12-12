@@ -2,7 +2,10 @@
     -fx-font-size: 14px;
     -fx-background-color: transparent;
     -fx-text-fill: #090B0B;
-    -fx-max-width: infinity;
+    -fx-padding: 5 15;
+
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
 }
 
 .sidebar-button:hover {
