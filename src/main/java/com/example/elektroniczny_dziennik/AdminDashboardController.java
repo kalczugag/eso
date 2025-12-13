@@ -1,93 +1,64 @@
 package com.example.elektroniczny_dziennik;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.ContentDisplay;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
+import java.sql.Statement;
 
 public class AdminDashboardController {
-    private String studentCount;
-    private String teacherCount;
 
-    @FXML private Label studentCounter;
-    @FXML private Label teacherCounter;
+    @FXML private Label totalUsersLabel;
+    @FXML private Label teachersLabel;
+    @FXML private PieChart userChart;
 
-    @FXML private AnchorPane dashboardContainer;
-
-    @FXML private VBox bestStudentsContainer;
-
-    @FXML void initialize() throws SQLException {
-        initializeTeacherData();
-        initializeStudentData();
-        initializeBestStudents();
+    @FXML
+    public void initialize() {
+        loadStatistics();
     }
 
-    void initializeStudentData() throws SQLException{
-        try(var conn = Database.getConnection()){
-            var statement = conn.prepareStatement("SELECT COUNT(*) FROM student;");
-            var result = statement.executeQuery();
+    private void loadStatistics() {
+        int studentCount = 0;
+        int teacherCount = 0;
+        int adminCount = 0;
 
-            if(result.next()) {
-                studentCount = result.getString(1);
-                studentCounter.setText(studentCount);
+        String sql = "SELECT role, COUNT(*) as count FROM user GROUP BY role";
+
+        try (Connection conn = Database.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                String role = rs.getString("role");
+                int count = rs.getInt("count");
+
+                switch (role) {
+                    case "student" -> studentCount = count;
+                    case "nauczyciel" -> teacherCount = count;
+                    case "admin" -> adminCount = count;
+                }
             }
-        }
-    }
 
-    void initializeTeacherData() throws SQLException{
-        try(var conn = Database.getConnection()){
-            var statement = conn.prepareStatement("SELECT COUNT(*) FROM teacher");
-            var result = statement.executeQuery();
+            int total = studentCount + teacherCount + adminCount;
+            totalUsersLabel.setText(String.valueOf(total));
+            teachersLabel.setText(String.valueOf(teacherCount));
 
-            if(result.next()){
-                teacherCount = result.getString(1);
-                teacherCounter.setText(teacherCount);
-            }
-        }
-    }
+            ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+                    new PieChart.Data("Uczniowie (" + studentCount + ")", studentCount),
+                    new PieChart.Data("Nauczyciele (" + teacherCount + ")", teacherCount),
+                    new PieChart.Data("Administratorzy (" + adminCount + ")", adminCount)
+            );
 
-    void initializeBestStudents() throws SQLException{
-        try(var conn = Database.getConnection()){
-            var statement = conn.prepareStatement("SELECT u.first_name, u.last_name, ROUND(AVG(g.grade), 2) AS srednia FROM user AS u" +
-                    " JOIN student AS s ON s.user_id = u.id" +
-                    " JOIN grades AS g ON g.student_id = s.id" +
-                    " GROUP BY s.id" +
-                    " ORDER BY srednia DESC LIMIT 5;");
+            userChart.setData(pieChartData);
 
-            var result = statement.executeQuery();
-            int counter = 0;
-
-            while(result.next()){
-                HBox hbox = new HBox(10);
-                counter++;
-
-                Label rankNumber = new Label(String.valueOf(counter));
-                Label label1 = new Label(result.getString(1) + " " + result.getString(2));
-                Label label2 = new Label(result.getString(3));
-
-                hbox.getChildren().addAll(rankNumber, label1, label2);
-                hbox.setAlignment(Pos.CENTER);
-                hbox.setPrefHeight(40);
-
-                rankNumber.getStyleClass().add("rankNumber");
-                label1.getStyleClass().add("rankName");
-                label2.getStyleClass().add("rankScore");
-                hbox.getStyleClass().add("rankItem");
-                bestStudentsContainer.getChildren().add(hbox);
-            }
-        }
-        catch (SQLException e){
-            System.out.println(e.getMessage());
+        } catch (SQLException e) {
+            e.printStackTrace();
+            totalUsersLabel.setText("Błąd");
         }
     }
 }

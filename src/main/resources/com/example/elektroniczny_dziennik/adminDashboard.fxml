@@ -1,61 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane fx:id="dashboardContainer" prefHeight="584.0" prefWidth="1000.0" stylesheets="@styles/dashboard.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elektroniczny_dziennik.AdminDashboardController">
-   <children>
-      <HBox fx:id="dataContainer" alignment="CENTER" layoutX="7.0" layoutY="14.0" maxWidth="-Infinity" prefWidth="1000.0" spacing="75.0">
-         <children>
-            <HBox alignment="CENTER" prefHeight="182.0" prefWidth="376.0" spacing="10.0" styleClass="dataContainer">
-               <children>
-                  <ImageView fitHeight="92.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@icons/student.png" />
-                     </image>
-                  </ImageView>
-                  <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="150.0" prefWidth="100.0">
-                     <children>
-                        <Label fx:id="studentCounter" styleClass="h1" />
-                        <Label text="Studentów" />
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="182.0" prefWidth="376.0" spacing="10.0" styleClass="dataContainer">
-               <children>
-                  <ImageView fitHeight="92.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@icons/teacher.png" />
-                     </image>
-                  </ImageView>
-                  <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="150.0" prefWidth="100.0">
-                     <children>
-                        <Label fx:id="teacherCounter" styleClass="h1" />
-                        <Label text="Nauczycieli" />
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
-         </children>
-      </HBox>
-      <VBox fx:id="bestStudentsContainer" alignment="TOP_CENTER" layoutX="337.0" layoutY="226.0" nodeOrientation="LEFT_TO_RIGHT" prefWidth="333.0" spacing="10.0" styleClass="rankContainer">
-         <children>
-            <Label styleClass="h2" text="Najwyższe średnie">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Label>
-         </children>
-         <padding>
-            <Insets left="8.0" right="8.0" top="10.0" />
-         </padding>
-      </VBox>
-   </children>
-</AnchorPane>
+<BorderPane prefHeight="600.0" prefWidth="850.0" style="-fx-background-color: #f9fafb;" stylesheets="@styles/app-styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elektroniczny_dziennik.AdminDashboardController">
+    <top>
+        <VBox spacing="10.0" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="20.0" left="30.0" right="30.0" top="30.0" />
+            </padding>
+            <children>
+                <Label text="Panel Administratora" textFill="#6b7280">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Label text="Statystyki Systemu" textFill="#1f2937">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Label>
+                <Separator prefWidth="200.0" />
+            </children>
+        </VBox>
+    </top>
+
+    <center>
+        <HBox spacing="30.0">
+            <padding>
+                <Insets bottom="30.0" left="30.0" right="30.0" />
+            </padding>
+            <children>
+                <VBox spacing="20.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <HBox spacing="15.0">
+                            <children>
+                                <VBox alignment="CENTER" prefHeight="120.0" prefWidth="150.0" style="-fx-background-color: #3b82f6; -fx-background-radius: 8;" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label text="UŻYTKOWNICY" textFill="WHITE">
+                                            <font>
+                                                <Font name="System Bold" size="12.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="totalUsersLabel" text="156" textFill="WHITE">
+                                            <font>
+                                                <Font name="System Bold" size="36.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </VBox>
+                                <VBox alignment="CENTER" prefHeight="120.0" prefWidth="150.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #e5e7eb;" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label text="NAUCZYCIELE" textFill="#6b7280">
+                                            <font>
+                                                <Font name="System Bold" size="12.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="teachersLabel" text="12" textFill="#1f2937">
+                                            <font>
+                                                <Font name="System Bold" size="36.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+
+                        <VBox style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 1);" VBox.vgrow="ALWAYS">
+                            <children>
+                                <Label text="Status Serwera Bazy Danych" textFill="#1f2937">
+                                    <font>
+                                        <Font name="System Bold" size="16.0" />
+                                    </font>
+                                </Label>
+                                <Separator />
+                                <Label text="Połączenie: SQLite (Lokalne)" textFill="#6b7280" />
+                                <Label text="Status: OK" textFill="#10b981">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <Label text="Ścieżka: database/database.db" textFill="#6b7280" />
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+
+                <VBox style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 1);" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Rozkład Użytkowników" textFill="#1f2937">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <PieChart fx:id="userChart" legendSide="BOTTOM" />
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </center>
+</BorderPane>

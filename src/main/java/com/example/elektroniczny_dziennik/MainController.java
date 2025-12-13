@@ -20,7 +20,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainController {
-
     @FXML private Label loggedLabel;
     @FXML private Pane sidebarContainer;
     @FXML private Pane mainContainer;
@@ -75,8 +74,11 @@ public class MainController {
         if (dashboardButton != null) {
             navigationButtons.put("adminDashboard.fxml", dashboardButton);
             navigationButtons.put("studentDashboard.fxml", dashboardButton);
+            navigationButtons.put("teacherDashboard.fxml", dashboardButton);
 
-            dashboardButton.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("icons/dashboard.png"))));
+            try {
+                dashboardButton.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("icons/dashboard.png"))));
+            } catch (Exception e) { System.out.println("Brak ikony dashboard.png"); }
         }
         if (gradesButton != null) {
             navigationButtons.put("grades.fxml", gradesButton);
@@ -99,10 +101,14 @@ public class MainController {
     }
 
     private void loadInitialView() throws IOException {
-        if (this.user.getRole().equals("admin")) {
+        var role = user.getRole();
+
+        if (role.equals("admin")) {
             loadView("adminDashboard.fxml");
-        } else {
+        } else if(role.equals("student")) {
             loadView("studentDashboard.fxml");
+        } else {
+            loadView("teacherDashboard.fxml");
         }
     }
 
@@ -112,6 +118,17 @@ public class MainController {
         Parent loadedView = loader.load();
         mainContainer.getChildren().clear();
         mainContainer.getChildren().add(loadedView);
+
+        if (fxml.equals("studentDashboard.fxml")) {
+            StudentDashboardController controller = loader.getController();
+            controller.setUser(this.user);
+        }
+
+        if (fxml.equals("teacherDashboard.fxml")) {
+            TeacherDashboardController controller = loader.getController();
+            controller.setUser(this.user);
+            controller.setMainController(this);
+        }
 
         if(fxml.equals("gradeEntry.fxml")){
             GradeEntryController controller = loader.getController();

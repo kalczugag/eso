@@ -33,7 +33,7 @@
         <TextField fx:id="newGradeInput" promptText="Ocena (np. 4.5)" />
         <TextField fx:id="descriptionInput" promptText="Opis oceny" />
 
-        <JFXButton onAction="#saveGrade" styleClass="button" text="Zapisz Ocenę" />
+        <Button onAction="#saveGrade" styleClass="button" text="Zapisz Ocenę" />
     </VBox>
     </right>
 </BorderPane>
