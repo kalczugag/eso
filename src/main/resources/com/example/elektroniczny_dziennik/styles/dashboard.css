@@ -22,9 +22,6 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 10, 0.3, 0, 3);
 }
 
-
-// rank styles
-
 .rankContainer{
     -fx-background-color: #f9f9f9;
     -fx-background-radius: 15;

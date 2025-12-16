@@ -61,7 +61,7 @@ public class RegisterController {
 
                 var statement = conn.prepareStatement(
                         "INSERT INTO user (first_name, last_name, login, password, role)" +
-                        " VALUES (?, ?, ?, ?, ?)"
+                                " VALUES (?, ?, ?, ?, ?)"
                 );
 
                 statement.setString(1, firstName);
@@ -92,7 +92,7 @@ public class RegisterController {
 
                     var statement2 = conn.prepareStatement(
                             "INSERT INTO student (class, user_id)" +
-                            "VALUES (?, ?)");
+                                    "VALUES (?, ?)");
 
                     statement2.setString(1, "3A");
                     statement2.setInt(2, userId);

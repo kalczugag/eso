@@ -5,7 +5,7 @@
 .login-button {
     -fx-background-color: #2a3240;
     -fx-text-fill: #fffff8;
-    -fx-border-radius: 4px;
+    -fx-border-radius: 6px;
     -fx-font-weight: bold;
     -fx-max-width: infinity;
     -fx-padding: 10px;
@@ -35,7 +35,7 @@
 .register-button {
     -fx-border-width: 1px;
     -fx-border-color: #2a3240;
-    -fx-border-radius: 4px;
+    -fx-border-radius: 6px;
     -fx-text-fill: #2a3240;
     -fx-font-weight: bold;
     -fx-max-width: infinity;

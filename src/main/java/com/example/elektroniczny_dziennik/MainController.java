@@ -11,8 +11,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -28,7 +26,6 @@ public class MainController {
 
     @FXML private Button dashboardButton;
     @FXML private Button gradesButton;
-    @FXML private Button attendanceButton;
     @FXML private Button gradeEntryButton;
     @FXML private Button userManagementButton;
 
@@ -84,9 +81,6 @@ public class MainController {
             navigationButtons.put("grades.fxml", gradesButton);
 
             gradesButton.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("icons/grades.png"))));
-        }
-        if (attendanceButton != null) {
-            navigationButtons.put("attendance.fxml", attendanceButton);
         }
         if (gradeEntryButton != null) {
             navigationButtons.put("gradeEntry.fxml", gradeEntryButton);
@@ -163,10 +157,6 @@ public class MainController {
 
     public void showGrades() throws IOException {
         loadView("grades.fxml");
-    }
-
-    public void showAttendance() throws IOException {
-        loadView("attendance.fxml");
     }
 
     public void showGradeEntry() throws IOException {
