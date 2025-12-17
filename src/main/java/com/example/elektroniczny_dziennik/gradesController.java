@@ -18,7 +18,6 @@ import java.sql.Date;
 import java.sql.SQLException;
 
 public class gradesController {
-
     @FXML private TableView<StudentGradeView> gradesTable;
     @FXML private TableColumn<StudentGradeView, String> subjectCol;
     @FXML private TableColumn<StudentGradeView, Double> gradeCol;

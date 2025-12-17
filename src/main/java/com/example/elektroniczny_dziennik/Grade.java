@@ -8,6 +8,8 @@ public class Grade {
     private String description;
     private Date date;
 
+    private String studentName;
+
     public Grade(int id, double value, String description, Date date) {
         this.id = id;
         this.value = value;
@@ -38,6 +40,10 @@ public class Grade {
     public void setValue(double value) {
         this.value = value;
     }
+
+    public String getStudentName() { return studentName; }
+
+    public void setStudentName(String studentName) { this.studentName = studentName; }
 
     public void setDescription(String description) {
         this.description = description;

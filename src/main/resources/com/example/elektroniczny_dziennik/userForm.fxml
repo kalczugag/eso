@@ -33,8 +33,7 @@
 
                 <VBox fx:id="subjectContainer" spacing="5.0">
                     <children>
-                        <Label text="Przypisany przedmiot" textFill="#6b7280" />
-                        <ComboBox fx:id="subjectComboBox" maxWidth="1.7976931348623157E308" style="-fx-background-color: #e0f2fe;" />
+                        <Label text="Przypisane przedmioty" textFill="#6b7280" />
                     </children>
                 </VBox>
 

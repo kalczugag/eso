@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.controlsfx.control.CheckComboBox;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.Connection;
@@ -15,8 +16,11 @@ public class UserFormController {
     @FXML private TextField firstNameInput;
     @FXML private TextField lastNameInput;
     @FXML private ComboBox<String> roleComboBox;
+
     @FXML private VBox subjectContainer;
-    @FXML private ComboBox<String> subjectComboBox;
+
+    private CheckComboBox<String> subjectCheckComboBox;
+
     @FXML private PasswordField passwordInput;
     @FXML private PasswordField confirmPasswordInput;
     @FXML private Label titleLabel;
@@ -25,9 +29,15 @@ public class UserFormController {
 
     private int editingUserId = -1;
     private String originalRole = "";
+    private int currentLoggedInUserId = -1;
 
     @FXML
     public void initialize() {
+        subjectCheckComboBox = new CheckComboBox<>();
+        subjectCheckComboBox.setMaxWidth(Double.MAX_VALUE);
+
+        subjectContainer.getChildren().add(subjectCheckComboBox);
+
         roleComboBox.getItems().addAll("student", "nauczyciel", "admin");
 
         roleComboBox.valueProperty().addListener((obs, oldVal, newVal) -> {
@@ -41,8 +51,6 @@ public class UserFormController {
         subjectContainer.setVisible(false);
         subjectContainer.setManaged(false);
     }
-
-    private int currentLoggedInUserId = -1;
 
     public void setLoggedInUser(int id) {
         this.currentLoggedInUserId = id;
@@ -71,18 +79,20 @@ public class UserFormController {
         }
 
         if ("nauczyciel".equals(originalRole)) {
-            loadTeacherSubject(editingUserId);
+            loadTeacherSubjects(editingUserId);
         }
     }
 
     private void loadSubjects() {
         try (var conn = Database.getConnection()) {
             var rs = conn.createStatement().executeQuery("SELECT name FROM subjects");
-            while (rs.next()) subjectComboBox.getItems().add(rs.getString("name"));
+            while (rs.next()) {
+                subjectCheckComboBox.getItems().add(rs.getString("name"));
+            }
         } catch (SQLException e) { e.printStackTrace(); }
     }
 
-    private void loadTeacherSubject(int userId) {
+    private void loadTeacherSubjects(int userId) {
         try (var conn = Database.getConnection()) {
             String sql = "SELECT s.name FROM subjects s " +
                     "JOIN teacher_subject ts ON ts.subject_id = s.id " +
@@ -91,8 +101,10 @@ public class UserFormController {
             var stmt = conn.prepareStatement(sql);
             stmt.setInt(1, userId);
             var rs = stmt.executeQuery();
-            if (rs.next()) {
-                subjectComboBox.setValue(rs.getString("name"));
+
+            while (rs.next()) {
+                String subjectName = rs.getString("name");
+                subjectCheckComboBox.getCheckModel().check(subjectName);
             }
         } catch (SQLException e) { e.printStackTrace(); }
     }
@@ -104,14 +116,15 @@ public class UserFormController {
         String role = roleComboBox.getValue();
         String pass = passwordInput.getText();
         String conf = confirmPasswordInput.getText();
-        String subject = subjectComboBox.getValue();
+
+        ObservableList<String> selectedSubjects = subjectCheckComboBox.getCheckModel().getCheckedItems();
 
         if (fname.isEmpty() || lname.isEmpty() || role == null) {
             infoLabel.setText("Wypełnij wymagane pola."); return;
         }
 
-        if ("nauczyciel".equals(role) && subject == null) {
-            infoLabel.setText("Nauczyciel musi mieć przypisany przedmiot."); return;
+        if ("nauczyciel".equals(role) && selectedSubjects.isEmpty()) {
+            infoLabel.setText("Nauczyciel musi mieć przypisany przynajmniej jeden przedmiot."); return;
         }
 
         if (editingUserId == -1 && pass.isEmpty()) {
@@ -124,30 +137,25 @@ public class UserFormController {
 
         if (editingUserId != -1 && "admin".equals(originalRole) && !"admin".equals(role)) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-                    "Czy na pewno chcesz odebrać uprawnienia Administratora temu użytkownikowi? Jeśli to Twoje konto, stracisz dostęp.",
+                    "Czy na pewno chcesz odebrać uprawnienia Administratora? Stracisz dostęp.",
                     ButtonType.YES, ButtonType.NO);
-
-            if (alert.showAndWait().orElse(ButtonType.NO) == ButtonType.NO) {
-                return;
-            }
+            if (alert.showAndWait().orElse(ButtonType.NO) == ButtonType.NO) return;
         }
 
         try (var conn = Database.getConnection()) {
             if (editingUserId == -1) {
-                createNewUser(conn, fname, lname, role, pass, subject);
+                createNewUser(conn, fname, lname, role, pass, selectedSubjects);
             } else {
-                updateUser(conn, fname, lname, role, pass, subject);
+                updateUser(conn, fname, lname, role, pass, selectedSubjects);
             }
-
             ((Stage) firstNameInput.getScene().getWindow()).close();
-
         } catch (SQLException e) {
             e.printStackTrace();
             infoLabel.setText("Błąd bazy danych: " + e.getMessage());
         }
     }
 
-    private void createNewUser(Connection conn, String f, String l, String role, String pass, String subj) throws SQLException {
+    private void createNewUser(Connection conn, String f, String l, String role, String pass, ObservableList<String> subjects) throws SQLException {
         String login = getUniqueLogin(conn, f, l, role);
         String hash = BCrypt.hashpw(pass, BCrypt.gensalt());
 
@@ -159,14 +167,13 @@ public class UserFormController {
         var keys = stmt.getGeneratedKeys();
         if (keys.next()) uid = keys.getInt(1);
 
-        assignRoleData(conn, uid, role, subj);
+        assignRoleData(conn, uid, role, subjects);
     }
 
-    private void updateUser(Connection conn, String f, String l, String role, String pass, String subj) throws SQLException {
+    private void updateUser(Connection conn, String f, String l, String role, String pass, ObservableList<String> subjects) throws SQLException {
         String sql = pass.isEmpty() ?
                 "UPDATE user SET first_name=?, last_name=?, role=? WHERE id=?" :
                 "UPDATE user SET first_name=?, last_name=?, role=?, password=? WHERE id=?";
-
         var stmt = conn.prepareStatement(sql);
         stmt.setString(1, f); stmt.setString(2, l); stmt.setString(3, role);
         if (pass.isEmpty()) stmt.setInt(4, editingUserId);
@@ -175,46 +182,37 @@ public class UserFormController {
 
         if (!role.equals(originalRole)) {
             removeRoleData(conn, editingUserId, originalRole);
-            assignRoleData(conn, editingUserId, role, subj);
+            assignRoleData(conn, editingUserId, role, subjects);
         } else if ("nauczyciel".equals(role)) {
-            updateTeacherSubject(conn, editingUserId, subj);
+            updateTeacherSubjects(conn, editingUserId, subjects);
         }
     }
 
     private String getUniqueLogin(Connection conn, String firstName, String lastName, String role) throws SQLException {
-        String prefix = "s"; // domyślnie student
+        String prefix = "s";
         if ("nauczyciel".equals(role)) prefix = "n";
         else if ("admin".equals(role)) prefix = "a";
 
-        String loginBase = prefix
-                + firstName.substring(0, Math.min(3, firstName.length())).toLowerCase()
-                + lastName.substring(0, Math.min(3, lastName.length())).toLowerCase();
+        String loginBase = prefix + firstName.substring(0, Math.min(3, firstName.length())).toLowerCase() + lastName.substring(0, Math.min(3, lastName.length())).toLowerCase();
 
         var statement = conn.prepareStatement("SELECT login FROM user WHERE login LIKE ?");
         statement.setString(1, loginBase + "%");
-
         var result = statement.executeQuery();
-
         int counter = 0;
-
         while(result.next()){
             String existingLogin = result.getString("login");
-
             if(existingLogin.matches(loginBase + "(\\d+)$")){
                 int number = Integer.parseInt(existingLogin.replace(loginBase, ""));
                 if(number > counter) counter = number;
                 else if (number == counter) counter += 1;
-            }
-            else if (existingLogin.equals(loginBase)) counter = 1;
+            } else if (existingLogin.equals(loginBase)) counter = 1;
         }
-
         if(counter == 1) loginBase += Integer.toString(counter);
         else if (counter > 1) loginBase += Integer.toString(counter);
-
         return loginBase;
     }
 
-    private void assignRoleData(Connection conn, int uid, String role, String subj) throws SQLException {
+    private void assignRoleData(Connection conn, int uid, String role, ObservableList<String> subjects) throws SQLException {
         if ("student".equals(role)) {
             var s = conn.prepareStatement("INSERT INTO student (class, user_id) VALUES ('3A', ?)");
             s.setInt(1, uid);
@@ -228,10 +226,13 @@ public class UserFormController {
             var tk = t.getGeneratedKeys();
             if (tk.next()) tid = tk.getInt(1);
 
-            int sid = getSubjectId(conn, subj);
             var ts = conn.prepareStatement("INSERT INTO teacher_subject (teacher_id, subject_id) VALUES (?, ?)");
-            ts.setInt(1, tid); ts.setInt(2, sid);
-            ts.executeUpdate();
+            for (String subjectName : subjects) {
+                int sid = getSubjectId(conn, subjectName);
+                ts.setInt(1, tid);
+                ts.setInt(2, sid);
+                ts.executeUpdate();
+            }
         }
     }
 
@@ -253,15 +254,20 @@ public class UserFormController {
         }
     }
 
-    private void updateTeacherSubject(Connection conn, int uid, String newSubjName) throws SQLException {
+    private void updateTeacherSubjects(Connection conn, int uid, ObservableList<String> newSubjects) throws SQLException {
         var rs = conn.createStatement().executeQuery("SELECT id FROM teacher WHERE user_id=" + uid);
         if (rs.next()) {
             int tid = rs.getInt(1);
-            int newSid = getSubjectId(conn, newSubjName);
+
             conn.createStatement().executeUpdate("DELETE FROM teacher_subject WHERE teacher_id=" + tid);
+
             var ts = conn.prepareStatement("INSERT INTO teacher_subject (teacher_id, subject_id) VALUES (?, ?)");
-            ts.setInt(1, tid); ts.setInt(2, newSid);
-            ts.executeUpdate();
+            for (String subjectName : newSubjects) {
+                int newSid = getSubjectId(conn, subjectName);
+                ts.setInt(1, tid);
+                ts.setInt(2, newSid);
+                ts.executeUpdate();
+            }
         }
     }
 

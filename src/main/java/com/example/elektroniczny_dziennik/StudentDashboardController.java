@@ -14,8 +14,6 @@ public class StudentDashboardController {
 
     @FXML private Label welcomeLabel;
     @FXML private Label avgLabel;
-    @FXML private ProgressBar attendanceBar;
-    @FXML private Label attendanceLabel;
     @FXML private ListView<String> recentGradesList;
 
     @FXML private Label remarksCountLabel;
@@ -44,7 +42,6 @@ public class StudentDashboardController {
                 loadAverage(conn);
                 loadRecentGrades(conn);
 
-                loadAttendanceMock();
                 loadRemarksMock();
             }
         } catch (SQLException e) {
@@ -96,11 +93,5 @@ public class StudentDashboardController {
         } else {
         }
 
-    }
-
-    private void loadAttendanceMock() {
-        double attendance = 0.92;
-        attendanceBar.setProgress(attendance);
-        attendanceLabel.setText(String.format("%.0f%%", attendance * 100));
     }
 }
