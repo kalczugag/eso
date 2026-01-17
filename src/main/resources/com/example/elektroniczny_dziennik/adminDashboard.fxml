@@ -1,40 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.geometry.Insets?>
 
-<BorderPane prefHeight="600.0" prefWidth="850.0" style="-fx-background-color: #f9fafb;" stylesheets="@styles/app-styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elektroniczny_dziennik.AdminDashboardController">
+<BorderPane prefHeight="600.0" prefWidth="850.0" style="-fx-background-color: #f9fafb;" stylesheets="@styles/app-styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elektroniczny_dziennik.AdminDashboardController">
     <top>
-        <VBox spacing="10.0" BorderPane.alignment="CENTER">
-            <padding>
-                <Insets bottom="20.0" left="30.0" right="30.0" top="30.0" />
-            </padding>
+        <HBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-background-color: white; -fx-border-color: #e5e7eb; -fx-border-width: 0 0 1 0; -fx-padding: 15 30;">
             <children>
-                <Label text="Panel Administratora" textFill="#6b7280">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </Label>
-                <Label text="Statystyki Systemu" textFill="#1f2937">
-                    <font>
-                        <Font name="System Bold" size="24.0" />
-                    </font>
-                </Label>
-                <Separator prefWidth="200.0" />
+                <VBox>
+                    <children>
+                        <Label text="Panel Administratora" textFill="#6b7280">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <Label text="Statystyki Systemu" textFill="#1f2937">
+                            <font>
+                                <Font name="System Bold" size="24.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS" />
             </children>
-        </VBox>
+        </HBox>
     </top>
 
     <center>
         <HBox spacing="30.0">
             <padding>
-                <Insets bottom="30.0" left="30.0" right="30.0" />
+                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
             </padding>
             <children>
                 <VBox spacing="20.0" HBox.hgrow="ALWAYS">
@@ -48,7 +50,7 @@
                                                 <Font name="System Bold" size="12.0" />
                                             </font>
                                         </Label>
-                                        <Label fx:id="totalUsersLabel" text="156" textFill="WHITE">
+                                        <Label fx:id="totalUsersLabel" text="0" textFill="WHITE">
                                             <font>
                                                 <Font name="System Bold" size="36.0" />
                                             </font>
@@ -62,7 +64,7 @@
                                                 <Font name="System Bold" size="12.0" />
                                             </font>
                                         </Label>
-                                        <Label fx:id="teachersLabel" text="12" textFill="#1f2937">
+                                        <Label fx:id="teachersLabel" text="0" textFill="#1f2937">
                                             <font>
                                                 <Font name="System Bold" size="36.0" />
                                             </font>

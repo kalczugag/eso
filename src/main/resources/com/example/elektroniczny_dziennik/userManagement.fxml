@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="mainPane" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #f9fafb;" stylesheets="@styles/userManagement.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elektroniczny_dziennik.UserManagementController">
+<BorderPane fx:id="mainPane" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #f9fafb;" stylesheets="@styles/app-styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elektroniczny_dziennik.UserManagementController">
     <top>
         <HBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-background-color: white; -fx-border-color: #e5e7eb; -fx-border-width: 0 0 1 0; -fx-padding: 15 30;">
             <children>
@@ -35,7 +35,7 @@
                 <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-background-color: #f3f4f6; -fx-background-radius: 8; -fx-padding: 5;">
                     <children>
                         <TextField fx:id="searchField" promptText="Szukaj po nazwisku..." style="-fx-background-color: transparent; -fx-prompt-text-fill: #9ca3af;" HBox.hgrow="ALWAYS" />
-                        <Button fx:id="searchBtn" mnemonicParsing="false" onAction="#searchUser" styleClass="searchButton" text="Szukaj" />
+                        <Button fx:id="searchBtn" mnemonicParsing="false" onAction="#searchUser" style="-fx-background-color: #3b82f6; -fx-text-fill: white; -fx-background-radius: 6; -fx-cursor: hand;" text="Szukaj" />
                     </children>
                     <padding>
                         <Insets left="10.0" right="5.0" />
@@ -79,7 +79,7 @@
                         <Font name="System Bold" size="12.0" />
                     </font>
                 </Label>
-                <Button fx:id="addUserBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addUser" prefHeight="40.0" styleClass="addBtn" text="+ Dodaj Użytkownika" />
+                <Button fx:id="addUserBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addUser" prefHeight="40.0" style="-fx-background-color: #10b981; -fx-text-fill: white; -fx-background-radius: 6; -fx-font-weight: bold; -fx-cursor: hand;" text="+ Dodaj Użytkownika" />
             </children>
         </VBox>
     </right>

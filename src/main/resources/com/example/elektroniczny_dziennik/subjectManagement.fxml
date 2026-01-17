@@ -7,16 +7,41 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox prefHeight="600.0" prefWidth="900.0" spacing="20.0" style="-fx-background-color: #f9fafb;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elektroniczny_dziennik.SubjectManagementController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
-    <children>
-        <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+<BorderPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #f9fafb;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elektroniczny_dziennik.SubjectManagementController">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-background-color: white; -fx-border-color: #e5e7eb; -fx-border-width: 0 0 1 0; -fx-padding: 15 30;">
+            <children>
+                <VBox>
+                    <children>
+                        <Label text="Administracja" textFill="#6b7280">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <Label text="Przedmioty i Kadra" textFill="#1f2937">
+                            <font>
+                                <Font name="System Bold" size="24.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS" />
+            </children>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="10.0">
+            <padding>
+                <Insets bottom="20.0" left="30.0" right="20.0" top="20.0" />
+            </padding>
             <children>
                 <Label text="Lista Przedmiotów" textFill="#1f2937">
                     <font>
@@ -35,8 +60,10 @@
                 <Button mnemonicParsing="false" onAction="#deleteSubject" style="-fx-background-color: #ef4444; -fx-text-fill: white; -fx-cursor: hand;" text="Usuń zaznaczony przedmiot" />
             </children>
         </VBox>
+    </center>
 
-        <VBox prefWidth="350.0" spacing="20.0" style="-fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 1); -fx-background-radius: 8;">
+    <right>
+        <VBox prefWidth="350.0" spacing="20.0" style="-fx-background-color: white; -fx-border-color: #e5e7eb; -fx-border-width: 0 0 0 1;" BorderPane.alignment="CENTER">
             <padding>
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>
@@ -75,5 +102,5 @@
                 <Label fx:id="infoLabel" wrapText="true" />
             </children>
         </VBox>
-    </children>
-</HBox>
+    </right>
+</BorderPane>
