@@ -12,6 +12,7 @@
                 <Button fx:id="dashboardButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showDashboard" styleClass="sidebar-button" text="Pulpit" VBox.vgrow="NEVER" />
                 <Button fx:id="gradeEntryButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showGradeEntry" styleClass="sidebar-button" text="Oceny" />
                 <Button fx:id="userManagementButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showUserManagement" styleClass="sidebar-button" text="Zarządzanie Użytkownikami" />
+                <Button fx:id="subjectManagementButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showSubjectManagement" styleClass="sidebar-button" text="Przedmioty i Kadra" />
             </children>
             <opaqueInsets>
                 <Insets />

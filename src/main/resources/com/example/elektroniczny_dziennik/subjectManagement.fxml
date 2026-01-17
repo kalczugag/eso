@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox prefHeight="600.0" prefWidth="900.0" spacing="20.0" style="-fx-background-color: #f9fafb;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elektroniczny_dziennik.SubjectManagementController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <children>
+        <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+            <children>
+                <Label text="Lista Przedmiotów" textFill="#1f2937">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <TableView fx:id="subjectsTable" style="-fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 1);" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="idColumn" prefWidth="50.0" text="ID" />
+                        <TableColumn fx:id="nameColumn" prefWidth="250.0" text="Nazwa Przedmiotu" />
+                    </columns>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                    </columnResizePolicy>
+                </TableView>
+                <Button mnemonicParsing="false" onAction="#deleteSubject" style="-fx-background-color: #ef4444; -fx-text-fill: white; -fx-cursor: hand;" text="Usuń zaznaczony przedmiot" />
+            </children>
+        </VBox>
+
+        <VBox prefWidth="350.0" spacing="20.0" style="-fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 1); -fx-background-radius: 8;">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+            <children>
+
+                <Label text="Nowy Przedmiot" textFill="#1f2937">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="newSubjectName" promptText="Np. Matematyka" style="-fx-background-radius: 4; -fx-padding: 8;" />
+                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addSubject" style="-fx-background-color: #10b981; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="+ Utwórz" />
+
+                <Separator prefWidth="200.0" />
+
+                <Label text="Przypisz Nauczycieli" textFill="#1f2937">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Label text="Edytujesz przedmiot:" textFill="#6b7280" />
+                <Label fx:id="selectedSubjectLabel" text="(Wybierz z listy obok)" textFill="#3b82f6">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+
+                <VBox fx:id="teachersContainer" spacing="5.0">
+                    <children>
+                        <Label text="Wybierz kadrę:" textFill="#6b7280" />
+                    </children>
+                </VBox>
+
+                <Button fx:id="saveTeachersBtn" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#saveTeachersAssignment" style="-fx-background-color: #3b82f6; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="Zapisz przydział" />
+
+                <Label fx:id="infoLabel" wrapText="true" />
+            </children>
+        </VBox>
+    </children>
+</HBox>

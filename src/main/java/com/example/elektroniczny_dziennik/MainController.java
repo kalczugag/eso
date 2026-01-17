@@ -28,6 +28,7 @@ public class MainController {
     @FXML private Button gradesButton;
     @FXML private Button gradeEntryButton;
     @FXML private Button userManagementButton;
+    @FXML private Button subjectManagementButton;
 
     private Parent root;
     private Scene scene;
@@ -91,6 +92,9 @@ public class MainController {
             navigationButtons.put("userManagement.fxml", userManagementButton);
 
             userManagementButton.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("icons/management.png"))));
+        }
+        if(userManagementButton != null){
+            navigationButtons.put("subjectManagement.fxml", subjectManagementButton);
         }
     }
 
@@ -165,6 +169,10 @@ public class MainController {
 
     public void showUserManagement() throws IOException {
         loadView("userManagement.fxml");
+    }
+
+    public void showSubjectManagement() throws IOException {
+        loadView("subjectManagement.fxml");
     }
 
     public void logout(ActionEvent e) throws IOException {
