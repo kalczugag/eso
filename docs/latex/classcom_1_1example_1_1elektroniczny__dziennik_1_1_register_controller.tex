@@ -1,0 +1,73 @@
+\doxysection{com.\+example.\+elektroniczny\+\_\+dziennik.\+Register\+Controller Class Reference}
+\hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_register_controller}{}\label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_register_controller}\index{com.example.elektroniczny\_dziennik.RegisterController@{com.example.elektroniczny\_dziennik.RegisterController}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_register_controller_ac3a98625e9b00f589e876b4ed4b94d6c}{register}} ()
+\item 
+String \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_register_controller_a81e7ca7559e5f3c8f29f1fea17b6c5a0}{get\+Login}} (String first\+Name, String last\+Name, Connection conn)  throws SQLException
+\item 
+void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_register_controller_a175edc06b2d29c6a860346b9ded6718d}{login}} (Action\+Event e)  throws IOException 
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Kontroler obsługujący proces rejestracji nowego użytkownika (domyślnie studenta). Waliduje dane wejściowe, generuje unikalny login oraz haszuje hasło przed zapisem do bazy. 
+
+\label{doc-func-members}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_register_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_register_controller_a81e7ca7559e5f3c8f29f1fea17b6c5a0}\index{com.example.elektroniczny\_dziennik.RegisterController@{com.example.elektroniczny\_dziennik.RegisterController}!getLogin@{getLogin}}
+\index{getLogin@{getLogin}!com.example.elektroniczny\_dziennik.RegisterController@{com.example.elektroniczny\_dziennik.RegisterController}}
+\doxysubsubsection{\texorpdfstring{getLogin()}{getLogin()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_register_controller_a81e7ca7559e5f3c8f29f1fea17b6c5a0} 
+String com.\+example.\+elektroniczny\+\_\+dziennik.\+Register\+Controller.\+get\+Login (\begin{DoxyParamCaption}\item[{String}]{first\+Name}{, }\item[{String}]{last\+Name}{, }\item[{Connection}]{conn}{}\end{DoxyParamCaption}) throws SQLException}
+
+Generuje unikalny login na podstawie imienia i nazwiska. Schemat:\+ "{}s"{} + 3 litery imienia + 3 litery nazwiska. Jeśli taki login istnieje, dodaje kolejny numer porządkowy (np. skowalski1, skowalski2).
+
+
+\begin{DoxyParams}{Parameters}
+{\em first\+Name} & Imię użytkownika. \\
+\hline
+{\em last\+Name} & Nazwisko użytkownika. \\
+\hline
+{\em conn} & Aktywne połączenie do bazy danych. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Unikalny ciąg znaków login. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em SQLException} & W przypadku błędu zapytania do bazy. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_register_controller_a175edc06b2d29c6a860346b9ded6718d}\index{com.example.elektroniczny\_dziennik.RegisterController@{com.example.elektroniczny\_dziennik.RegisterController}!login@{login}}
+\index{login@{login}!com.example.elektroniczny\_dziennik.RegisterController@{com.example.elektroniczny\_dziennik.RegisterController}}
+\doxysubsubsection{\texorpdfstring{login()}{login()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_register_controller_a175edc06b2d29c6a860346b9ded6718d} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+Register\+Controller.\+login (\begin{DoxyParamCaption}\item[{Action\+Event}]{e}{}\end{DoxyParamCaption}) throws IOException}
+
+Przełącza widok z powrotem do ekranu logowania.
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & Zdarzenie kliknięcia przycisku. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em IOException} & Gdy nie uda się załadować widoku logowania. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_register_controller_ac3a98625e9b00f589e876b4ed4b94d6c}\index{com.example.elektroniczny\_dziennik.RegisterController@{com.example.elektroniczny\_dziennik.RegisterController}!register@{register}}
+\index{register@{register}!com.example.elektroniczny\_dziennik.RegisterController@{com.example.elektroniczny\_dziennik.RegisterController}}
+\doxysubsubsection{\texorpdfstring{register()}{register()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_register_controller_ac3a98625e9b00f589e876b4ed4b94d6c} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+Register\+Controller.\+register (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Główna metoda rejestracji. Sprawdza poprawność danych (puste pola, zgodność haseł). Jeśli walidacja przebiegnie pomyślnie, tworzy użytkownika w bazie danych, przypisuje mu domyślną rolę \textquotesingle{}student\textquotesingle{} i klasę \textquotesingle{}3A\textquotesingle{}. 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+src/\+main/\+java/\+com/\+example/\+elektroniczny\+\_\+dziennik/\+Register\+Controller.\+java\end{DoxyCompactItemize}

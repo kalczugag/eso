@@ -1,0 +1,66 @@
+\doxysection{com.\+example.\+elektroniczny\+\_\+dziennik.\+Login\+Controller Class Reference}
+\hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_login_controller}{}\label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_login_controller}\index{com.example.elektroniczny\_dziennik.LoginController@{com.example.elektroniczny\_dziennik.LoginController}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_login_controller_ade0ee2b451d052804cbf2f4acd475447}{initialize}} ()
+\item 
+void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_login_controller_aca4373ffa3f1f11befc93f2d1bb45e38}{login}} (Action\+Event e)  throws IOException 
+\item 
+void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_login_controller_a20ceee86bc31e7c2c64f04763626fa90}{register}} (Action\+Event e)  throws IOException
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Kontroler obsługujący widok logowania do systemu. Odpowiada za autoryzację użytkowników, weryfikację haseł oraz przekierowanie do głównego panelu aplikacji. 
+
+\label{doc-func-members}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_login_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_login_controller_ade0ee2b451d052804cbf2f4acd475447}\index{com.example.elektroniczny\_dziennik.LoginController@{com.example.elektroniczny\_dziennik.LoginController}!initialize@{initialize}}
+\index{initialize@{initialize}!com.example.elektroniczny\_dziennik.LoginController@{com.example.elektroniczny\_dziennik.LoginController}}
+\doxysubsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_login_controller_ade0ee2b451d052804cbf2f4acd475447} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+Login\+Controller.\+initialize (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Metoda inicjalizująca kontroler. Ustawia nasłuchiwacze zdarzeń (Listenery) na polach tekstowych, aby umożliwić logowanie po wciśnięciu klawisza ENTER. \Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_login_controller_aca4373ffa3f1f11befc93f2d1bb45e38}\index{com.example.elektroniczny\_dziennik.LoginController@{com.example.elektroniczny\_dziennik.LoginController}!login@{login}}
+\index{login@{login}!com.example.elektroniczny\_dziennik.LoginController@{com.example.elektroniczny\_dziennik.LoginController}}
+\doxysubsubsection{\texorpdfstring{login()}{login()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_login_controller_aca4373ffa3f1f11befc93f2d1bb45e38} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+Login\+Controller.\+login (\begin{DoxyParamCaption}\item[{Action\+Event}]{e}{}\end{DoxyParamCaption}) throws IOException}
+
+Obsługuje proces logowania użytkownika. Weryfikuje dane w bazie, sprawdza poprawność hasła (BCrypt) i w razie sukcesu ładuje główny widok aplikacji (\doxylink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller}{Main\+Controller}).
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & Zdarzenie wywołujące (np. kliknięcie przycisku). \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em IOException} & Wyrzucany w przypadku problemów z ładowaniem pliku widoku (FXML). \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_login_controller_a20ceee86bc31e7c2c64f04763626fa90}\index{com.example.elektroniczny\_dziennik.LoginController@{com.example.elektroniczny\_dziennik.LoginController}!register@{register}}
+\index{register@{register}!com.example.elektroniczny\_dziennik.LoginController@{com.example.elektroniczny\_dziennik.LoginController}}
+\doxysubsubsection{\texorpdfstring{register()}{register()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_login_controller_a20ceee86bc31e7c2c64f04763626fa90} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+Login\+Controller.\+register (\begin{DoxyParamCaption}\item[{Action\+Event}]{e}{}\end{DoxyParamCaption}) throws IOException}
+
+Przełącza widok na formularz rejestracji nowego użytkownika.
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & Zdarzenie wywołujące (np. kliknięcie przycisku "{}\+Zarejestruj"{}). \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em IOException} & Wyrzucany, gdy nie uda się załadować pliku \textquotesingle{}register\+View.\+fxml\textquotesingle{}. \\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+src/\+main/\+java/\+com/\+example/\+elektroniczny\+\_\+dziennik/\+Login\+Controller.\+java\end{DoxyCompactItemize}

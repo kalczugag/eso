@@ -1,0 +1,50 @@
+\doxysection{com.\+example.\+elektroniczny\+\_\+dziennik.\+Subject\+Management\+Controller Class Reference}
+\hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_subject_management_controller}{}\label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_subject_management_controller}\index{com.example.elektroniczny\_dziennik.SubjectManagementController@{com.example.elektroniczny\_dziennik.SubjectManagementController}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_subject_management_controller_a33e5312ca75928a32b87c8c54f2173b1}{initialize}} ()
+\item 
+void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_subject_management_controller_abc8838befa980184f39eeb8cd0cff928}{add\+Subject}} ()
+\item 
+void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_subject_management_controller_afe40b44ecb73b37c38c0a7ebeab9ba1c}{delete\+Subject}} ()
+\item 
+void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_subject_management_controller_a18eacc9f80e2ade08a70f884ed68f6fa}{save\+Teachers\+Assignment}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Kontroler zarządzania przedmiotami (Admin). Pozwala dodawać/\+usuwać przedmioty oraz przypisywać do nich nauczycieli przy użyciu listy z wielokrotnym wyborem (Check\+Combo\+Box). 
+
+\label{doc-func-members}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_subject_management_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_subject_management_controller_abc8838befa980184f39eeb8cd0cff928}\index{com.example.elektroniczny\_dziennik.SubjectManagementController@{com.example.elektroniczny\_dziennik.SubjectManagementController}!addSubject@{addSubject}}
+\index{addSubject@{addSubject}!com.example.elektroniczny\_dziennik.SubjectManagementController@{com.example.elektroniczny\_dziennik.SubjectManagementController}}
+\doxysubsubsection{\texorpdfstring{addSubject()}{addSubject()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_subject_management_controller_abc8838befa980184f39eeb8cd0cff928} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+Subject\+Management\+Controller.\+add\+Subject (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Dodaje nowy przedmiot do bazy danych. Pobiera nazwę z pola tekstowego. \Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_subject_management_controller_afe40b44ecb73b37c38c0a7ebeab9ba1c}\index{com.example.elektroniczny\_dziennik.SubjectManagementController@{com.example.elektroniczny\_dziennik.SubjectManagementController}!deleteSubject@{deleteSubject}}
+\index{deleteSubject@{deleteSubject}!com.example.elektroniczny\_dziennik.SubjectManagementController@{com.example.elektroniczny\_dziennik.SubjectManagementController}}
+\doxysubsubsection{\texorpdfstring{deleteSubject()}{deleteSubject()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_subject_management_controller_afe40b44ecb73b37c38c0a7ebeab9ba1c} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+Subject\+Management\+Controller.\+delete\+Subject (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Usuwa zaznaczony przedmiot. Sprawdza, czy przedmiot ma powiązania (choć w kodzie usuwanie jest proste, baza danych może wyrzucić błąd klucza obcego, jeśli są oceny). \Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_subject_management_controller_a33e5312ca75928a32b87c8c54f2173b1}\index{com.example.elektroniczny\_dziennik.SubjectManagementController@{com.example.elektroniczny\_dziennik.SubjectManagementController}!initialize@{initialize}}
+\index{initialize@{initialize}!com.example.elektroniczny\_dziennik.SubjectManagementController@{com.example.elektroniczny\_dziennik.SubjectManagementController}}
+\doxysubsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_subject_management_controller_a33e5312ca75928a32b87c8c54f2173b1} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+Subject\+Management\+Controller.\+initialize (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Inicjalizacja kontrolera. Konfiguruje tabelę, tworzy Check\+Combo\+Box oraz ładuje dane wstępne. \Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_subject_management_controller_a18eacc9f80e2ade08a70f884ed68f6fa}\index{com.example.elektroniczny\_dziennik.SubjectManagementController@{com.example.elektroniczny\_dziennik.SubjectManagementController}!saveTeachersAssignment@{saveTeachersAssignment}}
+\index{saveTeachersAssignment@{saveTeachersAssignment}!com.example.elektroniczny\_dziennik.SubjectManagementController@{com.example.elektroniczny\_dziennik.SubjectManagementController}}
+\doxysubsubsection{\texorpdfstring{saveTeachersAssignment()}{saveTeachersAssignment()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_subject_management_controller_a18eacc9f80e2ade08a70f884ed68f6fa} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+Subject\+Management\+Controller.\+save\+Teachers\+Assignment (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Zapisuje zmiany w przypisaniu nauczycieli do wybranego przedmiotu. Usuwa stare przypisania i dodaje nowe na podstawie zaznaczeń w Check\+Combo\+Box. 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+src/\+main/\+java/\+com/\+example/\+elektroniczny\+\_\+dziennik/\+Subject\+Management\+Controller.\+java\end{DoxyCompactItemize}

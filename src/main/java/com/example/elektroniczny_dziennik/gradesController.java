@@ -17,16 +17,39 @@ import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 
+/**
+ * Kontroler widoku ocen dla ucznia.
+ * Umożliwia wyświetlenie listy otrzymanych ocen, obliczenie średniej
+ * oraz wygenerowanie raportu (np. do pliku PDF/TXT poprzez ReportService).
+ */
 public class gradesController {
+
+    /** Tabela wyświetlająca oceny. */
     @FXML private TableView<StudentGradeView> gradesTable;
+
+    /** Kolumna z nazwą przedmiotu. */
     @FXML private TableColumn<StudentGradeView, String> subjectCol;
+
+    /** Kolumna z wartością oceny. */
     @FXML private TableColumn<StudentGradeView, Double> gradeCol;
+
+    /** Kolumna z opisem oceny. */
     @FXML private TableColumn<StudentGradeView, String> descCol;
+
+    /** Kolumna z datą wystawienia oceny. */
     @FXML private TableColumn<StudentGradeView, Date> dateCol;
+
+    /** Etykieta wyświetlająca obliczoną średnią ocen. */
     @FXML private Label averageLabel;
 
+    /** ID zalogowanego studenta (pobrane z bazy na podstawie User.id). */
     private int studentId;
 
+    /**
+     * Inicjalizuje kontroler.
+     * Konfiguruje kolumny tabeli (mapowanie pól obiektu StudentGradeView)
+     * oraz uruchamia pobieranie danych z bazy.
+     */
     @FXML
     void initialize() {
         subjectCol.setCellValueFactory(new PropertyValueFactory<>("subjectName"));
@@ -42,6 +65,11 @@ public class gradesController {
             System.out.println("Błąd pobierania danych: " + e.getMessage());
         }
     }
+
+    /**
+     * Obsługuje akcję generowania raportu z ocen.
+     * Pobiera dane z tabeli, tworzy obiekt raportu i otwiera okno dialogowe z podglądem.
+     */
     @FXML
     void generateReport() {
         var items = gradesTable.getItems();
@@ -70,6 +98,11 @@ public class gradesController {
         }
     }
 
+    /**
+     * Wyświetla proste okno informacyjne.
+     * * @param title Tytuł okna.
+     * @param content Treść komunikatu.
+     */
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -78,6 +111,11 @@ public class gradesController {
         alert.showAndWait();
     }
 
+    /**
+     * Wyświetla okno dialogowe z tekstem raportu i opcją zapisu do pliku.
+     * (Metoda pomocnicza, obecnie rzadziej używana na rzecz dedykowanego ReportDialogController).
+     * * @param reportText Treść raportu.
+     */
     private void showReportDialog(String reportText) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Raport Statystyczny");
@@ -110,6 +148,11 @@ public class gradesController {
         });
     }
 
+    /**
+     * Pobiera ID studenta z bazy danych na podstawie statycznego ID zalogowanego użytkownika.
+     * Jest to niezbędne, ponieważ tabele 'grades' odnoszą się do 'student_id', a nie 'user_id'.
+     * * @throws SQLException W przypadku błędu zapytania SQL.
+     */
     private void getStudentId() throws SQLException {
         try (var conn = Database.getConnection()) {
             var statement = conn.prepareStatement(
@@ -124,6 +167,11 @@ public class gradesController {
         }
     }
 
+    /**
+     * Pobiera listę ocen studenta wraz z nazwami przedmiotów.
+     * Oblicza na bieżąco średnią arytmetyczną ocen i aktualizuje interfejs.
+     * * @throws SQLException W przypadku błędu zapytania SQL.
+     */
     private void loadGradesAndStats() throws SQLException {
         ObservableList<StudentGradeView> gradesList = FXCollections.observableArrayList();
         double sum = 0;

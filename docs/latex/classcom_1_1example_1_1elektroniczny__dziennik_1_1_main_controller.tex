@@ -1,0 +1,134 @@
+\doxysection{com.\+example.\+elektroniczny\+\_\+dziennik.\+Main\+Controller Class Reference}
+\hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller}{}\label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller}\index{com.example.elektroniczny\_dziennik.MainController@{com.example.elektroniczny\_dziennik.MainController}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_ad0dcf4e8a920525dbacbb092ce9a04a5}{display\+User}} (\doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_user}{User}} \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_abf0a3161c3c4964cc68e4b011bdf609b}{user}})  throws IOException 
+\item 
+void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_a3d65f3221a253440bce8df8b281a7b11}{load\+View}} (String fxml)  throws IOException 
+\item 
+void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_a92727ccd55dbc672851c4c10a8c2ed4e}{show\+Dashboard}} ()  throws IOException 
+\item 
+void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_ae9760e58710f7ab12d7f6e2deda1f7fc}{show\+Grades}} ()  throws IOException 
+\item 
+void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_a2a4b3ee3fcef528a8f90d76233885203}{show\+Grade\+Entry}} ()  throws IOException 
+\item 
+void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_a3feb6a4fe8d1830018904d5ed79f885b}{show\+User\+Management}} ()  throws IOException 
+\item 
+void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_a351c88582e968f45e6642eb385dee13a}{show\+Subject\+Management}} ()  throws IOException 
+\item 
+void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_afc2f91dc073d8aa7a20747e30076a117}{logout}} (Action\+Event e)  throws IOException 
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_user}{User}} \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_abf0a3161c3c4964cc68e4b011bdf609b}{user}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Główny kontroler aplikacji zarządzający nawigacją i układem okna. Odpowiada za ładowanie odpowiedniego paska bocznego (sidebar) w zależności od roli użytkownika oraz dynamiczne podmienianie zawartości głównego kontenera (dashboard, oceny, etc.). 
+
+\label{doc-func-members}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_ad0dcf4e8a920525dbacbb092ce9a04a5}\index{com.example.elektroniczny\_dziennik.MainController@{com.example.elektroniczny\_dziennik.MainController}!displayUser@{displayUser}}
+\index{displayUser@{displayUser}!com.example.elektroniczny\_dziennik.MainController@{com.example.elektroniczny\_dziennik.MainController}}
+\doxysubsubsection{\texorpdfstring{displayUser()}{displayUser()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_ad0dcf4e8a920525dbacbb092ce9a04a5} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+Main\+Controller.\+display\+User (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_user}{User}}}]{user}{}\end{DoxyParamCaption}) throws IOException}
+
+Ustawia zalogowanego użytkownika i inicjalizuje interfejs. Wyświetla dane użytkownika na pasku, ładuje odpowiednie menu boczne i otwiera domyślny widok startowy (dashboard).
+
+
+\begin{DoxyParams}{Parameters}
+{\em \doxylink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_abf0a3161c3c4964cc68e4b011bdf609b}{user}} & Obiekt zalogowanego użytkownika. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em IOException} & W przypadku błędu ładowania plików FXML. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_a3d65f3221a253440bce8df8b281a7b11}\index{com.example.elektroniczny\_dziennik.MainController@{com.example.elektroniczny\_dziennik.MainController}!loadView@{loadView}}
+\index{loadView@{loadView}!com.example.elektroniczny\_dziennik.MainController@{com.example.elektroniczny\_dziennik.MainController}}
+\doxysubsubsection{\texorpdfstring{loadView()}{loadView()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_a3d65f3221a253440bce8df8b281a7b11} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+Main\+Controller.\+load\+View (\begin{DoxyParamCaption}\item[{String}]{fxml}{}\end{DoxyParamCaption}) throws IOException}
+
+Główna metoda ładująca widok do centralnego kontenera aplikacji. Przekazuje również obiekt użytkownika do kontrolerów załadowanych widoków.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fxml} & Nazwa pliku FXML do załadowania. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em IOException} & W przypadku braku pliku lub błędu parsowania FXML. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_afc2f91dc073d8aa7a20747e30076a117}\index{com.example.elektroniczny\_dziennik.MainController@{com.example.elektroniczny\_dziennik.MainController}!logout@{logout}}
+\index{logout@{logout}!com.example.elektroniczny\_dziennik.MainController@{com.example.elektroniczny\_dziennik.MainController}}
+\doxysubsubsection{\texorpdfstring{logout()}{logout()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_afc2f91dc073d8aa7a20747e30076a117} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+Main\+Controller.\+logout (\begin{DoxyParamCaption}\item[{Action\+Event}]{e}{}\end{DoxyParamCaption}) throws IOException}
+
+Wylogowuje użytkownika. Wyświetla okno potwierdzenia, a po zatwierdzeniu przenosi do ekranu logowania.
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & Zdarzenie kliknięcia przycisku wylogowania. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em IOException} & Gdy nie uda się załadować widoku logowania. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_a92727ccd55dbc672851c4c10a8c2ed4e}\index{com.example.elektroniczny\_dziennik.MainController@{com.example.elektroniczny\_dziennik.MainController}!showDashboard@{showDashboard}}
+\index{showDashboard@{showDashboard}!com.example.elektroniczny\_dziennik.MainController@{com.example.elektroniczny\_dziennik.MainController}}
+\doxysubsubsection{\texorpdfstring{showDashboard()}{showDashboard()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_a92727ccd55dbc672851c4c10a8c2ed4e} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+Main\+Controller.\+show\+Dashboard (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) throws IOException}
+
+Wyświetla pulpit główny. \Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_a2a4b3ee3fcef528a8f90d76233885203}\index{com.example.elektroniczny\_dziennik.MainController@{com.example.elektroniczny\_dziennik.MainController}!showGradeEntry@{showGradeEntry}}
+\index{showGradeEntry@{showGradeEntry}!com.example.elektroniczny\_dziennik.MainController@{com.example.elektroniczny\_dziennik.MainController}}
+\doxysubsubsection{\texorpdfstring{showGradeEntry()}{showGradeEntry()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_a2a4b3ee3fcef528a8f90d76233885203} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+Main\+Controller.\+show\+Grade\+Entry (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) throws IOException}
+
+Wyświetla widok wprowadzania ocen (dla nauczyciela). \Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_ae9760e58710f7ab12d7f6e2deda1f7fc}\index{com.example.elektroniczny\_dziennik.MainController@{com.example.elektroniczny\_dziennik.MainController}!showGrades@{showGrades}}
+\index{showGrades@{showGrades}!com.example.elektroniczny\_dziennik.MainController@{com.example.elektroniczny\_dziennik.MainController}}
+\doxysubsubsection{\texorpdfstring{showGrades()}{showGrades()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_ae9760e58710f7ab12d7f6e2deda1f7fc} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+Main\+Controller.\+show\+Grades (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) throws IOException}
+
+Wyświetla widok ocen ucznia. \Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_a351c88582e968f45e6642eb385dee13a}\index{com.example.elektroniczny\_dziennik.MainController@{com.example.elektroniczny\_dziennik.MainController}!showSubjectManagement@{showSubjectManagement}}
+\index{showSubjectManagement@{showSubjectManagement}!com.example.elektroniczny\_dziennik.MainController@{com.example.elektroniczny\_dziennik.MainController}}
+\doxysubsubsection{\texorpdfstring{showSubjectManagement()}{showSubjectManagement()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_a351c88582e968f45e6642eb385dee13a} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+Main\+Controller.\+show\+Subject\+Management (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) throws IOException}
+
+Wyświetla panel zarządzania przedmiotami. \Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_a3feb6a4fe8d1830018904d5ed79f885b}\index{com.example.elektroniczny\_dziennik.MainController@{com.example.elektroniczny\_dziennik.MainController}!showUserManagement@{showUserManagement}}
+\index{showUserManagement@{showUserManagement}!com.example.elektroniczny\_dziennik.MainController@{com.example.elektroniczny\_dziennik.MainController}}
+\doxysubsubsection{\texorpdfstring{showUserManagement()}{showUserManagement()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_a3feb6a4fe8d1830018904d5ed79f885b} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+Main\+Controller.\+show\+User\+Management (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) throws IOException}
+
+Wyświetla panel zarządzania użytkownikami. 
+
+\label{doc-variable-members}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_abf0a3161c3c4964cc68e4b011bdf609b}\index{com.example.elektroniczny\_dziennik.MainController@{com.example.elektroniczny\_dziennik.MainController}!user@{user}}
+\index{user@{user}!com.example.elektroniczny\_dziennik.MainController@{com.example.elektroniczny\_dziennik.MainController}}
+\doxysubsubsection{\texorpdfstring{user}{user}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_main_controller_abf0a3161c3c4964cc68e4b011bdf609b} 
+\doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_user}{User}} com.\+example.\+elektroniczny\+\_\+dziennik.\+Main\+Controller.\+user}
+
+Obiekt aktualnie zalogowanego użytkownika. 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+src/\+main/\+java/\+com/\+example/\+elektroniczny\+\_\+dziennik/\+Main\+Controller.\+java\end{DoxyCompactItemize}

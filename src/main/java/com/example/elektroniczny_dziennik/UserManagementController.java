@@ -19,27 +19,44 @@ import javafx.util.Callback;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * Kontroler panelu zarządzania użytkownikami (tylko dla Administratora).
+ * Umożliwia przeglądanie, wyszukiwanie, dodawanie, edycję i usuwanie użytkowników.
+ */
 public class UserManagementController {
+
+    /** Pole tekstowe do wyszukiwania użytkowników po imieniu lub nazwisku. */
     @FXML private TextField searchField;
     @FXML private Button searchBtn;
     @FXML private Button addUserBtn;
 
+    /** Tabela wyświetlająca listę użytkowników. */
     @FXML private TableView<ObservableList<String>> userTable;
+
+    // Kolumny tabeli (dane przechowywane jako lista Stringów dla uproszczenia)
     @FXML private TableColumn<ObservableList<String>, String> idColumn;
     @FXML private TableColumn<ObservableList<String>, String> firstNameColumn;
     @FXML private TableColumn<ObservableList<String>, String> lastNameColumn;
     @FXML private TableColumn<ObservableList<String>, String> loginColumn;
     @FXML private TableColumn<ObservableList<String>, String> roleColumn;
+
+    /** Kolumna z przyciskami akcji (Edytuj / Usuń). */
     @FXML private TableColumn<ObservableList<String>, Void> actionsColumn;
 
+    /** Lista przechowująca dane użytkowników załadowane z bazy. */
     private ObservableList<ObservableList<String>> data = FXCollections.observableArrayList();
 
+    /**
+     * Inicjalizuje kontroler.
+     * Konfiguruje kolumny tabeli, dodaje przyciski akcji do wierszy oraz ładuje dane z bazy.
+     */
     @FXML
     public void initialize() {
         searchField.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) searchUser();
         });
 
+        // Konfiguracja kolumn dla danych typu List<String>
         idColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().get(0)));
         firstNameColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().get(1)));
         lastNameColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().get(2)));
@@ -55,6 +72,10 @@ public class UserManagementController {
         }
     }
 
+    /**
+     * Dodaje dynamiczne przyciski "Edytuj" i "Usuń" do każdej komórki w kolumnie akcji.
+     * Wykorzystuje mechanizm CellFactory JavaFX.
+     */
     private void addActionsToTable() {
         Callback<TableColumn<ObservableList<String>, Void>, TableCell<ObservableList<String>, Void>> cellFactory = new Callback<>() {
             @Override
@@ -66,6 +87,7 @@ public class UserManagementController {
                     private final HBox pane = new HBox(5, editBtn,separator, deleteBtn);
 
                     {
+                        // Stylowanie przycisków w kodzie (inline CSS)
                         editBtn.setStyle("-fx-background-color: transparent; -fx-border-width: 0; -fx-text-fill: #3b82f6; -fx-font-size: 11px; -fx-cursor: hand;");
                         deleteBtn.setStyle("-fx-background-color: transparent; -fx-border-width: 0; -fx-text-fill: ef4444; -fx-font-size: 11px; -fx-cursor: hand;");
                         separator.setStyle("-fx-max-height: 12; -fx-valignment: center;");
@@ -86,6 +108,10 @@ public class UserManagementController {
         actionsColumn.setCellFactory(cellFactory);
     }
 
+    /**
+     * Pobiera wszystkich użytkowników z bazy danych i wypełnia tabelę.
+     * @throws SQLException W przypadku błędu połączenia z bazą.
+     */
     private void loadUsers() throws SQLException {
         data.clear();
         try (var conn = Database.getConnection()) {
@@ -104,15 +130,24 @@ public class UserManagementController {
         }
     }
 
+    /** Otwiera formularz dodawania nowego użytkownika. */
     @FXML
     public void addUser() {
         openUserForm(null, "Dodaj Użytkownika");
     }
 
+    /** * Obsługuje edycję wybranego użytkownika.
+     * @param rowData Dane wiersza z tabeli.
+     */
     private void handleEditUser(ObservableList<String> rowData) {
         openUserForm(rowData, "Edycja Użytkownika");
     }
 
+    /**
+     * Otwiera okno modalne z formularzem użytkownika (UserFormController).
+     * * @param userData Dane użytkownika do edycji (null dla nowego użytkownika).
+     * @param title Tytuł okna.
+     */
     private void openUserForm(ObservableList<String> userData, String title) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("userForm.fxml"));
@@ -132,12 +167,17 @@ public class UserManagementController {
             stage.setResizable(false);
             stage.showAndWait();
 
-            loadUsers();
+            loadUsers(); // Odświeżenie listy po zamknięciu okna
         } catch (IOException | SQLException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * Usuwa użytkownika z bazy danych.
+     * Usuwa również powiązane dane kaskadowo (np. oceny studenta, przypisane przedmioty nauczyciela).
+     * * @param rowData Dane użytkownika do usunięcia.
+     */
     private void handleDeleteUser(ObservableList<String> rowData) {
         String fullName = rowData.get(1) + " " + rowData.get(2);
         String role = rowData.get(4);
@@ -147,6 +187,7 @@ public class UserManagementController {
         alert.showAndWait().ifPresent(response -> {
             if (response == ButtonType.YES) {
                 try (var conn = Database.getConnection()) {
+                    // Logika usuwania kaskadowego dla poszczególnych ról
                     if ("student".equals(role)) {
                         var rs = conn.createStatement().executeQuery("SELECT id FROM student WHERE user_id=" + userId);
                         if (rs.next()) {
@@ -169,10 +210,12 @@ public class UserManagementController {
         });
     }
 
+    // Metody obsługi zdarzeń FXML
     @FXML public void searchUser() { searchLogic(); }
     @FXML public void addStudent() { openDialog("addStudent.fxml", "Dodaj Studenta"); }
     @FXML public void addTeacher() { openDialog("addTeacher.fxml", "Dodaj Nauczyciela"); }
 
+    /** Pomocnicza metoda otwierająca proste okno dialogowe z pliku FXML. */
     private void openDialog(String fxml, String title) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
@@ -187,6 +230,10 @@ public class UserManagementController {
         } catch (Exception e) { e.printStackTrace(); }
     }
 
+    /**
+     * Filtruje listę użytkowników w tabeli na podstawie wpisanego tekstu.
+     * Wyszukuje po imieniu lub nazwisku.
+     */
     private void searchLogic() {
         String text = searchField.getText().toLowerCase();
         if(text.isEmpty()) userTable.setItems(data);

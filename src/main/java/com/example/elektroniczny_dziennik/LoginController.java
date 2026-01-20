@@ -14,19 +14,33 @@ import org.mindrot.jbcrypt.BCrypt;
 import javax.swing.*;
 import java.io.IOException;
 
+/**
+ * Kontroler obsługujący widok logowania do systemu.
+ * Odpowiada za autoryzację użytkowników, weryfikację haseł oraz przekierowanie do głównego panelu aplikacji.
+ */
 public class LoginController {
+
+    /** Pole tekstowe do wprowadzenia loginu. */
     @FXML private TextField loginInput;
+
+    /** Pole tekstowe (ukryte) do wprowadzenia hasła. */
     @FXML private PasswordField passwordInput;
 
-    // Labels
+    /** Etykieta służąca do wyświetlania komunikatów o błędach logowania. */
     @FXML private Label errorLabel;
 
-
+    /** Główny węzeł (root) sceny JavaFX. */
     private Parent root;
+    /** Obiekt sceny JavaFX. */
     private Scene scene;
+    /** Obiekt okna (Stage) aplikacji. */
     private Stage stage;
 
-    // Obsługuje autoryzację użytkownika po wciśnięciu klawisza Enter w polach wprowadzania.
+    /**
+     * Metoda inicjalizująca kontroler.
+     * Ustawia nasłuchiwacze zdarzeń (Listenery) na polach tekstowych, aby umożliwić logowanie
+     * po wciśnięciu klawisza ENTER.
+     */
     @FXML
     public void initialize() {
         loginInput.setOnKeyPressed(event -> {
@@ -52,6 +66,14 @@ public class LoginController {
         });
     }
 
+    /**
+     * Obsługuje proces logowania użytkownika.
+     * Weryfikuje dane w bazie, sprawdza poprawność hasła (BCrypt) i w razie sukcesu
+     * ładuje główny widok aplikacji (MainController).
+     *
+     * @param e Zdarzenie wywołujące (np. kliknięcie przycisku).
+     * @throws IOException Wyrzucany w przypadku problemów z ładowaniem pliku widoku (FXML).
+     */
     public void login(ActionEvent e) throws IOException {
         String login = loginInput.getText();
         String password = passwordInput.getText();
@@ -100,6 +122,12 @@ public class LoginController {
         }
     }
 
+    /**
+     * Przełącza widok na formularz rejestracji nowego użytkownika.
+     *
+     * @param e Zdarzenie wywołujące (np. kliknięcie przycisku "Zarejestruj").
+     * @throws IOException Wyrzucany, gdy nie uda się załadować pliku 'registerView.fxml'.
+     */
     public void register(ActionEvent e) throws IOException{
         root = FXMLLoader.load(getClass().getResource("registerView.fxml"));
         scene = new Scene(root);

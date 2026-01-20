@@ -12,13 +12,20 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+/**
+ * Kontroler okna dialogowego formularza użytkownika.
+ * Obsługuje zarówno tworzenie nowego konta, jak i edycję istniejącego.
+ * Zawiera logikę generowania unikalnych loginów oraz przypisywania danych specyficznych dla ról.
+ */
 public class UserFormController {
     @FXML private TextField firstNameInput;
     @FXML private TextField lastNameInput;
     @FXML private ComboBox<String> roleComboBox;
 
+    /** Kontener na listę przedmiotów (widoczny tylko gdy rola = nauczyciel). */
     @FXML private VBox subjectContainer;
 
+    /** Komponent wielokrotnego wyboru przedmiotów dla nauczyciela. */
     private CheckComboBox<String> subjectCheckComboBox;
 
     @FXML private PasswordField passwordInput;
@@ -27,10 +34,16 @@ public class UserFormController {
     @FXML private Button actionButton;
     @FXML private Label infoLabel;
 
+    /** ID edytowanego użytkownika (-1 oznacza tryb tworzenia nowego). */
     private int editingUserId = -1;
     private String originalRole = "";
     private int currentLoggedInUserId = -1;
 
+    /**
+     * Inicjalizacja formularza.
+     * Ustawia listę ról, dodaje listener widoczności dla kontenera przedmiotów
+     * oraz ładuje listę dostępnych przedmiotów.
+     */
     @FXML
     public void initialize() {
         subjectCheckComboBox = new CheckComboBox<>();
@@ -40,6 +53,7 @@ public class UserFormController {
 
         roleComboBox.getItems().addAll("student", "nauczyciel", "admin");
 
+        // Pokazuj listę przedmiotów tylko jeśli wybrano rolę nauczyciela
         roleComboBox.valueProperty().addListener((obs, oldVal, newVal) -> {
             boolean isTeacher = "nauczyciel".equals(newVal);
             subjectContainer.setVisible(isTeacher);
@@ -52,16 +66,23 @@ public class UserFormController {
         subjectContainer.setManaged(false);
     }
 
+    /** Ustawia ID zalogowanego admina (zabezpieczenie przed edycją własnej roli). */
     public void setLoggedInUser(int id) {
         this.currentLoggedInUserId = id;
     }
 
+    /** Konfiguruje formularz w trybie tworzenia nowego użytkownika. */
     public void setCreateMode() {
         titleLabel.setText("Nowy Użytkownik");
         actionButton.setText("Utwórz");
         roleComboBox.setValue("student");
     }
 
+    /**
+     * Konfiguruje formularz w trybie edycji istniejącego użytkownika.
+     * Wypełnia pola danymi.
+     * * @param data Lista danych użytkownika (id, imię, nazwisko, login, rola).
+     */
     public void setEditData(ObservableList<String> data) {
         editingUserId = Integer.parseInt(data.get(0));
         firstNameInput.setText(data.get(1));
@@ -83,6 +104,7 @@ public class UserFormController {
         }
     }
 
+    /** Ładuje wszystkie dostępne przedmioty do CheckComboBoxa. */
     private void loadSubjects() {
         try (var conn = Database.getConnection()) {
             var rs = conn.createStatement().executeQuery("SELECT name FROM subjects");
@@ -92,6 +114,7 @@ public class UserFormController {
         } catch (SQLException e) { e.printStackTrace(); }
     }
 
+    /** Zaznacza przedmioty, których już uczy dany nauczyciel. */
     private void loadTeacherSubjects(int userId) {
         try (var conn = Database.getConnection()) {
             String sql = "SELECT s.name FROM subjects s " +
@@ -109,6 +132,10 @@ public class UserFormController {
         } catch (SQLException e) { e.printStackTrace(); }
     }
 
+    /**
+     * Główna metoda obsługująca przycisk akcji (Utwórz/Zapisz).
+     * Wykonuje walidację pól, a następnie wywołuje odpowiednie metody bazy danych.
+     */
     @FXML
     public void handleAction() {
         String fname = firstNameInput.getText();
@@ -135,6 +162,7 @@ public class UserFormController {
             infoLabel.setText("Hasła się nie zgadzają."); return;
         }
 
+        // Zabezpieczenie przed przypadkowym usunięciem innego admina
         if (editingUserId != -1 && "admin".equals(originalRole) && !"admin".equals(role)) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
                     "Czy na pewno chcesz odebrać uprawnienia Administratora? Stracisz dostęp.",
@@ -155,6 +183,10 @@ public class UserFormController {
         }
     }
 
+    /**
+     * Tworzy nowego użytkownika w bazie.
+     * Generuje unikalny login i haszuje hasło.
+     */
     private void createNewUser(Connection conn, String f, String l, String role, String pass, ObservableList<String> subjects) throws SQLException {
         String login = getUniqueLogin(conn, f, l, role);
         String hash = BCrypt.hashpw(pass, BCrypt.gensalt());
@@ -170,6 +202,10 @@ public class UserFormController {
         assignRoleData(conn, uid, role, subjects);
     }
 
+    /**
+     * Aktualizuje dane istniejącego użytkownika.
+     * Jeśli zmieniono rolę, usuwa stare dane specyficzne dla roli i tworzy nowe.
+     */
     private void updateUser(Connection conn, String f, String l, String role, String pass, ObservableList<String> subjects) throws SQLException {
         String sql = pass.isEmpty() ?
                 "UPDATE user SET first_name=?, last_name=?, role=? WHERE id=?" :
@@ -188,6 +224,10 @@ public class UserFormController {
         }
     }
 
+    /**
+     * Generuje login wg schematu: prefiks (s/n/a) + 3 litery imienia + 3 nazwiska.
+     * Obsługuje konflikty poprzez dodanie numerka.
+     */
     private String getUniqueLogin(Connection conn, String firstName, String lastName, String role) throws SQLException {
         String prefix = "s";
         if ("nauczyciel".equals(role)) prefix = "n";
@@ -212,6 +252,9 @@ public class UserFormController {
         return loginBase;
     }
 
+    /**
+     * Przypisuje odpowiednie rekordy do tabel 'student' lub 'teacher' w zależności od roli.
+     */
     private void assignRoleData(Connection conn, int uid, String role, ObservableList<String> subjects) throws SQLException {
         if ("student".equals(role)) {
             var s = conn.prepareStatement("INSERT INTO student (class, user_id) VALUES ('3A', ?)");
@@ -236,6 +279,7 @@ public class UserFormController {
         }
     }
 
+    /** Usuwa dane specyficzne dla roli (np. rekord nauczyciela i jego przedmioty) przed zmianą roli. */
     private void removeRoleData(Connection conn, int uid, String role) throws SQLException {
         if ("student".equals(role)) {
             var rs = conn.createStatement().executeQuery("SELECT id FROM student WHERE user_id=" + uid);
@@ -254,6 +298,7 @@ public class UserFormController {
         }
     }
 
+    /** Aktualizuje przedmioty przypisane nauczycielowi (usuwa stare, dodaje nowe). */
     private void updateTeacherSubjects(Connection conn, int uid, ObservableList<String> newSubjects) throws SQLException {
         var rs = conn.createStatement().executeQuery("SELECT id FROM teacher WHERE user_id=" + uid);
         if (rs.next()) {
@@ -271,6 +316,7 @@ public class UserFormController {
         }
     }
 
+    /** Pomocnicza metoda do pobierania ID przedmiotu po nazwie. */
     private int getSubjectId(Connection conn, String name) throws SQLException {
         var s = conn.prepareStatement("SELECT id FROM subjects WHERE name=?");
         s.setString(1, name);

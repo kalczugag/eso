@@ -1,0 +1,88 @@
+\doxysection{com.\+example.\+elektroniczny\+\_\+dziennik.\+Report\+Service Class Reference}
+\hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_service}{}\label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_service}\index{com.example.elektroniczny\_dziennik.ReportService@{com.example.elektroniczny\_dziennik.ReportService}}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data}{Report\+Data}} \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_service_a4a0450d8d665c0924057d9f84fa7db84}{generate\+Report\+Data}} (List$<$ \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_student_grade_view}{Student\+Grade\+View}} $>$ grades)
+\item 
+static String \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_service_af3923d1bf0b841d0558b4a4afb63c7df}{analyze\+Grades}} (List$<$ \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_student_grade_view}{Student\+Grade\+View}} $>$ grades)
+\item 
+static void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_service_a56e0c25d1d1362ec8a1552cee719079e}{save\+Report}} (String content, Stage stage)
+\item 
+static void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_service_a9f29c9abb7aac5c34ed586ff73746c16}{save\+Report\+To\+File}} (\doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data}{Report\+Data}} data, Stage stage)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Serwis odpowiedzialny za logikę biznesową generowania raportów. Oferuje metody do analizy listy ocen, obliczania średnich oraz zapisywania wyników do plików tekstowych. 
+
+\label{doc-func-members}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_service_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_service_af3923d1bf0b841d0558b4a4afb63c7df}\index{com.example.elektroniczny\_dziennik.ReportService@{com.example.elektroniczny\_dziennik.ReportService}!analyzeGrades@{analyzeGrades}}
+\index{analyzeGrades@{analyzeGrades}!com.example.elektroniczny\_dziennik.ReportService@{com.example.elektroniczny\_dziennik.ReportService}}
+\doxysubsubsection{\texorpdfstring{analyzeGrades()}{analyzeGrades()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_service_af3923d1bf0b841d0558b4a4afb63c7df} 
+String com.\+example.\+elektroniczny\+\_\+dziennik.\+Report\+Service.\+analyze\+Grades (\begin{DoxyParamCaption}\item[{List$<$ \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_student_grade_view}{Student\+Grade\+View}} $>$}]{grades}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generuje tekstową wersję raportu na podstawie listy ocen. Metoda przydatna do szybkiego podglądu lub zapisu prostego raportu tekstowego bez użycia obiektu \doxylink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data}{Report\+Data}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em grades} & Lista ocen. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Sformatowany ciąg znaków (String) zawierający raport. 
+\end{DoxyReturn}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_service_a4a0450d8d665c0924057d9f84fa7db84}\index{com.example.elektroniczny\_dziennik.ReportService@{com.example.elektroniczny\_dziennik.ReportService}!generateReportData@{generateReportData}}
+\index{generateReportData@{generateReportData}!com.example.elektroniczny\_dziennik.ReportService@{com.example.elektroniczny\_dziennik.ReportService}}
+\doxysubsubsection{\texorpdfstring{generateReportData()}{generateReportData()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_service_a4a0450d8d665c0924057d9f84fa7db84} 
+\doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data}{Report\+Data}} com.\+example.\+elektroniczny\+\_\+dziennik.\+Report\+Service.\+generate\+Report\+Data (\begin{DoxyParamCaption}\item[{List$<$ \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_student_grade_view}{Student\+Grade\+View}} $>$}]{grades}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Przetwarza listę ocen ucznia i generuje obiekt statystyk {\ttfamily \doxylink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data}{Report\+Data}}. Oblicza średnią globalną, średnie per przedmiot oraz identyfikuje zagrożenia.
+
+
+\begin{DoxyParams}{Parameters}
+{\em grades} & Lista obiektów {\ttfamily \doxylink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_student_grade_view}{Student\+Grade\+View}} reprezentujących oceny ucznia. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Obiekt {\ttfamily \doxylink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data}{Report\+Data}} z gotowymi statystykami lub null, jeśli lista ocen jest pusta. 
+\end{DoxyReturn}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_service_a56e0c25d1d1362ec8a1552cee719079e}\index{com.example.elektroniczny\_dziennik.ReportService@{com.example.elektroniczny\_dziennik.ReportService}!saveReport@{saveReport}}
+\index{saveReport@{saveReport}!com.example.elektroniczny\_dziennik.ReportService@{com.example.elektroniczny\_dziennik.ReportService}}
+\doxysubsubsection{\texorpdfstring{saveReport()}{saveReport()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_service_a56e0c25d1d1362ec8a1552cee719079e} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+Report\+Service.\+save\+Report (\begin{DoxyParamCaption}\item[{String}]{content}{, }\item[{Stage}]{stage}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Otwiera okno dialogowe zapisu pliku i zapisuje przekazaną treść tekstową.
+
+
+\begin{DoxyParams}{Parameters}
+{\em content} & Treść pliku do zapisania. \\
+\hline
+{\em stage} & Obiekt okna (Stage) potrzebny do wyświetlenia File\+Chooser. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_service_a9f29c9abb7aac5c34ed586ff73746c16}\index{com.example.elektroniczny\_dziennik.ReportService@{com.example.elektroniczny\_dziennik.ReportService}!saveReportToFile@{saveReportToFile}}
+\index{saveReportToFile@{saveReportToFile}!com.example.elektroniczny\_dziennik.ReportService@{com.example.elektroniczny\_dziennik.ReportService}}
+\doxysubsubsection{\texorpdfstring{saveReportToFile()}{saveReportToFile()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_service_a9f29c9abb7aac5c34ed586ff73746c16} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+Report\+Service.\+save\+Report\+To\+File (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data}{Report\+Data}}}]{data}{, }\item[{Stage}]{stage}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Konwertuje obiekt {\ttfamily \doxylink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data}{Report\+Data}} na format tekstowy i uruchamia procedurę zapisu do pliku.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Obiekt zawierający dane raportu. \\
+\hline
+{\em stage} & Obiekt okna (Stage) do wyświetlenia okna wyboru pliku. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+src/\+main/\+java/\+com/\+example/\+elektroniczny\+\_\+dziennik/\+Report\+Service.\+java\end{DoxyCompactItemize}

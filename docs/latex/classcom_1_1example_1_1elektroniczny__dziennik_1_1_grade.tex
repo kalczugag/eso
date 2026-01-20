@@ -1,0 +1,164 @@
+\doxysection{com.\+example.\+elektroniczny\+\_\+dziennik.\+Grade Class Reference}
+\hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade}{}\label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade}\index{com.example.elektroniczny\_dziennik.Grade@{com.example.elektroniczny\_dziennik.Grade}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_ab04f16ad4493dfb5fef2bff838edba55}{Grade}} (int id, double value, String description, Date date)
+\item 
+int \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_a983209310a6900724a8909c66acb6dba}{get\+Id}} ()
+\item 
+void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_a2f6b69dc33cd766372607ebdb988b2d2}{set\+Id}} (int id)
+\item 
+double \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_a54177a3472b57a637f7c44a65eeddb60}{get\+Value}} ()
+\item 
+void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_ad567088b5aff083acc501b288caba741}{set\+Value}} (double value)
+\item 
+String \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_a5afc4d117c562f254fdb8543060c7d2e}{get\+Description}} ()
+\item 
+void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_a7801ef3191367e1d2d63906bf9cdf6fe}{set\+Description}} (String description)
+\item 
+Date \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_ad6af28cbf09fcaa3cb96e859dbc65864}{get\+Date}} ()
+\item 
+void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_a73f75e81e0ce2a00e5e51b11eaa8d51b}{set\+Date}} (Date date)
+\item 
+String \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_ae77435b872d194998a6133d1cb89422e}{get\+Student\+Name}} ()
+\item 
+void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_a067f9666a5918d727cf9d5d475bc4ba3}{set\+Student\+Name}} (String student\+Name)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasa modelu reprezentująca pojedynczą ocenę ucznia. Przechowuje informacje o wartości oceny, opisie, dacie jej wystawienia oraz powiązaniu z konkretnym uczniem (pobierane zazwyczaj złączeniem tabel). 
+
+\label{doc-constructors}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_ab04f16ad4493dfb5fef2bff838edba55}\index{com.example.elektroniczny\_dziennik.Grade@{com.example.elektroniczny\_dziennik.Grade}!Grade@{Grade}}
+\index{Grade@{Grade}!com.example.elektroniczny\_dziennik.Grade@{com.example.elektroniczny\_dziennik.Grade}}
+\doxysubsubsection{\texorpdfstring{Grade()}{Grade()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_ab04f16ad4493dfb5fef2bff838edba55} 
+com.\+example.\+elektroniczny\+\_\+dziennik.\+Grade.\+Grade (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{double}]{value}{, }\item[{String}]{description}{, }\item[{Date}]{date}{}\end{DoxyParamCaption})}
+
+Konstruktor tworzący obiekt oceny z danymi. Wykorzystywany głównie przy mapowaniu wyników zapytania SQL na obiekty Java.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Unikalne ID oceny. \\
+\hline
+{\em value} & Wartość oceny. \\
+\hline
+{\em description} & Opis słowny oceny. \\
+\hline
+{\em date} & Data wystawienia. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_ad6af28cbf09fcaa3cb96e859dbc65864}\index{com.example.elektroniczny\_dziennik.Grade@{com.example.elektroniczny\_dziennik.Grade}!getDate@{getDate}}
+\index{getDate@{getDate}!com.example.elektroniczny\_dziennik.Grade@{com.example.elektroniczny\_dziennik.Grade}}
+\doxysubsubsection{\texorpdfstring{getDate()}{getDate()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_ad6af28cbf09fcaa3cb96e859dbc65864} 
+Date com.\+example.\+elektroniczny\+\_\+dziennik.\+Grade.\+get\+Date (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Pobiera datę wystawienia oceny. \begin{DoxyReturn}{Returns}
+Data oceny. 
+\end{DoxyReturn}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_a5afc4d117c562f254fdb8543060c7d2e}\index{com.example.elektroniczny\_dziennik.Grade@{com.example.elektroniczny\_dziennik.Grade}!getDescription@{getDescription}}
+\index{getDescription@{getDescription}!com.example.elektroniczny\_dziennik.Grade@{com.example.elektroniczny\_dziennik.Grade}}
+\doxysubsubsection{\texorpdfstring{getDescription()}{getDescription()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_a5afc4d117c562f254fdb8543060c7d2e} 
+String com.\+example.\+elektroniczny\+\_\+dziennik.\+Grade.\+get\+Description (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Pobiera opis oceny. \begin{DoxyReturn}{Returns}
+Opis oceny. 
+\end{DoxyReturn}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_a983209310a6900724a8909c66acb6dba}\index{com.example.elektroniczny\_dziennik.Grade@{com.example.elektroniczny\_dziennik.Grade}!getId@{getId}}
+\index{getId@{getId}!com.example.elektroniczny\_dziennik.Grade@{com.example.elektroniczny\_dziennik.Grade}}
+\doxysubsubsection{\texorpdfstring{getId()}{getId()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_a983209310a6900724a8909c66acb6dba} 
+int com.\+example.\+elektroniczny\+\_\+dziennik.\+Grade.\+get\+Id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Pobiera identyfikator oceny. \begin{DoxyReturn}{Returns}
+ID oceny. 
+\end{DoxyReturn}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_ae77435b872d194998a6133d1cb89422e}\index{com.example.elektroniczny\_dziennik.Grade@{com.example.elektroniczny\_dziennik.Grade}!getStudentName@{getStudentName}}
+\index{getStudentName@{getStudentName}!com.example.elektroniczny\_dziennik.Grade@{com.example.elektroniczny\_dziennik.Grade}}
+\doxysubsubsection{\texorpdfstring{getStudentName()}{getStudentName()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_ae77435b872d194998a6133d1cb89422e} 
+String com.\+example.\+elektroniczny\+\_\+dziennik.\+Grade.\+get\+Student\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Pobiera imię i nazwisko ucznia przypisanego do tej oceny. \begin{DoxyReturn}{Returns}
+Imię i nazwisko ucznia. 
+\end{DoxyReturn}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_a54177a3472b57a637f7c44a65eeddb60}\index{com.example.elektroniczny\_dziennik.Grade@{com.example.elektroniczny\_dziennik.Grade}!getValue@{getValue}}
+\index{getValue@{getValue}!com.example.elektroniczny\_dziennik.Grade@{com.example.elektroniczny\_dziennik.Grade}}
+\doxysubsubsection{\texorpdfstring{getValue()}{getValue()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_a54177a3472b57a637f7c44a65eeddb60} 
+double com.\+example.\+elektroniczny\+\_\+dziennik.\+Grade.\+get\+Value (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Pobiera wartość liczbową oceny. \begin{DoxyReturn}{Returns}
+Wartość oceny. 
+\end{DoxyReturn}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_a73f75e81e0ce2a00e5e51b11eaa8d51b}\index{com.example.elektroniczny\_dziennik.Grade@{com.example.elektroniczny\_dziennik.Grade}!setDate@{setDate}}
+\index{setDate@{setDate}!com.example.elektroniczny\_dziennik.Grade@{com.example.elektroniczny\_dziennik.Grade}}
+\doxysubsubsection{\texorpdfstring{setDate()}{setDate()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_a73f75e81e0ce2a00e5e51b11eaa8d51b} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+Grade.\+set\+Date (\begin{DoxyParamCaption}\item[{Date}]{date}{}\end{DoxyParamCaption})}
+
+Ustawia datę wystawienia oceny. 
+\begin{DoxyParams}{Parameters}
+{\em date} & Nowa data. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_a7801ef3191367e1d2d63906bf9cdf6fe}\index{com.example.elektroniczny\_dziennik.Grade@{com.example.elektroniczny\_dziennik.Grade}!setDescription@{setDescription}}
+\index{setDescription@{setDescription}!com.example.elektroniczny\_dziennik.Grade@{com.example.elektroniczny\_dziennik.Grade}}
+\doxysubsubsection{\texorpdfstring{setDescription()}{setDescription()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_a7801ef3191367e1d2d63906bf9cdf6fe} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+Grade.\+set\+Description (\begin{DoxyParamCaption}\item[{String}]{description}{}\end{DoxyParamCaption})}
+
+Ustawia opis oceny. 
+\begin{DoxyParams}{Parameters}
+{\em description} & Nowy opis. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_a2f6b69dc33cd766372607ebdb988b2d2}\index{com.example.elektroniczny\_dziennik.Grade@{com.example.elektroniczny\_dziennik.Grade}!setId@{setId}}
+\index{setId@{setId}!com.example.elektroniczny\_dziennik.Grade@{com.example.elektroniczny\_dziennik.Grade}}
+\doxysubsubsection{\texorpdfstring{setId()}{setId()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_a2f6b69dc33cd766372607ebdb988b2d2} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+Grade.\+set\+Id (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+Ustawia identyfikator oceny. 
+\begin{DoxyParams}{Parameters}
+{\em id} & Nowe ID oceny. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_a067f9666a5918d727cf9d5d475bc4ba3}\index{com.example.elektroniczny\_dziennik.Grade@{com.example.elektroniczny\_dziennik.Grade}!setStudentName@{setStudentName}}
+\index{setStudentName@{setStudentName}!com.example.elektroniczny\_dziennik.Grade@{com.example.elektroniczny\_dziennik.Grade}}
+\doxysubsubsection{\texorpdfstring{setStudentName()}{setStudentName()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_a067f9666a5918d727cf9d5d475bc4ba3} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+Grade.\+set\+Student\+Name (\begin{DoxyParamCaption}\item[{String}]{student\+Name}{}\end{DoxyParamCaption})}
+
+Przypisuje imię i nazwisko ucznia do obiektu oceny. Używane przez kontroler po pobraniu danych z bazy, aby wyświetlić czytelne dane w tabeli. 
+\begin{DoxyParams}{Parameters}
+{\em student\+Name} & Imię i nazwisko ucznia. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_ad567088b5aff083acc501b288caba741}\index{com.example.elektroniczny\_dziennik.Grade@{com.example.elektroniczny\_dziennik.Grade}!setValue@{setValue}}
+\index{setValue@{setValue}!com.example.elektroniczny\_dziennik.Grade@{com.example.elektroniczny\_dziennik.Grade}}
+\doxysubsubsection{\texorpdfstring{setValue()}{setValue()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_ad567088b5aff083acc501b288caba741} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+Grade.\+set\+Value (\begin{DoxyParamCaption}\item[{double}]{value}{}\end{DoxyParamCaption})}
+
+Ustawia nową wartość oceny. Wykorzystywane np. podczas edycji oceny w tabeli. 
+\begin{DoxyParams}{Parameters}
+{\em value} & Nowa wartość oceny. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+src/\+main/\+java/\+com/\+example/\+elektroniczny\+\_\+dziennik/\+Grade.\+java\end{DoxyCompactItemize}

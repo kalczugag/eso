@@ -11,7 +11,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Serwis odpowiedzialny za logikę biznesową generowania raportów.
+ * Oferuje metody do analizy listy ocen, obliczania średnich oraz zapisywania wyników do plików tekstowych.
+ */
 public class ReportService {
+
+    /**
+     * Przetwarza listę ocen ucznia i generuje obiekt statystyk {@link ReportData}.
+     * Oblicza średnią globalną, średnie per przedmiot oraz identyfikuje zagrożenia.
+     *
+     * @param grades Lista obiektów {@link StudentGradeView} reprezentujących oceny ucznia.
+     * @return Obiekt {@link ReportData} z gotowymi statystykami lub null, jeśli lista ocen jest pusta.
+     */
     public static ReportData generateReportData(List<StudentGradeView> grades) {
         if (grades == null || grades.isEmpty()) return null;
 
@@ -48,6 +60,13 @@ public class ReportService {
         return new ReportData(globalAverage, bestSubject, bestAvg, worstSubject, worstAvg, failingGrades, grades.size(), averages);
     }
 
+    /**
+     * Generuje tekstową wersję raportu na podstawie listy ocen.
+     * Metoda przydatna do szybkiego podglądu lub zapisu prostego raportu tekstowego bez użycia obiektu ReportData.
+     *
+     * @param grades Lista ocen.
+     * @return Sformatowany ciąg znaków (String) zawierający raport.
+     */
     public static String analyzeGrades(List<StudentGradeView> grades) {
         if (grades == null || grades.isEmpty()) {
             return "Brak ocen do analizy.";
@@ -114,6 +133,12 @@ public class ReportService {
         return report.toString();
     }
 
+    /**
+     * Otwiera okno dialogowe zapisu pliku i zapisuje przekazaną treść tekstową.
+     *
+     * @param content Treść pliku do zapisania.
+     * @param stage Obiekt okna (Stage) potrzebny do wyświetlenia FileChooser.
+     */
     public static void saveReport(String content, Stage stage) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Zapisz Raport");
@@ -131,6 +156,12 @@ public class ReportService {
         }
     }
 
+    /**
+     * Konwertuje obiekt {@link ReportData} na format tekstowy i uruchamia procedurę zapisu do pliku.
+     *
+     * @param data Obiekt zawierający dane raportu.
+     * @param stage Obiekt okna (Stage) do wyświetlenia okna wyboru pliku.
+     */
     public static void saveReportToFile(ReportData data, Stage stage) {
         if (data == null) return;
 

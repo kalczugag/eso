@@ -1,0 +1,119 @@
+\doxysection{com.\+example.\+elektroniczny\+\_\+dziennik.\+Report\+Data Class Reference}
+\hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data}{}\label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data}\index{com.example.elektroniczny\_dziennik.ReportData@{com.example.elektroniczny\_dziennik.ReportData}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_a46bf7f3837461bf75d1b6ef19d48a98a}{Report\+Data}} (double \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_ac70fbb3eaf64931ef849b272862927f5}{global\+Average}}, String \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_a52cca0a5020f655eafb642f4748b9cdd}{best\+Subject}}, double \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_a80dba362b948679fd619569c423eb2da}{best\+Avg}}, String \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_ac8c17100ac36c26d444d598e3de40ca4}{worst\+Subject}}, double \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_ac87ab3f5aaa561bcfd8a3784190803cd}{worst\+Avg}}, int \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_a49966c578a1dcd9261d879861506e8be}{failing\+Grades}}, int \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_ac1b844a106241ca83a5ada57b1de76d1}{total\+Grades}}, Map$<$ String, Double $>$ \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_a6a856169134802252d524c1ded2afc4c}{average\+Per\+Subject}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_ac70fbb3eaf64931ef849b272862927f5}{global\+Average}}
+\item 
+String \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_a52cca0a5020f655eafb642f4748b9cdd}{best\+Subject}}
+\item 
+double \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_a80dba362b948679fd619569c423eb2da}{best\+Avg}}
+\item 
+String \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_ac8c17100ac36c26d444d598e3de40ca4}{worst\+Subject}}
+\item 
+double \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_ac87ab3f5aaa561bcfd8a3784190803cd}{worst\+Avg}}
+\item 
+int \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_a49966c578a1dcd9261d879861506e8be}{failing\+Grades}}
+\item 
+int \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_ac1b844a106241ca83a5ada57b1de76d1}{total\+Grades}}
+\item 
+Map$<$ String, Double $>$ \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_a6a856169134802252d524c1ded2afc4c}{average\+Per\+Subject}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasa przechowywująca przeliczone dane statystyczne do raportu ucznia. Służy jako kontener danych (DTO) przekazywany z serwisu raportującego do kontrolera widoku raportu. Zawiera informacje o średnich, najlepszych/\+najgorszych przedmiotach oraz zagrożeniach. 
+
+\label{doc-constructors}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_a46bf7f3837461bf75d1b6ef19d48a98a}\index{com.example.elektroniczny\_dziennik.ReportData@{com.example.elektroniczny\_dziennik.ReportData}!ReportData@{ReportData}}
+\index{ReportData@{ReportData}!com.example.elektroniczny\_dziennik.ReportData@{com.example.elektroniczny\_dziennik.ReportData}}
+\doxysubsubsection{\texorpdfstring{ReportData()}{ReportData()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_a46bf7f3837461bf75d1b6ef19d48a98a} 
+com.\+example.\+elektroniczny\+\_\+dziennik.\+Report\+Data.\+Report\+Data (\begin{DoxyParamCaption}\item[{double}]{global\+Average}{, }\item[{String}]{best\+Subject}{, }\item[{double}]{best\+Avg}{, }\item[{String}]{worst\+Subject}{, }\item[{double}]{worst\+Avg}{, }\item[{int}]{failing\+Grades}{, }\item[{int}]{total\+Grades}{, }\item[{Map$<$ String, Double $>$}]{average\+Per\+Subject}{}\end{DoxyParamCaption})}
+
+Konstruktor inicjalizujący obiekt raportu wszystkimi niezbędnymi danymi.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \doxylink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_ac70fbb3eaf64931ef849b272862927f5}{global\+Average}} & Średnia ogólna. \\
+\hline
+{\em \doxylink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_a52cca0a5020f655eafb642f4748b9cdd}{best\+Subject}} & Nazwa najlepszego przedmiotu. \\
+\hline
+{\em \doxylink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_a80dba362b948679fd619569c423eb2da}{best\+Avg}} & Średnia najlepszego przedmiotu. \\
+\hline
+{\em \doxylink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_ac8c17100ac36c26d444d598e3de40ca4}{worst\+Subject}} & Nazwa najsłabszego przedmiotu. \\
+\hline
+{\em \doxylink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_ac87ab3f5aaa561bcfd8a3784190803cd}{worst\+Avg}} & Średnia najsłabszego przedmiotu. \\
+\hline
+{\em \doxylink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_a49966c578a1dcd9261d879861506e8be}{failing\+Grades}} & Liczba jedynek. \\
+\hline
+{\em \doxylink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_ac1b844a106241ca83a5ada57b1de76d1}{total\+Grades}} & Łączna liczba ocen. \\
+\hline
+{\em \doxylink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_a6a856169134802252d524c1ded2afc4c}{average\+Per\+Subject}} & Mapa średnich cząstkowych. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-variable-members}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_a6a856169134802252d524c1ded2afc4c}\index{com.example.elektroniczny\_dziennik.ReportData@{com.example.elektroniczny\_dziennik.ReportData}!averagePerSubject@{averagePerSubject}}
+\index{averagePerSubject@{averagePerSubject}!com.example.elektroniczny\_dziennik.ReportData@{com.example.elektroniczny\_dziennik.ReportData}}
+\doxysubsubsection{\texorpdfstring{averagePerSubject}{averagePerSubject}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_a6a856169134802252d524c1ded2afc4c} 
+Map$<$String, Double$>$ com.\+example.\+elektroniczny\+\_\+dziennik.\+Report\+Data.\+average\+Per\+Subject}
+
+Mapa zawierająca średnie ocen dla poszczególnych przedmiotów (Klucz:\+ nazwa przedmiotu, Wartość:\+ średnia). \Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_a80dba362b948679fd619569c423eb2da}\index{com.example.elektroniczny\_dziennik.ReportData@{com.example.elektroniczny\_dziennik.ReportData}!bestAvg@{bestAvg}}
+\index{bestAvg@{bestAvg}!com.example.elektroniczny\_dziennik.ReportData@{com.example.elektroniczny\_dziennik.ReportData}}
+\doxysubsubsection{\texorpdfstring{bestAvg}{bestAvg}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_a80dba362b948679fd619569c423eb2da} 
+double com.\+example.\+elektroniczny\+\_\+dziennik.\+Report\+Data.\+best\+Avg}
+
+Wartość najwyższej średniej. \Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_a52cca0a5020f655eafb642f4748b9cdd}\index{com.example.elektroniczny\_dziennik.ReportData@{com.example.elektroniczny\_dziennik.ReportData}!bestSubject@{bestSubject}}
+\index{bestSubject@{bestSubject}!com.example.elektroniczny\_dziennik.ReportData@{com.example.elektroniczny\_dziennik.ReportData}}
+\doxysubsubsection{\texorpdfstring{bestSubject}{bestSubject}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_a52cca0a5020f655eafb642f4748b9cdd} 
+String com.\+example.\+elektroniczny\+\_\+dziennik.\+Report\+Data.\+best\+Subject}
+
+Nazwa przedmiotu z najwyższą średnią. \Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_a49966c578a1dcd9261d879861506e8be}\index{com.example.elektroniczny\_dziennik.ReportData@{com.example.elektroniczny\_dziennik.ReportData}!failingGrades@{failingGrades}}
+\index{failingGrades@{failingGrades}!com.example.elektroniczny\_dziennik.ReportData@{com.example.elektroniczny\_dziennik.ReportData}}
+\doxysubsubsection{\texorpdfstring{failingGrades}{failingGrades}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_a49966c578a1dcd9261d879861506e8be} 
+int com.\+example.\+elektroniczny\+\_\+dziennik.\+Report\+Data.\+failing\+Grades}
+
+Liczba ocen niedostatecznych (poniżej 2.\+0). \Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_ac70fbb3eaf64931ef849b272862927f5}\index{com.example.elektroniczny\_dziennik.ReportData@{com.example.elektroniczny\_dziennik.ReportData}!globalAverage@{globalAverage}}
+\index{globalAverage@{globalAverage}!com.example.elektroniczny\_dziennik.ReportData@{com.example.elektroniczny\_dziennik.ReportData}}
+\doxysubsubsection{\texorpdfstring{globalAverage}{globalAverage}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_ac70fbb3eaf64931ef849b272862927f5} 
+double com.\+example.\+elektroniczny\+\_\+dziennik.\+Report\+Data.\+global\+Average}
+
+Obliczona średnia ogólna ze wszystkich przedmiotów. \Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_ac1b844a106241ca83a5ada57b1de76d1}\index{com.example.elektroniczny\_dziennik.ReportData@{com.example.elektroniczny\_dziennik.ReportData}!totalGrades@{totalGrades}}
+\index{totalGrades@{totalGrades}!com.example.elektroniczny\_dziennik.ReportData@{com.example.elektroniczny\_dziennik.ReportData}}
+\doxysubsubsection{\texorpdfstring{totalGrades}{totalGrades}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_ac1b844a106241ca83a5ada57b1de76d1} 
+int com.\+example.\+elektroniczny\+\_\+dziennik.\+Report\+Data.\+total\+Grades}
+
+Całkowita liczba ocen wziętych pod uwagę w raporcie. \Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_ac87ab3f5aaa561bcfd8a3784190803cd}\index{com.example.elektroniczny\_dziennik.ReportData@{com.example.elektroniczny\_dziennik.ReportData}!worstAvg@{worstAvg}}
+\index{worstAvg@{worstAvg}!com.example.elektroniczny\_dziennik.ReportData@{com.example.elektroniczny\_dziennik.ReportData}}
+\doxysubsubsection{\texorpdfstring{worstAvg}{worstAvg}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_ac87ab3f5aaa561bcfd8a3784190803cd} 
+double com.\+example.\+elektroniczny\+\_\+dziennik.\+Report\+Data.\+worst\+Avg}
+
+Wartość najniższej średniej. \Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_ac8c17100ac36c26d444d598e3de40ca4}\index{com.example.elektroniczny\_dziennik.ReportData@{com.example.elektroniczny\_dziennik.ReportData}!worstSubject@{worstSubject}}
+\index{worstSubject@{worstSubject}!com.example.elektroniczny\_dziennik.ReportData@{com.example.elektroniczny\_dziennik.ReportData}}
+\doxysubsubsection{\texorpdfstring{worstSubject}{worstSubject}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_data_ac8c17100ac36c26d444d598e3de40ca4} 
+String com.\+example.\+elektroniczny\+\_\+dziennik.\+Report\+Data.\+worst\+Subject}
+
+Nazwa przedmiotu z najniższą średnią. 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+src/\+main/\+java/\+com/\+example/\+elektroniczny\+\_\+dziennik/\+Report\+Data.\+java\end{DoxyCompactItemize}

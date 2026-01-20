@@ -1,0 +1,18 @@
+var searchData=
+[
+  ['generatereportdata_0',['generateReportData',['../classcom_1_1example_1_1elektroniczny__dziennik_1_1_report_service.html#a4a0450d8d665c0924057d9f84fa7db84',1,'com::example::elektroniczny_dziennik::ReportService']]],
+  ['getconnection_1',['getConnection',['../classcom_1_1example_1_1elektroniczny__dziennik_1_1_database.html#a31e737305caba469a00fa061844ad913',1,'com::example::elektroniczny_dziennik::Database']]],
+  ['getdate_2',['getDate',['../classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade.html#ad6af28cbf09fcaa3cb96e859dbc65864',1,'com.example.elektroniczny_dziennik.Grade.getDate()'],['../classcom_1_1example_1_1elektroniczny__dziennik_1_1_student_grade_view.html#a7288cb31ced97f6725c1eb6cddc4c9aa',1,'com.example.elektroniczny_dziennik.StudentGradeView.getDate()']]],
+  ['getdescription_3',['getDescription',['../classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade.html#a5afc4d117c562f254fdb8543060c7d2e',1,'com.example.elektroniczny_dziennik.Grade.getDescription()'],['../classcom_1_1example_1_1elektroniczny__dziennik_1_1_student_grade_view.html#ae2e05c8cb965787d883b957c98991ddc',1,'com.example.elektroniczny_dziennik.StudentGradeView.getDescription()']]],
+  ['getfirstname_4',['getFirstName',['../classcom_1_1example_1_1elektroniczny__dziennik_1_1_user.html#a852e0d3c10785407ded571dc0ac3b095',1,'com::example::elektroniczny_dziennik::User']]],
+  ['getid_5',['getId',['../classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade.html#a983209310a6900724a8909c66acb6dba',1,'com.example.elektroniczny_dziennik.Grade.getId()'],['../classcom_1_1example_1_1elektroniczny__dziennik_1_1_subject.html#a3566ee09da1fb76176e379f0f34c6863',1,'com.example.elektroniczny_dziennik.Subject.getId()']]],
+  ['getlastname_6',['getLastName',['../classcom_1_1example_1_1elektroniczny__dziennik_1_1_user.html#afbc76e37765a33ead8902ac2accdb024',1,'com::example::elektroniczny_dziennik::User']]],
+  ['getlogin_7',['getLogin',['../classcom_1_1example_1_1elektroniczny__dziennik_1_1_register_controller.html#a81e7ca7559e5f3c8f29f1fea17b6c5a0',1,'com::example::elektroniczny_dziennik::RegisterController']]],
+  ['getname_8',['getName',['../classcom_1_1example_1_1elektroniczny__dziennik_1_1_subject.html#a017fb064c798138b67b2299c8d49e15a',1,'com::example::elektroniczny_dziennik::Subject']]],
+  ['getrole_9',['getRole',['../classcom_1_1example_1_1elektroniczny__dziennik_1_1_user.html#a51c2599f9da3a77acc63c0199a50f3f8',1,'com::example::elektroniczny_dziennik::User']]],
+  ['getstudentname_10',['getStudentName',['../classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade.html#ae77435b872d194998a6133d1cb89422e',1,'com::example::elektroniczny_dziennik::Grade']]],
+  ['getsubjectname_11',['getSubjectName',['../classcom_1_1example_1_1elektroniczny__dziennik_1_1_student_grade_view.html#aa99a6518a1f5f27fa97a990c1814ced3',1,'com::example::elektroniczny_dziennik::StudentGradeView']]],
+  ['getteacherid_12',['getTeacherId',['../classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_entry_controller.html#a5176811166a59c8814e69441e9e6021e',1,'com::example::elektroniczny_dziennik::GradeEntryController']]],
+  ['getvalue_13',['getValue',['../classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade.html#a54177a3472b57a637f7c44a65eeddb60',1,'com.example.elektroniczny_dziennik.Grade.getValue()'],['../classcom_1_1example_1_1elektroniczny__dziennik_1_1_student_grade_view.html#a6d1f4c2fd73b975babf1b0f150f04b8f',1,'com.example.elektroniczny_dziennik.StudentGradeView.getValue()']]],
+  ['grade_14',['Grade',['../classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade.html#ab04f16ad4493dfb5fef2bff838edba55',1,'com::example::elektroniczny_dziennik::Grade']]]
+];

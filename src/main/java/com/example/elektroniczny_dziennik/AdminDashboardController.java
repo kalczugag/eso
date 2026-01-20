@@ -11,17 +11,36 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Kontroler panelu głównego Administratora.
+ * Odpowiada za pobranie z bazy danych statystyk dotyczących użytkowników
+ * i wyświetlenie ich w formie liczbowej oraz wykresu kołowego.
+ */
 public class AdminDashboardController {
 
+    /** Etykieta z całkowitą liczbą użytkowników. */
     @FXML private Label totalUsersLabel;
+
+    /** Etykieta z liczbą nauczycieli. */
     @FXML private Label teachersLabel;
+
+    /** Wykres kołowy prezentujący podział użytkowników na role. */
     @FXML private PieChart userChart;
 
+    /**
+     * Inicjalizuje kontroler.
+     * Automatycznie wywołuje ładowanie statystyk przy starcie widoku.
+     */
     @FXML
     public void initialize() {
         loadStatistics();
     }
 
+    /**
+     * Pobiera statystyki ról użytkowników z bazy danych.
+     * Grupuje użytkowników po roli, zlicza ich, a następnie aktualizuje
+     * etykiety oraz dane wykresu kołowego.
+     */
     private void loadStatistics() {
         int studentCount = 0;
         int teacherCount = 0;
@@ -48,6 +67,7 @@ public class AdminDashboardController {
             totalUsersLabel.setText(String.valueOf(total));
             teachersLabel.setText(String.valueOf(teacherCount));
 
+            // Przygotowanie danych dla wykresu
             ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
                     new PieChart.Data("Uczniowie (" + studentCount + ")", studentCount),
                     new PieChart.Data("Nauczyciele (" + teacherCount + ")", teacherCount),

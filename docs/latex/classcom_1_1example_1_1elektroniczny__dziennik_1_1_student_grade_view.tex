@@ -1,0 +1,88 @@
+\doxysection{com.\+example.\+elektroniczny\+\_\+dziennik.\+Student\+Grade\+View Class Reference}
+\hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_student_grade_view}{}\label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_student_grade_view}\index{com.example.elektroniczny\_dziennik.StudentGradeView@{com.example.elektroniczny\_dziennik.StudentGradeView}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_student_grade_view_a4e3413a386b16dc49b785a7f535d2cbf}{Student\+Grade\+View}} (String subject\+Name, double value, String description, Date date)
+\item 
+String \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_student_grade_view_aa99a6518a1f5f27fa97a990c1814ced3}{get\+Subject\+Name}} ()
+\item 
+double \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_student_grade_view_a6d1f4c2fd73b975babf1b0f150f04b8f}{get\+Value}} ()
+\item 
+String \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_student_grade_view_ae2e05c8cb965787d883b957c98991ddc}{get\+Description}} ()
+\item 
+Date \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_student_grade_view_a7288cb31ced97f6725c1eb6cddc4c9aa}{get\+Date}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasa modelu widoku reprezentująca pojedynczy wiersz oceny w tabeli ucznia. Łączy dane z tabel \textquotesingle{}grades\textquotesingle{} i \textquotesingle{}subjects\textquotesingle{}, aby wyświetlić pełną informację (nazwa przedmiotu + ocena). Obiekty tej klasy są tworzone zazwyczaj po pobraniu danych z bazy SQL. 
+
+\label{doc-constructors}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_student_grade_view_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_student_grade_view_a4e3413a386b16dc49b785a7f535d2cbf}\index{com.example.elektroniczny\_dziennik.StudentGradeView@{com.example.elektroniczny\_dziennik.StudentGradeView}!StudentGradeView@{StudentGradeView}}
+\index{StudentGradeView@{StudentGradeView}!com.example.elektroniczny\_dziennik.StudentGradeView@{com.example.elektroniczny\_dziennik.StudentGradeView}}
+\doxysubsubsection{\texorpdfstring{StudentGradeView()}{StudentGradeView()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_student_grade_view_a4e3413a386b16dc49b785a7f535d2cbf} 
+com.\+example.\+elektroniczny\+\_\+dziennik.\+Student\+Grade\+View.\+Student\+Grade\+View (\begin{DoxyParamCaption}\item[{String}]{subject\+Name}{, }\item[{double}]{value}{, }\item[{String}]{description}{, }\item[{Date}]{date}{}\end{DoxyParamCaption})}
+
+Konstruktor tworzący obiekt widoku oceny.
+
+
+\begin{DoxyParams}{Parameters}
+{\em subject\+Name} & Nazwa przedmiotu. \\
+\hline
+{\em value} & Wartość oceny. \\
+\hline
+{\em description} & Opis oceny. \\
+\hline
+{\em date} & Data wystawienia. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_student_grade_view_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_student_grade_view_a7288cb31ced97f6725c1eb6cddc4c9aa}\index{com.example.elektroniczny\_dziennik.StudentGradeView@{com.example.elektroniczny\_dziennik.StudentGradeView}!getDate@{getDate}}
+\index{getDate@{getDate}!com.example.elektroniczny\_dziennik.StudentGradeView@{com.example.elektroniczny\_dziennik.StudentGradeView}}
+\doxysubsubsection{\texorpdfstring{getDate()}{getDate()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_student_grade_view_a7288cb31ced97f6725c1eb6cddc4c9aa} 
+Date com.\+example.\+elektroniczny\+\_\+dziennik.\+Student\+Grade\+View.\+get\+Date (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Pobiera datę wystawienia oceny. \begin{DoxyReturn}{Returns}
+Obiekt daty SQL. 
+\end{DoxyReturn}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_student_grade_view_ae2e05c8cb965787d883b957c98991ddc}\index{com.example.elektroniczny\_dziennik.StudentGradeView@{com.example.elektroniczny\_dziennik.StudentGradeView}!getDescription@{getDescription}}
+\index{getDescription@{getDescription}!com.example.elektroniczny\_dziennik.StudentGradeView@{com.example.elektroniczny\_dziennik.StudentGradeView}}
+\doxysubsubsection{\texorpdfstring{getDescription()}{getDescription()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_student_grade_view_ae2e05c8cb965787d883b957c98991ddc} 
+String com.\+example.\+elektroniczny\+\_\+dziennik.\+Student\+Grade\+View.\+get\+Description (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Pobiera opis oceny. \begin{DoxyReturn}{Returns}
+Opis oceny. 
+\end{DoxyReturn}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_student_grade_view_aa99a6518a1f5f27fa97a990c1814ced3}\index{com.example.elektroniczny\_dziennik.StudentGradeView@{com.example.elektroniczny\_dziennik.StudentGradeView}!getSubjectName@{getSubjectName}}
+\index{getSubjectName@{getSubjectName}!com.example.elektroniczny\_dziennik.StudentGradeView@{com.example.elektroniczny\_dziennik.StudentGradeView}}
+\doxysubsubsection{\texorpdfstring{getSubjectName()}{getSubjectName()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_student_grade_view_aa99a6518a1f5f27fa97a990c1814ced3} 
+String com.\+example.\+elektroniczny\+\_\+dziennik.\+Student\+Grade\+View.\+get\+Subject\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Pobiera nazwę przedmiotu. \begin{DoxyReturn}{Returns}
+Nazwa przedmiotu. 
+\end{DoxyReturn}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_student_grade_view_a6d1f4c2fd73b975babf1b0f150f04b8f}\index{com.example.elektroniczny\_dziennik.StudentGradeView@{com.example.elektroniczny\_dziennik.StudentGradeView}!getValue@{getValue}}
+\index{getValue@{getValue}!com.example.elektroniczny\_dziennik.StudentGradeView@{com.example.elektroniczny\_dziennik.StudentGradeView}}
+\doxysubsubsection{\texorpdfstring{getValue()}{getValue()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_student_grade_view_a6d1f4c2fd73b975babf1b0f150f04b8f} 
+double com.\+example.\+elektroniczny\+\_\+dziennik.\+Student\+Grade\+View.\+get\+Value (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Pobiera wartość oceny. \begin{DoxyReturn}{Returns}
+Wartość oceny. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+src/\+main/\+java/\+com/\+example/\+elektroniczny\+\_\+dziennik/\+Student\+Grade\+View.\+java\end{DoxyCompactItemize}

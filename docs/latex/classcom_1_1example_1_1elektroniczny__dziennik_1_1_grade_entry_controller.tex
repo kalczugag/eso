@@ -1,0 +1,54 @@
+\doxysection{com.\+example.\+elektroniczny\+\_\+dziennik.\+Grade\+Entry\+Controller Class Reference}
+\hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_entry_controller}{}\label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_entry_controller}\index{com.example.elektroniczny\_dziennik.GradeEntryController@{com.example.elektroniczny\_dziennik.GradeEntryController}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_entry_controller_a8579a7a5f9058bb991dc2a323bb84ec8}{set\+User}} (\doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_user}{User}} user)
+\item 
+void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_entry_controller_a74162e7702d0ea7e70964154d050c455}{initialize}} ()
+\item 
+int \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_entry_controller_a5176811166a59c8814e69441e9e6021e}{get\+Teacher\+Id}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Kontroler odpowiedzialny za moduł wprowadzania i edycji ocen. Umożliwia nauczycielom (i administratorom) wybór przedmiotu, studenta, a następnie dodawanie lub modyfikowanie ocen w tabeli. 
+
+\label{doc-func-members}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_entry_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_entry_controller_a5176811166a59c8814e69441e9e6021e}\index{com.example.elektroniczny\_dziennik.GradeEntryController@{com.example.elektroniczny\_dziennik.GradeEntryController}!getTeacherId@{getTeacherId}}
+\index{getTeacherId@{getTeacherId}!com.example.elektroniczny\_dziennik.GradeEntryController@{com.example.elektroniczny\_dziennik.GradeEntryController}}
+\doxysubsubsection{\texorpdfstring{getTeacherId()}{getTeacherId()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_entry_controller_a5176811166a59c8814e69441e9e6021e} 
+int com.\+example.\+elektroniczny\+\_\+dziennik.\+Grade\+Entry\+Controller.\+get\+Teacher\+Id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Pobiera ID nauczyciela z tabeli \textquotesingle{}teacher\textquotesingle{} na podstawie statycznego ID zalogowanego użytkownika.
+
+\begin{DoxyReturn}{Returns}
+ID nauczyciela lub -\/1 w przypadku błędu. 
+\end{DoxyReturn}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_entry_controller_a74162e7702d0ea7e70964154d050c455}\index{com.example.elektroniczny\_dziennik.GradeEntryController@{com.example.elektroniczny\_dziennik.GradeEntryController}!initialize@{initialize}}
+\index{initialize@{initialize}!com.example.elektroniczny\_dziennik.GradeEntryController@{com.example.elektroniczny\_dziennik.GradeEntryController}}
+\doxysubsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_entry_controller_a74162e7702d0ea7e70964154d050c455} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+Grade\+Entry\+Controller.\+initialize (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Inicjalizuje kontroler, konfiguruje kolumny tabeli oraz handlery edycji. Ustawia fabryki komórek dla edytowalnych kolumn (ocena, opis) oraz blokuje pola wyboru do momentu załadowania danych. \Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_entry_controller_a8579a7a5f9058bb991dc2a323bb84ec8}\index{com.example.elektroniczny\_dziennik.GradeEntryController@{com.example.elektroniczny\_dziennik.GradeEntryController}!setUser@{setUser}}
+\index{setUser@{setUser}!com.example.elektroniczny\_dziennik.GradeEntryController@{com.example.elektroniczny\_dziennik.GradeEntryController}}
+\doxysubsubsection{\texorpdfstring{setUser()}{setUser()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_grade_entry_controller_a8579a7a5f9058bb991dc2a323bb84ec8} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+Grade\+Entry\+Controller.\+set\+User (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_user}{User}}}]{user}{}\end{DoxyParamCaption})}
+
+Ustawia kontekst użytkownika dla kontrolera i ładuje odpowiednie dane. Wywołuje ładowanie listy przedmiotów w zależności od roli użytkownika.
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & Obiekt zalogowanego użytkownika. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+src/\+main/\+java/\+com/\+example/\+elektroniczny\+\_\+dziennik/\+Grade\+Entry\+Controller.\+java\end{DoxyCompactItemize}

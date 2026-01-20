@@ -14,29 +14,43 @@ import javafx.stage.Stage;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.Connection;
-
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * Kontroler obsługujący proces rejestracji nowego użytkownika (domyślnie studenta).
+ * Waliduje dane wejściowe, generuje unikalny login oraz haszuje hasło przed zapisem do bazy.
+ */
 public class RegisterController {
-    // Inputs
+
+    // Pola formularza
+    /** Pole tekstowe na imię. */
     @FXML TextField firstNameInput;
+    /** Pole tekstowe na nazwisko. */
     @FXML TextField lastNameInput;
+    /** Pole tekstowe na hasło. */
     @FXML PasswordField passwordInput;
+    /** Pole tekstowe na powtórzenie hasła. */
     @FXML PasswordField confirmPasswordInput;
 
-    // Labels
+    /** Etykieta informacyjna wyświetlająca błędy lub sukces rejestracji. */
     @FXML Label infoLabel;
 
-    // Scene objects
+    // Obiekty sceny
     private Parent root;
     private Scene scene;
     private Stage stage;
 
-    // Pseudo classes
+    // Klasy stylów CSS do kolorowania komunikatów (zielony/czerwony)
     PseudoClass positive = PseudoClass.getPseudoClass("positive");
     PseudoClass negative = PseudoClass.getPseudoClass("negative");
 
+    /**
+     * Główna metoda rejestracji.
+     * Sprawdza poprawność danych (puste pola, zgodność haseł).
+     * Jeśli walidacja przebiegnie pomyślnie, tworzy użytkownika w bazie danych,
+     * przypisuje mu domyślną rolę 'student' i klasę '3A'.
+     */
     public void register(){
         String firstName = firstNameInput.getText();
         String lastName = lastNameInput.getText();
@@ -55,10 +69,11 @@ public class RegisterController {
         }
         else{
             try(var conn = Database.getConnection()){
-                String login = getLogin(firstName, lastName, conn); // get unique login
+                String login = getLogin(firstName, lastName, conn); // generowanie unikalnego loginu
                 String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
                 String role = "student";
 
+                // Wstawianie do tabeli 'user'
                 var statement = conn.prepareStatement(
                         "INSERT INTO user (first_name, last_name, login, password, role)" +
                                 " VALUES (?, ?, ?, ?, ?)"
@@ -78,6 +93,7 @@ public class RegisterController {
                     infoLabel.pseudoClassStateChanged(negative, true);
                 }
                 else{
+                    // Pobranie wygenerowanego ID użytkownika
                     int userId = -1;
                     try(var generatedId = statement.getGeneratedKeys()){
                         if(generatedId.next()){
@@ -90,6 +106,7 @@ public class RegisterController {
                         }
                     }
 
+                    // Wstawianie do tabeli 'student' (domyślnie klasa 3A)
                     var statement2 = conn.prepareStatement(
                             "INSERT INTO student (class, user_id)" +
                                     "VALUES (?, ?)");
@@ -111,13 +128,24 @@ public class RegisterController {
             }
         }
 
+        // Wyczyszczenie pól po próbie rejestracji
         firstNameInput.setText("");
         lastNameInput.setText("");
         passwordInput.setText("");
         confirmPasswordInput.setText("");
     }
 
-    // Method to create unique login
+    /**
+     * Generuje unikalny login na podstawie imienia i nazwiska.
+     * Schemat: "s" + 3 litery imienia + 3 litery nazwiska.
+     * Jeśli taki login istnieje, dodaje kolejny numer porządkowy (np. skowalski1, skowalski2).
+     *
+     * @param firstName Imię użytkownika.
+     * @param lastName Nazwisko użytkownika.
+     * @param conn Aktywne połączenie do bazy danych.
+     * @return Unikalny ciąg znaków login.
+     * @throws SQLException W przypadku błędu zapytania do bazy.
+     */
     public String getLogin(String firstName, String lastName, Connection conn) throws SQLException{
         String login = "s"
                 + firstName.substring(0, Math.min(3, firstName.length())).toLowerCase()
@@ -133,6 +161,7 @@ public class RegisterController {
         while(result.next()){
             String existingLogin = result.getString("login");
 
+            // Sprawdzenie czy login ma sufiks liczbowy
             if(existingLogin.matches(login + "(\\d+)$")){
                 int number = Integer.parseInt(existingLogin.replace(login, ""));
                 if(number > counter) counter = number;
@@ -147,6 +176,12 @@ public class RegisterController {
         return login;
     }
 
+    /**
+     * Przełącza widok z powrotem do ekranu logowania.
+     *
+     * @param e Zdarzenie kliknięcia przycisku.
+     * @throws IOException Gdy nie uda się załadować widoku logowania.
+     */
     public void login(ActionEvent e) throws IOException {
         root = FXMLLoader.load(getClass().getResource("loginView.fxml"));
         scene = new Scene(root);

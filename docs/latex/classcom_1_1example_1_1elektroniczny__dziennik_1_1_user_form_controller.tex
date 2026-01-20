@@ -1,0 +1,66 @@
+\doxysection{com.\+example.\+elektroniczny\+\_\+dziennik.\+User\+Form\+Controller Class Reference}
+\hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_user_form_controller}{}\label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_user_form_controller}\index{com.example.elektroniczny\_dziennik.UserFormController@{com.example.elektroniczny\_dziennik.UserFormController}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_user_form_controller_aeda7f8427ab039249f850d8f306479cf}{initialize}} ()
+\item 
+void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_user_form_controller_af87a6eb38b0e8fd0c9853a9efe2b864d}{set\+Logged\+In\+User}} (int id)
+\item 
+void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_user_form_controller_a70ee90f473a1e256223ef372836b4737}{set\+Create\+Mode}} ()
+\item 
+void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_user_form_controller_a245b85fe69dccae4796e1f5914c8a331}{set\+Edit\+Data}} (Observable\+List$<$ String $>$ data)
+\item 
+void \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_user_form_controller_ab121a54bf558eccc559546dafbebc13f}{handle\+Action}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Kontroler okna dialogowego formularza użytkownika. Obsługuje zarówno tworzenie nowego konta, jak i edycję istniejącego. Zawiera logikę generowania unikalnych loginów oraz przypisywania danych specyficznych dla ról. 
+
+\label{doc-func-members}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_user_form_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_user_form_controller_ab121a54bf558eccc559546dafbebc13f}\index{com.example.elektroniczny\_dziennik.UserFormController@{com.example.elektroniczny\_dziennik.UserFormController}!handleAction@{handleAction}}
+\index{handleAction@{handleAction}!com.example.elektroniczny\_dziennik.UserFormController@{com.example.elektroniczny\_dziennik.UserFormController}}
+\doxysubsubsection{\texorpdfstring{handleAction()}{handleAction()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_user_form_controller_ab121a54bf558eccc559546dafbebc13f} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+User\+Form\+Controller.\+handle\+Action (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Główna metoda obsługująca przycisk akcji (Utwórz/\+\+Zapisz). Wykonuje walidację pól, a następnie wywołuje odpowiednie metody bazy danych. \Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_user_form_controller_aeda7f8427ab039249f850d8f306479cf}\index{com.example.elektroniczny\_dziennik.UserFormController@{com.example.elektroniczny\_dziennik.UserFormController}!initialize@{initialize}}
+\index{initialize@{initialize}!com.example.elektroniczny\_dziennik.UserFormController@{com.example.elektroniczny\_dziennik.UserFormController}}
+\doxysubsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_user_form_controller_aeda7f8427ab039249f850d8f306479cf} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+User\+Form\+Controller.\+initialize (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Inicjalizacja formularza. Ustawia listę ról, dodaje listener widoczności dla kontenera przedmiotów oraz ładuje listę dostępnych przedmiotów. \Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_user_form_controller_a70ee90f473a1e256223ef372836b4737}\index{com.example.elektroniczny\_dziennik.UserFormController@{com.example.elektroniczny\_dziennik.UserFormController}!setCreateMode@{setCreateMode}}
+\index{setCreateMode@{setCreateMode}!com.example.elektroniczny\_dziennik.UserFormController@{com.example.elektroniczny\_dziennik.UserFormController}}
+\doxysubsubsection{\texorpdfstring{setCreateMode()}{setCreateMode()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_user_form_controller_a70ee90f473a1e256223ef372836b4737} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+User\+Form\+Controller.\+set\+Create\+Mode (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Konfiguruje formularz w trybie tworzenia nowego użytkownika. \Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_user_form_controller_a245b85fe69dccae4796e1f5914c8a331}\index{com.example.elektroniczny\_dziennik.UserFormController@{com.example.elektroniczny\_dziennik.UserFormController}!setEditData@{setEditData}}
+\index{setEditData@{setEditData}!com.example.elektroniczny\_dziennik.UserFormController@{com.example.elektroniczny\_dziennik.UserFormController}}
+\doxysubsubsection{\texorpdfstring{setEditData()}{setEditData()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_user_form_controller_a245b85fe69dccae4796e1f5914c8a331} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+User\+Form\+Controller.\+set\+Edit\+Data (\begin{DoxyParamCaption}\item[{Observable\+List$<$ String $>$}]{data}{}\end{DoxyParamCaption})}
+
+Konfiguruje formularz w trybie edycji istniejącego użytkownika. Wypełnia pola danymi.
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em data} & Lista danych użytkownika (id, imię, nazwisko, login, rola). \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_user_form_controller_af87a6eb38b0e8fd0c9853a9efe2b864d}\index{com.example.elektroniczny\_dziennik.UserFormController@{com.example.elektroniczny\_dziennik.UserFormController}!setLoggedInUser@{setLoggedInUser}}
+\index{setLoggedInUser@{setLoggedInUser}!com.example.elektroniczny\_dziennik.UserFormController@{com.example.elektroniczny\_dziennik.UserFormController}}
+\doxysubsubsection{\texorpdfstring{setLoggedInUser()}{setLoggedInUser()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_user_form_controller_af87a6eb38b0e8fd0c9853a9efe2b864d} 
+void com.\+example.\+elektroniczny\+\_\+dziennik.\+User\+Form\+Controller.\+set\+Logged\+In\+User (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+Ustawia ID zalogowanego admina (zabezpieczenie przed edycją własnej roli). 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+src/\+main/\+java/\+com/\+example/\+elektroniczny\+\_\+dziennik/\+User\+Form\+Controller.\+java\end{DoxyCompactItemize}

@@ -1,0 +1,36 @@
+\doxysection{com.\+example.\+elektroniczny\+\_\+dziennik.\+Database Class Reference}
+\hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_database}{}\label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_database}\index{com.example.elektroniczny\_dziennik.Database@{com.example.elektroniczny\_dziennik.Database}}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Connection \doxymbox{\hyperlink{classcom_1_1example_1_1elektroniczny__dziennik_1_1_database_a31e737305caba469a00fa061844ad913}{get\+Connection}} ()  throws SQLException 
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasa odpowiedzialna za obsługę połączenia z bazą danych SQLite. Dostarcza statycznych metod umożliwiających uzyskanie połączenia z plikiem bazy danych. 
+
+\label{doc-func-members}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_database_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1example_1_1elektroniczny__dziennik_1_1_database_a31e737305caba469a00fa061844ad913}\index{com.example.elektroniczny\_dziennik.Database@{com.example.elektroniczny\_dziennik.Database}!getConnection@{getConnection}}
+\index{getConnection@{getConnection}!com.example.elektroniczny\_dziennik.Database@{com.example.elektroniczny\_dziennik.Database}}
+\doxysubsubsection{\texorpdfstring{getConnection()}{getConnection()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1elektroniczny__dziennik_1_1_database_a31e737305caba469a00fa061844ad913} 
+Connection com.\+example.\+elektroniczny\+\_\+dziennik.\+Database.\+get\+Connection (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) throws SQLException\hspace{0.3cm}{\ttfamily [static]}}
+
+Nawiązuje i zwraca połączenie z bazą danych. Wykorzystuje sterownik Driver\+Manager do utworzenia obiektu Connection.
+
+\begin{DoxyReturn}{Returns}
+Obiekt Connection reprezentujący aktywne połączenie z bazą danych. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em SQLException} & Wyrzucany w przypadku błędu dostępu do bazy danych lub nieprawidłowego adresu URL. \\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+src/\+main/\+java/\+com/\+example/\+elektroniczny\+\_\+dziennik/\+Database.\+java\end{DoxyCompactItemize}
